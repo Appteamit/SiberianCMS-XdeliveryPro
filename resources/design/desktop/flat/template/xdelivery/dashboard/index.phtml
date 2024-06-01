@@ -1,0 +1,51 @@
+<?php  $currencySymbol = Core_Model_Language::getCurrencySymbol(); ?>
+<?php include(dirname(__DIR__)."/left-menu.phtml"); ?>
+<div class="third-main-panel">
+ <div class="row">
+    <div class="col-md-12">
+        <div class="page-content-wrapper form-horizontal">
+            <div class="content solo-page">
+                <h3 class="title-editor border-blue text-center">
+                    <?php echo p__("xdelivery","Dashbord"); ?>
+                </h3>
+                <div class="subcontent content-color container-fluid">
+                     <div class="row content-white-bkg sb-pager">
+                         <div class="col-md-3">
+                             <div class="card border-right">
+                              <div class="card-body text-center">
+                                <h2 class="card-title">4</h2>
+                                <p class="card-text text-center"><?php echo p__("xdelivery","Total Orders"); ?></p>  </div>
+                            </div>
+                         </div>
+
+                         <div class="col-md-3">
+                             <div class="card border-right">
+                              <div class="card-body text-center">
+                                <h2 class="card-title">1</h2>
+                                <p class="card-text text-center"><?php echo p__("xdelivery","In Progress"); ?></p>  </div>
+                            </div>
+                         </div>
+
+                         <div class="col-md-3">
+                             <div class="card">
+                              <div class="card-body text-center">
+                                <h2 class="card-title">0</h2>
+                                <p class="card-text text-center"><?php echo p__("xdelivery","Low in stock"); ?> </p>
+                              </div>
+                            </div>
+                         </div>
+                         <div class="col-md-3">
+                             <div class="card">
+                              <div class="card-body text-center">
+                                <h2 class="card-title">0</h2>
+                                <p class="card-text text-center"><?php echo p__("xdelivery","Out of stock"); ?> </p>
+                              </div>
+                            </div>
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

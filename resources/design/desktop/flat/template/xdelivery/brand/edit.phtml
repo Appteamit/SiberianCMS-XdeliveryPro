@@ -1,0 +1,165 @@
+<?php include(dirname(__DIR__)."/left-menu.phtml"); ?>
+<?php $brand = $this->getBrand();  ?>
+
+<div class="third-main-panel">
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-content-wrapper form-horizontal">
+            <div class="content solo-page">
+                <h3 class="title-editor border-blue text-center">
+                    <?php echo p__("xdelivery","Edit Brand"); ?>
+               </h3>
+                  <div id="customer_forms" class="first-row-feature content-color container-fluid">
+                    <div id="customer_form_new">
+
+                        <form id="brandForm" action="<?php echo $this->getUrl('xdelivery/brand/save'); ?>" method="post" class="form-horizontal">
+                            <input type="hidden" name="value_id" value="<?php echo $brand->getValueId(); ?>">
+                            <input type="hidden" name="brand_id" value="<?php echo $brand->getBrandId(); ?>" class="required input-flat"/>
+                             <div class="form-group">
+                                <div class="col-md-6">
+
+                                     <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label for="name"><?php echo p__("xdelivery", 'Name'); ?><span>*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" value="<?php echo $brand->getName(); ?>" class="required input-flat" name="name" id="name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label for="parent_id"><?php echo p__("xdelivery", 'Image'); ?></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                             <div class="brand-images-container uploadImage">
+                                                <?php if(empty($brand->getImage())): ?>
+                                                    <img src="/app/local/modules/Xdelivery/resources/design/desktop/flat/images/shop-placeholder.png" width="100px" height="100px">
+                                                 <?php else: ?>
+                                                    <img src="/images/application/<?php echo $brand->getImage(); ?>" width="100px" height="100px">
+                                                 <?php endif ?>
+                                             </div> 
+                                        </div>
+                                    </div>
+
+                                     <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for="description"><?php echo p__('xdelivery', 'Description') ?></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <textarea cols="12" rows="6" class="required input-flat" name="description" id="description"><?php echo $brand->getDescription(); ?></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <label for="is_active" class="checkbox-inline">
+                                                <input type="checkbox" id="is_active" name="is_active" value="1" class="color-blue checkbox sb-tour" <?php echo $brand->getIsActive() == 1 ? "checked='checked'" : ""; ?> />
+                                               <?php echo p__("xdelivery", 'Active'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+ 
+
+                               </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    * <?php echo p__("xdelivery", 'Required fields'); ?>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-2 col-xs-12">
+                                   <a href="/xdelivery/brand/list" id="cancel_brand" class="color-blue btn sb-tour"><?php  echo p__("xdelivery", "Cancel"); ?></a>
+                                  
+                                    <button id="sb-tour-save_user" type="submit" class="color-blue btn pull-right sb-tour"><?php echo p__("xdelivery", "Save"); ?></button>
+                                </div>
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div>
+ 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+ 
+<form id="brand_image_form"  method="post" role="form"  enctype="multipart/form-data" >
+     <input style="display:none" id="brand_image_file" class="uploader" type="file" name="files" data-url="<?php echo $this->getUrl('template/crop/upload'); ?>"> 
+</form>
+
+<script type="text/javascript">
+
+     setTimeout(function() {
+        $('#description').ckeditor(ckeditor_config.cms);
+    }, 100);   
+
+ 
+    $('#brandForm').submit(function() {
+        if($(this).valid()) {
+            reload(this, this.action, true, function(data) {
+                if(data.success) {
+                    window.location = $('#cancel_brand').attr( "href" );
+                }
+            });
+        }
+        return false;
+    });
+
+    /*function for upload image*/
+
+
+    $(".uploadImage").click(function (e) {
+        $('#brand_image_file').trigger('click'); 
+    });
+
+
+     var Uploader = new Uploader();
+     var image_view_template = '<?php echo str_replace("\n", "", '<div class="cms-image" style="background-image: url(#THUMBNAIL_PATH#);"><img src="/images/application/placeholder/blank-512.png" class="cms-image-unit" /><input type="hidden" name="slider[]" value="%IMAGE_PATH%" /></div>' ); ?>';
+     
+     $('#brand_image_file').fileupload({
+            dataType: 'json',
+            add: function(e, data) {
+                data.submit();
+                Uploader.showProgressbar();
+            },
+            progressall: function(e, data) {
+                Uploader.moveProgressbar(data);
+            },
+            fail: function (el, data) {
+                Uploader.hide();
+                Uploader.showError(JSON.parse(data.jqXHR.responseText).message);
+            },
+            done: function(e, data) {
+                if (data.result.error) {
+                    Uploader.hide();
+                    Uploader.showError(data.result.message);
+                }
+                if (data.result.success) {
+                    Uploader.hide();
+                    var params = [];
+                    params["url"] = '<?php echo $this->getUrl('template/crop/crop'); ?>';
+                    params["file"] = data.result.files;
+                    params["output_w"] = 200;
+                    params["output_h"] = 200;
+                    params["output_url"] = '<?php echo str_replace('/', '$', $this->getUrl('xdelivery/application/crop')) ?>';
+                    params["uploader"] = 'Uploader';
+                    Uploader.crop(params);
+
+                    Uploader.callback = function(file) {
+                           var cms_image = image_view_template;
+                           cms_image = cms_image.replace("%IMAGE_PATH%", file);
+                           cms_image = cms_image.replace("#THUMBNAIL_PATH#",  '<?php echo Core_Model_Directory::getTmpDirectory(); ?>/' + file);
+                           $(".brand-images-container").html(cms_image);
+                    };
+                }
+            }
+        });
+
+
+ 
+</script>

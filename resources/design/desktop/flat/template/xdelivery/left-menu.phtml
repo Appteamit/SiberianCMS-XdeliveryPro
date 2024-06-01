@@ -1,0 +1,97 @@
+<?php include(dirname(__DIR__)."/xdelivery/header.phtml"); ?>
+
+<?php $currentLink = $this->getCurrentLink(); ?>
+<div class="second-vertical-bar-menu second-main-panel">
+     <!--    <a class="<?php //echo $currentLink == 'xdeliverydashboard' ? 'active' : ''; ?>" href="/xdelivery/dashboard/index">
+            <i class="fa fa-tachometer"></i><br>
+            <span><?php  //echo p__("xdelivery", "Dashboard"); ?></span>
+        </a>
+ -->
+        <a  class="<?php echo $currentLink == 'xdeliverystats' || $currentLink=='xdeliveryorderstats' || $currentLink=='xdeliveryproductstats' || $currentLink=='xdeliverycustomerstats' || $currentLink=='xdeliverycouponsstats' || $currentLink=='xdeliverytaxasstats' ? 'active' : ''; ?>" href="/xdelivery/stats/sales">
+            <i class="fa fa-area-chart" aria-hidden="true"></i><br>
+            <span><?php  echo p__("xdelivery", "Reports"); ?></span>
+        </a>
+         <a  class="<?php echo $currentLink == 'xdeliverystore' ? 'active' : ''; ?>" href="/xdelivery/store/list">
+            <i class="fa fa-map-marker" aria-hidden="true"></i><br>
+            <span><?php  echo p__("xdelivery", "Stores"); ?></span>
+        </a>
+
+        <a  class="<?php echo $currentLink == 'xdeliverycategory' ? 'active' : ''; ?>" href="/xdelivery/category/list">
+            <i class="fa fa-th-list" aria-hidden="true"></i><br>
+            <span><?php  echo p__("xdelivery", "Category"); ?></span>
+        </a>
+
+        <a class="<?php echo $currentLink == 'xdeliveryproduct' ? 'active' : ''; ?>" href="/xdelivery/products/list">
+           <i class="fa fa-list-alt" aria-hidden="true"></i><br>
+            <span><?php  echo p__("xdelivery", "Products"); ?></span>
+        </a>
+
+         <a class="<?php echo $currentLink == 'xdeliveryattributes' ? 'active' : ''; ?>" href="/xdelivery/attributes/list">
+           <i class="fa fa-list-alt" aria-hidden="true"></i><br>
+            <span><?php  echo p__("xdelivery", "Attributes"); ?></span>
+        </a>
+
+         <a class="<?php echo $currentLink == 'xdeliveryextra' ? 'active' : ''; ?>" href="/xdelivery/extra/list">
+           <i class="fa fa-list-alt" aria-hidden="true"></i><br>
+            <span><?php  echo p__("xdelivery", "Extra Options"); ?></span>
+        </a>
+
+         <a  class="<?php echo $currentLink == 'xdeliverybrand' ? 'active' : ''; ?>" href="/xdelivery/brand/list">
+            <i class="fa fa-th-list" aria-hidden="true"></i><br>
+            <span><?php  echo p__("xdelivery", "Brands"); ?></span>
+        </a>
+      
+       <a  class="<?php echo $currentLink == 'xdeliveryorders' ? 'active' : ''; ?>" href="/xdelivery/orders/list">
+            <i class="fa fa-shopping-bag" aria-hidden="true"></i><br>
+            <span><?php  echo p__("xdelivery", "Orders"); ?></span>
+        </a> 
+
+        <a class="<?php echo $currentLink == 'xdeliverytransactions' ? 'active' : ''; ?>" href="/xdelivery/orders/transactions">
+            <i class="fa fa-credit-card" aria-hidden="true"></i><br>
+            <span><?php  echo p__("xdelivery", "Transactions"); ?></span>
+        </a>
+
+        <a  class="<?php echo $currentLink == 'xdeliverycoupon' ? 'active' : ''; ?>" href="/xdelivery/coupons/list">
+            <i class="fa fa-tags" aria-hidden="true"></i><br>
+            <span><?php  echo p__("xdelivery", "Coupons"); ?></span>
+        </a>  
+
+    <!--     <a  class="<?php echo $currentLink == 'xdeliveryreports' ? 'active' : ''; ?>" href="/xdelivery/reports/list">
+            <i class="fa fa-bar-chart" aria-hidden="true"></i><br>
+            <span><?php  echo p__("xdelivery", "Reports"); ?></span>
+        </a>   -->
+ </div>
+
+ <style type="text/css">
+     .third-main-panel {
+    width: calc(100% - 90px);
+    float: right;
+    margin-right: 0px;
+}
+.second-vertical-bar-menu {
+    width: 90px;
+    background-color: #36353dd1;
+    position: absolute;
+    float: left;
+  /*  height: 100%;*/
+    margin: -15px -15px;
+}
+.second-vertical-bar-menu .active {
+    background-color: #2D2C32;
+    color: #fff;
+}
+.second-vertical-bar-menu a {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 26px;
+    line-height: 20px;
+    text-align: center;
+}
+.second-vertical-bar-menu span {
+    font-size: 12px;
+}
+ 
+</style>

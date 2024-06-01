@@ -1,0 +1,306 @@
+<?php include(dirname(__DIR__)."/left-menu.phtml"); 
+$store_id = $this->getRequest()->getParam('store_id');
+$value_id = (new Xdelivery_Model_Xdelivery())->getCurrentValueId();;
+// print_r($this->getRequest()->getParams());
+?>
+<div class="third-main-panel">
+    <input type="hidden" name="store_id" id="store_id" data-dynatable-query="store_id" value="<?php echo $store_id; ?>"
+        class="dt-search">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-content-wrapper form-horizontal">
+                <div class="content solo-page">
+                    <h3 class="title-editor border-blue text-center">
+                        <?php echo  p__("xdelivery", "Products"); ?>
+                    </h3>
+                    <div class="subcontent content-color container-fluid">
+                        <!-- Product Export and Import -->
+                        
+                            <div class="form-group" style="margin-bottom:70px;">
+                                <div class="col-md-6">
+                                <a class="color-blue btn pull-right" style="position: absolute;top: 16px;" target="_blank"
+                                    href="<?php echo $this->getUrl("xdelivery/products/downloadcsv")."?store_id=$store_id"; ?>"><?php echo p__("xdelivery",'Export to CSV'); ?>
+                                    &nbsp;<i class="fa fa-download"></i></a>
+                                </div>
+                                <div class="col-md-6">
+                                <form id="importSetupForm" method="post" style="position: absolute; top:15px; right:0px"
+                                        action="<?php echo $this->getUrl('xdelivery/products/import-setup') ?>"
+                                        enctype="multipart/form-data">
+                                        <input type="hidden" name="value_id" id="value_id" value="<?php echo $value_id; ?>" />
+                                        <div class="form-horizontal">
+                                            <div class="infos">
+                                                <div id="status_content">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12">
+                                                            <input type="file" accept=".csv" id="csv_file" name="csv_file"
+                                                                style="display: inline-block;margin-top: 5px;position: relative;left: 50px;"
+                                                                class="csv_file required">                                                            
+                                                            <div class="save pull-right">
+                                                                <button class="button btn bt_save btn color-blue"                                                    
+                                                                    style="margin-right: 15px; margin-top: 1px;" type="button">
+                                                                    <?php echo  p__("xdelivery",'Import CSV'); ?>&nbsp;<i class="fa fa-upload"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <a href="/xdelivery/products/add" id="add_product"
+                                    class="color-blue btn sb-tour pull-right">
+                                    <?php echo  p__("xdelivery", "Create a new Product"); ?>
+                                </a>
+                                <table id="dynamic-products" class="table content-white-bkg sb-pager">
+                                    <thead>
+                                        <tr class="border-grey">
+                                            <th style="width: 5%;"><?php echo  p__("xdelivery", "ID"); ?></th>
+                                            <th style="width: 10%;"><?php echo  p__("xdelivery", "Thumbnail"); ?></th>
+                                            <th data-dynatable-column="product_name" style="width: 30%;">
+                                                <?php echo  p__("xdelivery", "Name"); ?></th>
+                                            <th style="width: 10%;"><?php echo  p__("xdelivery", "SKU"); ?></th>
+                                            <th data-dynatable-column="in_stock" style="width: 15%;">
+                                                <?php echo  p__("xdelivery", "Stock"); ?></th>
+                                            <th data-dynatable-column="is_active" style="width: 10%;">
+                                                <?php echo  p__("xdelivery", "Status"); ?></th>
+                                            <th data-dynatable-column="price" style="width: 15%;">
+                                                <?php echo  p__("xdelivery", "Price"); ?></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="/app/sae/design/desktop/flat/js/dynatable/jquery.dynatable.css" media="screen" rel="stylesheet"
+    type="text/css">
+<script type="text/javascript" src="/app/sae/design/desktop/flat/js/dynatable/jquery.dynatable.js"></script>
+
+<script type="text/javascript">
+$('#importSetupForm').submit(function(e) {
+    $("#mask").show();
+    e.preventDefault();
+    if ($('#csv_file').val() == '') {
+        $("#mask").hide();
+        return;
+    }
+    var fd = new FormData();
+    var files = $('#csv_file')[0].files[0];
+    fd.append('csv_file', files);
+    fd.append('value_id', $('#value_id').val());
+    $.ajax({
+        url: this.action,
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+    }).done(function(response) {
+        console.log("My Reposnse");
+        res = JSON.parse(response);
+        console.log(res);
+        alert(res.message);
+        if (res.success == true) {
+            location.reload();
+        } else {
+            // $("#response_type").val(2);
+        }
+    }).fail(function(response) {
+        alert("error");
+    }).always(function(response) {
+        $("#mask").hide();
+        // $("#submit_response_form").trigger("click");
+    });
+    return false;
+});
+$('#exportCsv').on('click', function() {
+    url = "<?php echo $this->getUrl("xdelivery/application/downloadcsv")."?value_id=$value_id"; ?>"
+    reload(this, url, true, function(data) {
+        if (data.success) {
+            feature_form_success(data.message);
+            // if (data.product_type == 'variable') {
+
+            // } else {
+            //     window.location = $('#cancel_product').attr("href");
+            // }
+        } else {
+            feature_form_error(data.message);
+        }
+    });
+});
+var uriParams = {};
+let rowTemplate = `
+    <tr class="dynarow">
+        <td>#(ID)</td>
+        <td><img src="(IMAGE)" width="40px" height="40px"></td>
+        <td><b>(NAME) - <i>(PRODUCTTYPE)</i></b><br>(STORE)</td>
+        <td>(SKU)</td>
+        <td>(STOCK)</td>
+        <td>(STATUS)</td>
+        <td><span class="(ISSPECIALHIDE)">(PRICE)</span><span class="(ISSPECIALSHOW)">(SPECIALPRICE) <del>(PRICE)</del></span></td> 
+        <td> 
+            <a target="_blank" btn btn-xs btn-default" href="/xdelivery/products/qrcode/value_id/(VALUEID)/id/(ID)">
+             <i class="fa fa-qrcode" aria-hidden="true"></i>
+            </a>
+        </td>       
+        <td>
+            <a class="edit-category btn btn-xs btn-info" href="/xdelivery/products/edit/id/(ID)">
+             <?php echo  p__("xdelivery", "Edit"); ?>
+            </a>
+        </td>
+        <td> 
+            <a class="delete-product btn btn-xs btn-danger" href="/xdelivery/products/delete/id/(ID)">
+             <?php echo  p__("xdelivery", "Delete"); ?>
+            </a>
+        </td>
+    </tr>`;
+
+function rowWriter(rowIndex, record, columns, cellWriter) {
+    var isSpecialhide = record.active_special_price == 1 ? 'hide' : 'show';
+    var isSpecialshow = record.active_special_price == 1 ? 'show' : 'hide';
+
+    return rowTemplate
+        .replace(/\(ID\)/g, record.id)
+        .replace(/\(NAME\)/g, record.product_name)
+        .replace(/\(SKU\)/g, record.sku)
+        .replace(/\(STOCK\)/g, record.stock)
+        .replace(/\(PRICE\)/g, record.price)
+        .replace(/\(SPECIALPRICE\)/g, record.special_price)
+        .replace(/\(SPECIALPRICEACTIVE\)/g, record.active_special_price)
+        .replace(/\(ISSPECIALHIDE\)/g, isSpecialhide)
+        .replace(/\(ISSPECIALSHOW\)/g, isSpecialshow)
+        .replace(/\(STATUS\)/g, record.is_active)
+        .replace(/\(VALUEID\)/g, record.value_id)
+        .replace(/\(STORE\)/g, record.store_name)
+        .replace(/\(PRODUCTTYPE\)/g, record.product_type)
+        .replace(/\(IMAGE\)/g, record.product_image);
+}
+$.dynatableSetup({
+    table: {
+        defaultColumnIdStyle: 'noStyle'
+    },
+    features: {
+        paginate: true,
+        sort: true,
+        pushState: true,
+        search: true,
+        recordCount: true,
+        perPageSelect: false,
+    },
+});
+
+let tableCustomers = $('#dynamic-products');
+
+tableCustomers.bind('dynatable:preinit', function(e, dynatable) {
+    dynatable.utility.textTransform.noStyle = function(text) {
+        return text;
+    };
+});
+
+tableCustomers.bind('dynatable:init', function(e, dynatable) {
+    /* dynatable.queries.functions['store_id'] = function(r, val) {
+       return queryValue;
+     };  */
+
+});
+
+tableCustomers.bind('dynatable:afterProcess', function(e, data) {
+    uriParams = data.queries;
+});
+
+
+tableCustomers.bind('dynatable:push', function(e, dynatable) {
+    uriParams = dynatable.queries;
+});
+
+// And on the table
+tableCustomers.dynatable({
+    dataset: {
+        ajax: true,
+        ajaxUrl: '/xdelivery/products/find-all',
+        ajaxOnLoad: true,
+        records: [],
+        perPageDefault: 25
+    },
+    inputs: {
+        processingText: '<?php echo __jss("Loading ...") ?>',
+        searchPlaceholder: '<?php echo __jss("Search products ...") ?>',
+        recordCountText: '<?php echo __jss("Showing") ?> ',
+        filteredFrom: ' (<?php echo __jss("filtered from #TOTAL# total records") ?>)',
+        recordText: '<?php echo __jss("record") ?>',
+        recordTextPlural: '<?php echo __jss("records") ?>',
+        textOf: '<?php echo __jss("of") ?>',
+        textTo: '<?php echo __jss("to") ?>',
+        queries: $('.dt-search')
+    },
+    writers: {
+        _rowWriter: rowWriter
+    }
+});
+
+
+$(document).off("click", ".delete-product");
+$(document).on("click", ".delete-product", function(e) {
+    e.preventDefault();
+    let deleteHref = $(this).attr("href");
+    swal({
+        title: "<?php echo P__("xdelivery", "Confirmation") ?>",
+        text: "<?php echo P__("xdelivery", "Are you sure you want to delete this Product?") ?>",
+        showCancelButton: true,
+        confirmButtonColor: '#0099C7',
+        confirmButtonText: "<?php echo P__("xdelivery", "Yes, delete!")?>",
+        cancelButtonText: "<?php echo P__("xdelivery", "No, go back") ?>",
+        buttons: true
+    }, function(value) {
+        if (!value) {
+            return false;
+        }
+
+        formget(deleteHref, {},
+            function(data) {
+                feature_form_success(data.message);
+                // Reload only on success and when done!
+                setTimeout(function() {
+                    location.reload();
+                }, 1500)
+            },
+            function(data) {
+                feature_form_error(JSON.parse(data.responseText).message);
+            },
+            false);
+    });
+});
+
+
+setTimeout(function() {
+    $('#store_id').val(<?php echo $store_id; ?>);
+    $("#store_id").blur();
+}, 300)
+</script>
+
+<style type="text/css">
+.dynatable-record-count {
+    bottom: 0px !important;
+}
+
+.text-blue {
+    color: #0099c7;
+}
+
+#dynamic-products {
+    margin-top: 15px;
+}
+</style>

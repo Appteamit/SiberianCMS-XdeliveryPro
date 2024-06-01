@@ -1,0 +1,203 @@
+<?php include(dirname(__DIR__)."/left-menu.phtml"); ?>
+<div class="third-main-panel">
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-content-wrapper form-horizontal">
+            <div class="content solo-page">
+                <h3 class="title-editor border-blue text-center">
+                    <?php echo  p__("xdelivery", "Transactions"); ?>
+                </h3>
+                
+                <div class="subcontent content-color container-fluid">
+                    <div class="form-group">
+                     <div class="col-md-12">
+                        <div id="row_filter_metrics" class="pull-right">
+                               <div class="col-md-4 col-sm-12 col-xs-12">
+                                </div>
+                               <div class="col-md-1 col-sm-6 col-xs-6">
+                                    <label for="from"><?php echo  p__("xdelivery", "From"); ?></label>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-xs-6">
+                                    <input type="text" id="from" name="from" class="input-flat sb-tour dt-search" autocomplete="off" data-dynatable-query="from">
+                                </div>
+                                <div class="col-md-1 col-sm-6 col-xs-6">
+                                    <label for="to"><?php echo  p__("xdelivery", "To"); ?></label>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-xs-6">
+                                    <input type="text" id="to" name="to" class="input-flat sb-tour dt-search" autocomplete="off" data-dynatable-query="to">
+                                </div>
+                        </div>
+
+                            <table id="dynamic-orders"
+                                   class="table content-white-bkg sb-pager">
+                                <thead>
+                                    <tr class="border-grey">
+                                        <th data-dynatable-column="id"
+                                            style="width: 5%;"><?php echo  p__("xdelivery", "ID"); ?></th>
+                                        <th data-dynatable-column="id"
+                                            style="width: 15%;"><?php echo  p__("xdelivery", "Order Number"); ?></th>
+                                        <th data-dynatable-column="customer_firstname"
+                                            style="width: 20%;"><?php echo  p__("xdelivery", "Customer"); ?></th>
+                                     
+                                        <th data-dynatable-column="total_amount"
+                                            style="width: 10%;"><?php echo  p__("xdelivery", "Total"); ?></th>
+                                       <th data-dynatable-column="payment_method"
+                                            style="width: 15%;"><?php echo  p__("xdelivery", "Payment method"); ?></th>
+                                        <th data-dynatable-column="status"
+                                            style="width: 15%;"><?php echo  p__("xdelivery", "Status"); ?></th>
+                                       <th data-dynatable-column="created_at"
+                                            style="width: 15%;"><?php echo  p__("xdelivery", "Date"); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<link href="/app/sae/design/desktop/flat/js/dynatable/jquery.dynatable.css"
+      media="screen"
+      rel="stylesheet"
+      type="text/css">
+<script type="text/javascript"
+        src="/app/sae/design/desktop/flat/js/dynatable/jquery.dynatable.js"></script>
+
+<style type="text/css">
+    #dynamic-customers {
+        margin-top: 15px;
+    }
+</style>
+
+<script type="text/javascript">
+    var uriParams = {};
+    let rowTemplate = `
+    <tr class="dynarow">
+        <td>(ID)</td>
+        <td><a href="/xdelivery/orders/details/id/(ORDERID)">#(ORDERNUMBER)</a></td>
+        <td>(FIRSTNAME) (LASTNAME)</td>
+        <td>(TOTALAMOUNT)</td>
+        <td>(LABLENAME)</td>
+        <td>(STATUS)</td>
+        <td>(DATE)</td>
+    </tr>`;
+
+    function rowWriter(rowIndex, record, columns, cellWriter) {
+        return rowTemplate
+            .replace(/\(ID\)/g, record.id)
+            .replace(/\(ORDERNUMBER\)/g, record.order_number)
+            .replace(/\(ORDERID\)/g, record.order_id)
+            .replace(/\(FIRSTNAME\)/g, record.firstname)
+            .replace(/\(LASTNAME\)/g, record.lastname)
+            .replace(/\(DATE\)/g, record.created_at)
+            .replace(/\(TOTALAMOUNT\)/g, record.total_amount)
+            .replace(/\(LABLENAME\)/g, record.label_name)
+            .replace(/\(STATUS\)/g, record.payment_status);
+    }
+    $.dynatableSetup({
+        table: {
+            defaultColumnIdStyle: 'noStyle'
+        },
+        features: {
+            paginate: true,
+            sort: true,
+            pushState: true,
+            search: true,
+            recordCount: true,
+            perPageSelect: false,
+        },
+    });
+
+    let tableCustomers = $('#dynamic-orders');
+
+    tableCustomers.bind('dynatable:preinit', function(e, dynatable) {
+        dynatable.utility.textTransform.noStyle = function(text) {
+            return text;
+        };
+    });
+  
+    tableCustomers.bind('dynatable:init', function(e, dynatable) {
+            dynatable.queries.functions['to'] = function(r, val) {
+              return queryValue;
+            };  
+            dynatable.queries.functions['from'] = function(r, val) {
+              return queryValue;
+            }; 
+                    
+      });
+
+    tableCustomers.bind('dynatable:afterProcess', function (e, data) {
+        uriParams = data.queries;
+    });
+    
+
+    tableCustomers.bind('dynatable:push', function(e, dynatable) {
+          uriParams = dynatable.queries;   
+    });
+
+    // And on the table
+    tableCustomers.dynatable({
+        dataset: {
+            ajax: true,
+            ajaxUrl: '/xdelivery/orders/find-all-transactions',
+            ajaxOnLoad: true,
+            records: [],
+            perPageDefault: 25
+        },
+        inputs: {
+            processingText: '<?php echo __jss("Loading ...") ?>',
+            searchPlaceholder: '<?php echo __jss("Search  ...") ?>',
+            recordCountText: '<?php echo __jss("Showing") ?> ',
+            filteredFrom: ' (<?php echo __jss("filtered from #TOTAL# total records") ?>)',
+            recordText: '<?php echo __jss("record") ?>',
+            recordTextPlural: '<?php echo __jss("records") ?>',
+            textOf: '<?php echo __jss("of") ?>',
+            textTo: '<?php echo __jss("to") ?>',
+            queries: $('.dt-search')
+        },
+        writers: {
+            _rowWriter: rowWriter
+        }
+    });
+
+    $(document).ready(function() {
+        if($.datepicker.regional['<?php echo Core_Model_Language::getCurrentLanguageDatepicker(); ?>']) {
+            $.datepicker.setDefaults($.datepicker.regional['<?php echo Core_Model_Language::getCurrentLanguageDatepicker(); ?>']);
+        } else {
+            $.datepicker.setDefaults($.datepicker.regional['en']);
+        }
+        $( "#from" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                numberOfMonths: 1,
+                dateFormat: 'yy-mm-dd',
+                onClose: function( selectedDate ) {
+                    $( "#to" ).datepicker( "option", "minDate", selectedDate );
+                }
+            });
+
+            $( "#to" ).datepicker({
+                changeMonth: true,
+                changeYear: true,
+                numberOfMonths: 1,
+                dateFormat: 'yy-mm-dd',
+                onClose: function( selectedDate ) {
+                    $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+                }
+            });
+    });
+ 
+ </script>
+
+<style type="text/css">
+    .dynatable-record-count{
+        bottom: 0px !important;
+    }
+    .text-blue{
+        color: #0099c7;
+    }
+</style>

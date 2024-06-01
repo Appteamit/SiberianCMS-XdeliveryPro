@@ -1,0 +1,118 @@
+<?php include(dirname(__DIR__)."/left-menu.phtml"); ?>
+<?php   $value_id = (new Xdelivery_Model_Xdelivery())->getCurrentValueId();
+
+
+/*Store Manage*/
+$storeFrom = new Xdelivery_Form_Store_From();
+$storeFrom->addNav("ads-save-nav", "Save", false);
+$storeFrom->setElementValueById('value_id', $value_id);
+$storeFrom->setElementValueById('commision_percentage', 0);
+$storeFrom->setElementValueById('is_default', 0);
+?>
+
+<div class="third-main-panel">
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-content-wrapper form-horizontal">
+            <div class="content solo-page">
+                <h3 class="title-editor border-blue text-center">
+                    <?php echo p__("xdelivery","Create a new Store"); ?>
+                    <a href="/xdelivery/store/list" id="cancel_store" class="color-blue btn sb-tour pull-right">
+                          <?php  echo p__("xdelivery", "Back"); ?>
+                    </a>
+                </h3>
+                  <div id="customer_forms" class="first-row-feature content-color container-fluid">
+                    <div id="customer_form_new">
+                        <?php echo $storeFrom; ?>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+ <form id="category_image_form"  method="post" role="form"  enctype="multipart/form-data" >
+     <input style="display:none" id="store_image_file" class="uploader" type="file" name="files" data-url="<?php echo $this->getUrl('template/crop/upload'); ?>"> 
+</form>
+
+
+<script type="text/javascript">
+
+    $('#form-add-store').submit(function() {
+        if($(this).valid()) {
+            reload(this, this.action, true, function(data) {
+                if(data.success) {
+                    window.location = $('#cancel_store').attr( "href" );
+                }
+            });
+        }
+        return false;
+    }); 
+
+
+    /*function for upload image*/
+    $("#image_button").click(function (e) {
+        $('#store_image_file').trigger('click'); 
+    });
+    var Uploader = new Uploader();
+    var image_view_template = '<?php echo str_replace("\n", "", '<div class="cms-image" style="background-image: url(#THUMBNAIL_PATH#);"><img src="/images/application/placeholder/blank-512.png" class="cms-image-unit" /><input type="hidden" name="slider[]" value="%IMAGE_PATH%" /></div>' ); ?>';
+
+    $('#store_image_file').fileupload({
+        dataType: 'json',
+        add: function(e, data) {
+            data.submit();
+            Uploader.showProgressbar();
+        },
+        progressall: function(e, data) {
+            Uploader.moveProgressbar(data);
+        },
+        fail: function (el, data) {
+            Uploader.hide();
+            Uploader.showError(JSON.parse(data.jqXHR.responseText).message);
+        },
+        done: function(e, data) {
+            if (data.result.error) {
+                Uploader.hide();
+                Uploader.showError(data.result.message);
+            }
+            if (data.result.success) {
+                Uploader.hide();
+                var params = [];
+                params["url"] = '<?php echo $this->getUrl('template/crop/crop'); ?>';
+                params["file"] = data.result.files;
+                params["output_w"] = 512;
+                params["output_h"] = 320;
+                params["output_url"] = '<?php echo str_replace('/', '$', $this->getUrl('xdelivery/application/crop')) ?>';
+                params["uploader"] = 'Uploader';
+                Uploader.crop(params);
+
+                Uploader.callback = function(file) {
+                       var cms_image = image_view_template;
+                       cms_image = cms_image.replace("%IMAGE_PATH%", file);
+                       cms_image = cms_image.replace("#THUMBNAIL_PATH#",  '<?php echo Core_Model_Directory::getTmpDirectory(); ?>/' + file);
+                       $(".store-images-container").html(cms_image);
+                };
+            }
+        }
+    });
+       
+ 
+</script>
+    <!-- Map Start  -->
+<?php 
+ $googlemaps_key =  $this->getApplication()->getGooglemapsKey();
+ ?>
+ <script type="text/javascript">     
+  function initMap(){
+        var autocomplete = new google.maps.places.Autocomplete($("#store_location")[0], {});
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            var place = autocomplete.getPlace();
+             var near_place = autocomplete.getPlace();
+             document.getElementById('address_lat').value = near_place.geometry.location.lat();
+             document.getElementById('address_lng').value = near_place.geometry.location.lng();
+        });
+    }
+ </script>
+ <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&key=<?php echo $googlemaps_key;?>&libraries=places&callback=initMap"></script>    
+<!-- Map end  -->

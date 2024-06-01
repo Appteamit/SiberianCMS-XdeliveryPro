@@ -1,0 +1,3858 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-04-01T11:00:10+02:00\n"
+"PO-Revision-Date: 2019-04-01T11:00:10+02:00\n"
+"Language: \n"
+
+# GMT 1600836470.1001
+msgctxt "xdelivery"
+msgid "xdelivery"
+msgstr "xdelivery"
+
+# GMT 1600836470.1002
+#, mobile
+msgctxt "xdelivery"
+msgid "xdelivery"
+msgstr "xdelivery"
+
+# GMT 1600836470.1003
+msgctxt "xdelivery"
+msgid "Upload successfully"
+msgstr "Upload successfully"
+
+# GMT 1600836470.1004
+msgctxt "xdelivery"
+msgid "This attributes does not exist."
+msgstr "This attributes does not exist."
+
+# GMT 1600836470.1005
+msgctxt "xdelivery"
+msgid "Info successfully saved"
+msgstr "Info successfully saved"
+
+# GMT 1600836470.1006
+msgctxt "xdelivery"
+msgid "Active"
+msgstr "Active"
+
+# GMT 1600836470.1007
+msgctxt "xdelivery"
+msgid "In Active"
+msgstr "In Active"
+
+# GMT 1600836470.1008
+msgctxt "xdelivery"
+msgid "xdelivery"
+msgstr "xdelivery"
+
+# GMT 1600836470.1009
+msgctxt "xdelivery"
+msgid "Yes"
+msgstr "Yes"
+
+# GMT 1600836470.1010
+msgctxt "xdelivery"
+msgid "No"
+msgstr "No"
+
+# GMT 1600836470.1011
+msgctxt "xdelivery"
+msgid "Successfully deleted"
+msgstr "Successfully deleted"
+
+# GMT 1600836470.1012
+msgctxt "xdelivery"
+msgid "This category does not exist."
+msgstr "This category does not exist."
+
+# GMT 1600836470.1013
+msgctxt "xdelivery"
+msgid "Home  Delivery"
+msgstr "Home  Delivery"
+
+# GMT 1600836470.1014
+msgctxt "xdelivery"
+msgid "Paid"
+msgstr "Paid"
+
+# GMT 1600836470.1015
+msgctxt "xdelivery"
+msgid "Pick-up"
+msgstr "Pick-up"
+
+# GMT 1600836470.1016
+msgctxt "xdelivery"
+msgid "Unpaid"
+msgstr "Unpaid"
+
+# GMT 1600836470.1017
+msgctxt "xdelivery"
+msgid "%s Order #%s has been %s!"
+msgstr "%s Order #%s has been %s!"
+
+# GMT 1600836470.1018
+msgctxt "xdelivery"
+msgid "Your order has been %s!"
+msgstr "Your order has been %s!"
+
+# GMT 1600836470.1019
+msgctxt "xdelivery"
+msgid "Thank you for placing your order with %s. This email is to confirm your order has been %s successfully."
+msgstr "Thank you for placing your order with %s. This email is to confirm your order has been %s successfully."
+
+# GMT 1600836470.1020
+msgctxt "xdelivery"
+msgid "Update Status successfully"
+msgstr "Update Status successfully"
+
+# GMT 1600836470.1021
+msgctxt "xdelivery"
+msgid "Product SKU already exist!"
+msgstr "Product SKU already exist!"
+
+# GMT 1600836470.1022
+msgctxt "xdelivery"
+msgid "Please Select a attributes"
+msgstr "Please Select a attributes"
+
+# GMT 1600836470.1023
+msgctxt "xdelivery"
+msgid "Please enter a price"
+msgstr "Please enter a price"
+
+# GMT 1600836470.1024
+msgctxt "xdelivery"
+msgid "No values available for this attribute"
+msgstr "No values available for this attribute"
+
+# GMT 1600836470.1025
+msgctxt "xdelivery"
+msgid "Used for variations"
+msgstr "Used for variations"
+
+# GMT 1600836470.1026
+msgctxt "xdelivery"
+msgid "New row add successfully, Please select values"
+msgstr "New row add successfully, Please select values"
+
+# GMT 1600836470.1027
+msgctxt "xdelivery"
+msgid "Please select attribute."
+msgstr "Please select attribute."
+
+# GMT 1600836470.1028
+msgctxt "xdelivery"
+msgid "Out Of Stock"
+msgstr "Out Of Stock"
+
+# GMT 1600836470.1029
+msgctxt "xdelivery"
+msgid "Low Stock"
+msgstr "Low Stock"
+
+# GMT 1600836470.1030
+msgctxt "xdelivery"
+msgid "In Stock"
+msgstr "In Stock"
+
+# GMT 1600836470.1031
+msgctxt "xdelivery"
+msgid "Delete successfully"
+msgstr "Delete successfully"
+
+# GMT 1600836470.1032
+msgctxt "xdelivery"
+msgid "Mimimum Qty In Shopping Cart Must be greater than 0!"
+msgstr "Mimimum Qty In Shopping Cart Must be greater than 0!"
+
+# GMT 1600836470.1033
+msgctxt "xdelivery"
+msgid "Maximum Qty In Shopping Cart Must be greater than 0 OR Mimimum Qty In Shopping Cart!"
+msgstr "Maximum Qty In Shopping Cart Must be greater than 0 OR Mimimum Qty In Shopping Cart!"
+
+# GMT 1600836470.1034
+msgctxt "xdelivery"
+msgid "Maximum Qty Per Product Must be greater than 0!"
+msgstr "Maximum Qty Per Product Must be greater than 0!"
+
+# GMT 1600836470.1035
+msgctxt "xdelivery"
+msgid "Mimimum Order Value Must be greater than 0!"
+msgstr "Mimimum Order Value Must be greater than 0!"
+
+# GMT 1600836470.1036
+msgctxt "xdelivery"
+msgid "Maximum Order Value Must be greater than 0 OR Mimimum Order Value !"
+msgstr "Maximum Order Value Must be greater than 0 OR Mimimum Order Value !"
+
+# GMT 1600836470.1037
+msgctxt "xdelivery"
+msgid "Saved successfull"
+msgstr "Saved successfull"
+
+# GMT 1600836470.1038
+msgctxt "xdelivery"
+msgid "Wallet module is not activated, Please add a features in app and try again."
+msgstr "Wallet module is not activated, Please add a features in app and try again."
+
+# GMT 1600836470.1039
+msgctxt "xdelivery"
+msgid "Hello"
+msgstr "Hello"
+
+# GMT 1600836470.1040
+msgctxt "xdelivery"
+msgid "Payment Summary"
+msgstr "Payment Summary"
+
+# GMT 1600836470.1041
+msgctxt "xdelivery"
+msgid "Subtotal"
+msgstr "Subtotal"
+
+# GMT 1600836470.1042
+msgctxt "xdelivery"
+msgid "Tax"
+msgstr "Tax"
+
+# GMT 1600836470.1043
+msgctxt "xdelivery"
+msgid "Net Amount"
+msgstr "Net Amount"
+
+# GMT 1600836470.1044
+msgctxt "xdelivery"
+msgid "Deliver address"
+msgstr "Deliver address"
+
+# GMT 1600836470.1045
+msgctxt "xdelivery"
+msgid "Pickup address"
+msgstr "Pickup address"
+
+# GMT 1600836470.1046
+msgctxt "xdelivery"
+msgid "Email"
+msgstr "Email"
+
+# GMT 1600836470.1047
+msgctxt "xdelivery"
+msgid "Thanks"
+msgstr "Thanks"
+
+# GMT 1600836470.1048
+msgctxt "xdelivery"
+msgid "Settings"
+msgstr "Settings"
+
+# GMT 1600836470.1049
+msgctxt "xdelivery"
+msgid "Delivery/Pickup"
+msgstr "Delivery/Pickup"
+
+# GMT 1600836470.1050
+msgctxt "xdelivery"
+msgid "Payment Method"
+msgstr "Payment Method"
+
+# GMT 1600836470.1051
+msgctxt "xdelivery"
+msgid "Products"
+msgstr "Products"
+
+# GMT 1600836470.1052
+msgctxt "xdelivery"
+msgid "Orders"
+msgstr "Orders"
+
+# GMT 1600836470.1053
+msgctxt "xdelivery"
+msgid "Taxes"
+msgstr "Taxes"
+
+# GMT 1600836470.1054
+msgctxt "xdelivery"
+msgid "Business Day"
+msgstr "Business Day"
+
+# GMT 1600836470.1055
+msgctxt "xdelivery"
+msgid "Slider"
+msgstr "Slider"
+
+# GMT 1600836470.1056
+msgctxt "xdelivery"
+msgid "Store"
+msgstr "Store"
+
+# GMT 1600836470.1057
+msgctxt "xdelivery"
+msgid "Delivery/Pickup Settings"
+msgstr "Delivery/Pickup Settings"
+
+# GMT 1600836470.1058
+msgctxt "xdelivery"
+msgid "Create a New Slider"
+msgstr "Create a New Slider"
+
+# GMT 1600836470.1059
+msgctxt "xdelivery"
+msgid "Manage Slider"
+msgstr "Manage Slider"
+
+# GMT 1600836470.1060
+msgctxt "xdelivery"
+msgid "Status"
+msgstr "Status"
+
+# GMT 1600836470.1061
+msgctxt "xdelivery"
+msgid "Name"
+msgstr "Name"
+
+# GMT 1600836470.1062
+msgctxt "xdelivery"
+msgid "S.NO"
+msgstr "S.NO"
+
+# GMT 1600836470.1063
+msgctxt "xdelivery"
+msgid "Close"
+msgstr "Close"
+
+# GMT 1600836470.1064
+msgctxt "xdelivery"
+msgid "Taxes"
+msgstr "Taxes"
+
+# GMT 1600836470.1065
+msgctxt "xdelivery"
+msgid "Create a New Tax"
+msgstr "Create a New Tax"
+
+# GMT 1600836470.1066
+msgctxt "xdelivery"
+msgid "Manage Taxes"
+msgstr "Manage Taxes"
+
+# GMT 1600836470.1067
+msgctxt "xdelivery"
+msgid "Rate"
+msgstr "Rate"
+
+# GMT 1600836470.1068
+msgctxt "xdelivery"
+msgid "Create a new Attribute"
+msgstr "Create a new Attribute"
+
+# GMT 1600836470.1069
+msgctxt "xdelivery"
+msgid "Use this attribute for filtering products"
+msgstr "Use this attribute for filtering products"
+
+# GMT 1600836470.1070
+msgctxt "xdelivery"
+msgid "Required fields"
+msgstr "Required fields"
+
+# GMT 1600836470.1071
+msgctxt "xdelivery"
+msgid "Cancel"
+msgstr "Cancel"
+
+# GMT 1600836470.1072
+msgctxt "xdelivery"
+msgid "Save"
+msgstr "Save"
+
+# GMT 1600836470.1073
+msgctxt "xdelivery"
+msgid "Edit Attribute"
+msgstr "Edit Attribute"
+
+# GMT 1600836470.1074
+msgctxt "xdelivery"
+msgid "Filterable"
+msgstr "Filterable"
+
+# GMT 1600836470.1075
+msgctxt "xdelivery"
+msgid "Values"
+msgstr "Values"
+
+# GMT 1600836470.1076
+msgctxt "xdelivery"
+msgid "ID"
+msgstr "ID"
+
+# GMT 1600836470.1077
+msgctxt "xdelivery"
+msgid "%s Values"
+msgstr "%s Values"
+
+# GMT 1600836470.1078
+msgctxt "xdelivery"
+msgid "Add More Value"
+msgstr "Add More Value"
+
+# GMT 1600836470.1079
+msgctxt "xdelivery"
+msgid "Please note that you need to click the Save Changes button to commit the changes"
+msgstr "Please note that you need to click the Save Changes button to commit the changes"
+
+# GMT 1600836470.1080
+msgctxt "xdelivery"
+msgid "Create a new Category"
+msgstr "Create a new Category"
+
+# GMT 1600836470.1081
+msgctxt "xdelivery"
+msgid "Category Name"
+msgstr "Category Name"
+
+# GMT 1600836470.1082
+msgctxt "xdelivery"
+msgid "Short Description"
+msgstr "Short Description"
+
+# GMT 1600836470.1083
+msgctxt "xdelivery"
+msgid "Parent Category"
+msgstr "Parent Category"
+
+# GMT 1600836470.1084
+msgctxt "xdelivery"
+msgid "Image"
+msgstr "Image"
+
+# GMT 1600836470.1085
+msgctxt "xdelivery"
+msgid "Display In Popular Search?"
+msgstr "Display In Popular Search?"
+
+# GMT 1600836470.1086
+msgctxt "xdelivery"
+msgid "%s - Sub Category"
+msgstr "%s - Sub Category"
+
+# GMT 1600836470.1087
+msgctxt "xdelivery"
+msgid "Back"
+msgstr "Back"
+
+# GMT 1600836470.1088
+msgctxt "xdelivery"
+msgid "Thumbnail"
+msgstr "Thumbnail"
+
+# GMT 1600836470.1089
+msgctxt "xdelivery"
+msgid "In Search"
+msgstr "In Search"
+
+# GMT 1600836470.1090
+msgctxt "xdelivery"
+msgid "Create a new Option Category"
+msgstr "Create a new Option Category"
+
+# GMT 1600836470.1091
+msgctxt "xdelivery"
+msgid "Group title"
+msgstr "Group title"
+
+# GMT 1600836470.1092
+msgctxt "xdelivery"
+msgid "Options Type"
+msgstr "Options Type"
+
+# GMT 1600836470.1093
+msgctxt "xdelivery"
+msgid "Multiple choice"
+msgstr "Multiple choice"
+
+# GMT 1600836470.1094
+msgctxt "xdelivery"
+msgid "Limited choice"
+msgstr "Limited choice"
+
+# GMT 1600836470.1095
+msgctxt "xdelivery"
+msgid "Single choice"
+msgstr "Single choice"
+
+# GMT 1600836470.1096
+msgctxt "xdelivery"
+msgid "Maximum option"
+msgstr "Maximum option"
+
+# GMT 1600836470.1097
+msgctxt "xdelivery"
+msgid "Minimum option"
+msgstr "Minimum option"
+
+# GMT 1600836470.1098
+msgctxt "xdelivery"
+msgid "Product Categories"
+msgstr "Product Categories"
+
+# GMT 1600836470.1099
+msgctxt "xdelivery"
+msgid "Edit a Option Category #%s"
+msgstr "Edit a Option Category #%s"
+
+# GMT 1600836470.1200
+msgctxt "xdelivery"
+msgid "Management of Exra options Category"
+msgstr "Management of Exra options Category"
+
+# GMT 1600836470.1201
+msgctxt "xdelivery"
+msgid "Add new category of additional options"
+msgstr "Add new category of additional options"
+
+# GMT 1600836470.1202
+msgctxt "xdelivery"
+msgid "%s Option"
+msgstr "%s Option"
+
+# GMT 1600836470.1203
+msgctxt "xdelivery"
+msgid "Price"
+msgstr "Price"
+
+# GMT 1600836470.1204
+msgctxt "xdelivery"
+msgid "ORDER DETAILS #%s"
+msgstr "ORDER DETAILS #%s"
+
+# GMT 1600836470.1205
+msgctxt "xdelivery"
+msgid "Customer ID"
+msgstr "Customer ID"
+
+# GMT 1600836470.1206
+msgctxt "xdelivery"
+msgid "Phone"
+msgstr "Phone"
+
+# GMT 1600836470.1207
+msgctxt "xdelivery"
+msgid "Order Number"
+msgstr "Order Number"
+
+# GMT 1600836470.1208
+msgctxt "xdelivery"
+msgid "Delivery Time"
+msgstr "Delivery Time"
+
+# GMT 1600836470.1209
+msgctxt "xdelivery"
+msgid "Delivery Date"
+msgstr "Delivery Date"
+
+# GMT 1600836470.1210
+msgctxt "xdelivery"
+msgid "Delivery Type"
+msgstr "Delivery Type"
+
+# GMT 1600836470.1211
+msgctxt "xdelivery"
+msgid "Current Status"
+msgstr "Current Status"
+
+# GMT 1600836470.1212
+msgctxt "xdelivery"
+msgid "Status Change"
+msgstr "Status Change"
+
+# GMT 1600836470.1213
+msgctxt "xdelivery"
+msgid "PAYMENT DETAILS"
+msgstr "PAYMENT DETAILS"
+
+# GMT 1600836470.1214
+msgctxt "xdelivery"
+msgid "Items Qty"
+msgstr "Items Qty"
+
+# GMT 1600836470.1215
+msgctxt "xdelivery"
+msgid "Order Total"
+msgstr "Order Total"
+
+# GMT 1600836470.1216
+msgctxt "xdelivery"
+msgid "Payment Mode"
+msgstr "Payment Mode"
+
+# GMT 1600836470.1217
+msgctxt "xdelivery"
+msgid "Payment Status"
+msgstr "Payment Status"
+
+# GMT 1600836470.1218
+msgctxt "xdelivery"
+msgid "Note"
+msgstr "Note"
+
+# GMT 1600836470.1219
+msgctxt "xdelivery"
+msgid "Delivery Address"
+msgstr "Delivery Address"
+
+# GMT 1600836470.1220
+msgctxt "xdelivery"
+msgid "Items"
+msgstr "Items"
+
+# GMT 1600836470.1221
+msgctxt "xdelivery"
+msgid "Amount"
+msgstr "Amount"
+
+# GMT 1600836470.1222
+msgctxt "xdelivery"
+msgid "Qty"
+msgstr "Qty"
+
+# GMT 1600836470.1223
+msgctxt "xdelivery"
+msgid "Transactions"
+msgstr "Transactions"
+
+# GMT 1600836470.1224
+msgctxt "xdelivery"
+msgid "Confirmation"
+msgstr "Confirmation"
+
+# GMT 1600836470.1225
+msgctxt "xdelivery"
+msgid "Are you sure you want to update order status for this Order?"
+msgstr "Are you sure you want to update order status for this Order?"
+
+# GMT 1600836470.1226
+msgctxt "xdelivery"
+msgid "Yes, Proceed!"
+msgstr "Yes, Proceed!"
+
+# GMT 1600836470.1227
+msgctxt "xdelivery"
+msgid "No, go back"
+msgstr "No, go back"
+
+# GMT 1600836470.1228
+msgctxt "xdelivery"
+msgid "Are you sure you want to update transaction Status for this Order?"
+msgstr "Are you sure you want to update transaction Status for this Order?"
+
+# GMT 1600836470.1229
+msgctxt "xdelivery"
+msgid "Orders"
+msgstr "Orders"
+
+# GMT 1600836470.1230
+msgctxt "xdelivery"
+msgid "Filter By Date"
+msgstr "Filter By Date"
+
+# GMT 1600836470.1231
+msgctxt "xdelivery"
+msgid "Booking Slot"
+msgstr "Booking Slot"
+
+# GMT 1600836470.1232
+msgctxt "xdelivery"
+msgid "Booking Date"
+msgstr "Booking Date"
+
+# GMT 1600836470.1233
+msgctxt "xdelivery"
+msgid "From"
+msgstr "From"
+
+# GMT 1600836470.1234
+msgctxt "xdelivery"
+msgid "To"
+msgstr "To"
+
+# GMT 1600836470.1235
+msgctxt "xdelivery"
+msgid "Order Number"
+msgstr "Order Number"
+
+# GMT 1600836470.1236
+msgctxt "xdelivery"
+msgid "Purchased"
+msgstr "Purchased"
+
+# GMT 1600836470.1237
+msgctxt "xdelivery"
+msgid "Delivery/Puckup Slot"
+msgstr "Delivery/Puckup Slot"
+
+# GMT 1600836470.1238
+msgctxt "xdelivery"
+msgid "Actions"
+msgstr "Actions"
+
+# GMT 1600836470.1239
+msgctxt "xdelivery"
+msgid "Customer"
+msgstr "Customer"
+
+# GMT 1600836470.1240
+msgctxt "xdelivery"
+msgid "Create a new Product"
+msgstr "Create a new Product"
+
+# GMT 1600836470.1241
+msgctxt "xdelivery"
+msgid "Product Data"
+msgstr "Product Data"
+
+# GMT 1600836470.1242
+msgctxt "xdelivery"
+msgid "Products Name"
+msgstr "Products Name"
+
+# GMT 1600836470.1243
+msgctxt "xdelivery"
+msgid "Short Summary"
+msgstr "Short Summary"
+
+# GMT 1600836470.1244
+msgctxt "xdelivery"
+msgid "Description"
+msgstr "Description"
+
+# GMT 1600836470.1245
+msgctxt "xdelivery"
+msgid "Product Type"
+msgstr "Product Type"
+
+# GMT 1600836470.12646
+msgctxt "xdelivery"
+msgid "Simple"
+msgstr "Simple"
+
+# GMT 1600836470.1247
+msgctxt "xdelivery"
+msgid "Variable"
+msgstr "Variable"
+
+# GMT 1600836470.1248
+msgctxt "xdelivery"
+msgid "General Settings"
+msgstr "General Settings"
+
+# GMT 1600836470.1249
+msgctxt "xdelivery"
+msgid "Regular Price"
+msgstr "Regular Price"
+
+# GMT 1600836470.1250
+msgctxt "xdelivery"
+msgid "Special Price"
+msgstr "Special Price"
+
+# GMT 1600836470.1251
+msgctxt "xdelivery"
+msgid "Special Price Start"
+msgstr "Special Price Start"
+
+# GMT 1600836470.1252
+msgctxt "xdelivery"
+msgid "Special Price End"
+msgstr "Special Price End"
+
+# GMT 1600836470.1253
+msgctxt "xdelivery"
+msgid "Tax Class"
+msgstr "Tax Class"
+
+# GMT 1600836470.1254
+msgctxt "xdelivery"
+msgid "Select Tax Class"
+msgstr "Select Tax Class"
+
+# GMT 1600836470.1255
+msgctxt "xdelivery"
+msgid "Inventory Settings"
+msgstr "Inventory Settings"
+
+# GMT 1600836470.1256
+msgctxt "xdelivery"
+msgid "SKU"
+msgstr "SKU"
+
+# GMT 1600836470.1257
+msgctxt "xdelivery"
+msgid "Manage stock"
+msgstr "Manage stock"
+
+# GMT 1600836470.1258
+msgctxt "xdelivery"
+msgid "Low stock threshold"
+msgstr "Low stock threshold"
+
+# GMT 1600836470.1259
+msgctxt "xdelivery"
+msgid "Stock status"
+msgstr "Stock status"
+
+# GMT 1600836470.1260
+msgctxt "xdelivery"
+msgid "Attributes Settings"
+msgstr "Attributes Settings"
+
+# GMT 1600836470.1261
+msgctxt "xdelivery"
+msgid "Attributes"
+msgstr "Attributes"
+
+# GMT 1600836470.1262
+msgctxt "xdelivery"
+msgid "Select Product Attributes"
+msgstr "Select Product Attributes"
+
+# GMT 1600836470.1263
+msgctxt "xdelivery"
+msgid "Add"
+msgstr "Add"
+
+# GMT 1600836470.1264
+msgctxt "xdelivery"
+msgid "Save Changes"
+msgstr "Save Changes"
+
+# GMT 1600836470.1265
+msgctxt "xdelivery"
+msgid "Note : Click on Save Changes for add Product Attributes variant"
+msgstr "Note : Click on Save Changes for add Product Attributes variant"
+
+# GMT 1600836470.1266
+msgctxt "xdelivery"
+msgid "Select Extra Options Categories"
+msgstr "Select Extra Options Categories"
+
+# GMT 1600836470.1267
+msgctxt "xdelivery"
+msgid "Select Extra Options"
+msgstr "Select Extra Options"
+
+# GMT 1600836470.1268
+msgctxt "xdelivery"
+msgid "Publish"
+msgstr "Publish"
+
+# GMT 1600836470.1269
+msgctxt "xdelivery"
+msgid "Product Categories"
+msgstr "Product Categories"
+
+# GMT 1600836470.1270
+msgctxt "xdelivery"
+msgid "Product Image"
+msgstr "Product Image"
+
+# GMT 1600836470.1271
+msgctxt "xdelivery"
+msgid "Additional Optional"
+msgstr "Additional Optional"
+
+# GMT 1600836470.1272
+msgctxt "xdelivery"
+msgid "New From"
+msgstr "New From"
+
+# GMT 1600836470.1273
+msgctxt "xdelivery"
+msgid "New To"
+msgstr "New To"
+
+# GMT 1600836470.1274
+msgctxt "xdelivery"
+msgid "Add Variant for Product #%s"
+msgstr "Add Variant for Product #%s"
+
+# GMT 1600836470.1275
+msgctxt "xdelivery"
+msgid "Back to main product"
+msgstr "Back to main product"
+
+# GMT 1600836470.1276
+msgctxt "xdelivery"
+msgid "Products ID"
+msgstr "Products ID"
+
+# GMT 1600836470.1277
+msgctxt "xdelivery"
+msgid "Products"
+msgstr "Products"
+
+# GMT 1600836470.1278
+msgctxt "xdelivery"
+msgid "Create a new Product"
+msgstr "Create a new Product"
+
+# GMT 1600836470.1279
+msgctxt "xdelivery"
+msgid "Are you sure you want to delete this Product?"
+msgstr "Are you sure you want to delete this Product?"
+
+# GMT 1600836470.1280
+msgctxt "xdelivery"
+msgid "Category"
+msgstr "Category"
+
+# GMT 1600836470.1281
+msgctxt "xdelivery"
+msgid "Extra Options"
+msgstr "Extra Options"
+
+# GMT 1600836470.1282
+msgctxt "xdelivery"
+msgid "Monday"
+msgstr "Monday"
+
+# GMT 1600836470.1283
+msgctxt "xdelivery"
+msgid "Tuesday"
+msgstr "Tuesday"
+
+# GMT 1600836470.1284
+msgctxt "xdelivery"
+msgid "Wednesday"
+msgstr "Wednesday"
+
+# GMT 1600836470.1285
+msgctxt "xdelivery"
+msgid "Thursday"
+msgstr "Thursday"
+
+# GMT 1600836470.1286
+msgctxt "xdelivery"
+msgid "Friday"
+msgstr "Friday"
+
+# GMT 1600836470.1287
+msgctxt "xdelivery"
+msgid "Saturday"
+msgstr "Saturday"
+
+# GMT 1600836470.1288
+msgctxt "xdelivery"
+msgid "Sunday"
+msgstr "Sunday"
+
+# GMT 1600836470.1289
+msgctxt "xdelivery"
+msgid "Delivery Cost"
+msgstr "Delivery Cost"
+
+# GMT 1600836470.1290
+msgctxt "xdelivery"
+msgid "Enable Delivery"
+msgstr "Enable Delivery"
+
+# GMT 1600836470.1291
+msgctxt "xdelivery"
+msgid "Enable Pickup"
+msgstr "Enable Pickup"
+
+# GMT 1600836470.1292
+msgctxt "xdelivery"
+msgid "Enable Time To Deliver Option"
+msgstr "Enable Time To Deliver Option"
+
+# GMT 1600836470.1293
+msgctxt "xdelivery"
+msgid "Enable this option for customers to be able to select a specific time to deliver the products based on Delivery/Pickup Hours"
+msgstr "Enable this option for customers to be able to select a specific time to deliver the products based on Delivery/Pickup Hours"
+
+# GMT 1600836470.1294
+msgctxt "xdelivery"
+msgid "Enable Time To Deliver"
+msgstr "Enable Time To Deliver"
+
+# GMT 1600836470.1295
+msgctxt "xdelivery"
+msgid "Enable Date To Deliver"
+msgstr "Enable Date To Deliver"
+
+# GMT 1600836470.1296
+msgctxt "xdelivery"
+msgid "Enable this option for customers to be able to select a specific time to deliver the products based on Delivery/Pickup Hours"
+msgstr "Enable this option for customers to be able to select a specific time to deliver the products based on Delivery/Pickup Hours"
+
+# GMT 1600836470.1297
+msgctxt "xdelivery"
+msgid "Category"
+msgstr "Category"
+
+# GMT 1600836470.1298
+msgctxt "xdelivery"
+msgid "Up to (Days)"
+msgstr "Up to (Days)"
+
+# GMT 1600836470.1299
+msgctxt "xdelivery"
+msgid "Pickup Settings"
+msgstr "Pickup Settings"
+
+# GMT 1600836470.1300
+msgctxt "xdelivery"
+msgid "Enable Time To Pickup Option"
+msgstr "Enable Time To Pickup Option"
+
+# GMT 1600836470.1301
+msgctxt "xdelivery"
+msgid "Enable this option for customers to be able to select pickup option"
+msgstr "Enable this option for customers to be able to select pickup option"
+
+# GMT 1600836470.1302
+msgctxt "xdelivery"
+msgid "Enable Time To Pickup"
+msgstr "Enable Time To Pickup"
+
+# GMT 1600836470.1303
+msgctxt "xdelivery"
+msgid "Break Down Pickup Times every"
+msgstr "Break Down Pickup Times every"
+
+# GMT 1600836470.1304
+msgctxt "xdelivery"
+msgid "Break Down Delivery Times every"
+msgstr "Break Down Delivery Times every"
+
+# GMT 1600836470.1305
+msgctxt "xdelivery"
+msgid "Enable Date To Pickup"
+msgstr "Enable Date To Pickup"
+
+# GMT 1600836470.1306
+msgctxt "xdelivery"
+msgid "Home Screen"
+msgstr "Home Screen"
+
+# GMT 1600836470.1307
+msgctxt "xdelivery"
+msgid "Product"
+msgstr "Product"
+
+# GMT 1600836470.1308
+msgctxt "xdelivery"
+msgid "Grid"
+msgstr "Grid"
+
+# GMT 1600836470.1309
+msgctxt "xdelivery"
+msgid "Category"
+msgstr "Category"
+
+# GMT 1600836470.1310
+msgctxt "xdelivery"
+msgid "Product Design"
+msgstr "Product Design"
+
+# GMT 1600836470.1311
+msgctxt "xdelivery"
+msgid "List"
+msgstr "List"
+
+# GMT 1600836470.1312
+msgctxt "xdelivery"
+msgid "Enable orders"
+msgstr "Enable orders"
+
+# GMT 1600836470.1313
+msgctxt "xdelivery"
+msgid "Enable acceptance / rejection orders"
+msgstr "Enable acceptance / rejection orders"
+
+# GMT 1600836470.1314
+msgctxt "xdelivery"
+msgid "Cart Settings"
+msgstr "Cart Settings"
+
+# GMT 1600836470.1315
+msgctxt "xdelivery"
+msgid "Mimimum Qty In Shopping Cart"
+msgstr "Mimimum Qty In Shopping Cart"
+
+# GMT 1600836470.1316
+msgctxt "xdelivery"
+msgid "Maximum Qty In Shopping Cart"
+msgstr "Maximum Qty In Shopping Cart"
+
+# GMT 1600836470.1317
+msgctxt "xdelivery"
+msgid "Mimimum Order Value"
+msgstr "Mimimum Order Value"
+
+# GMT 1600836470.1318
+msgctxt "xdelivery"
+msgid "Maximum Order Value"
+msgstr "Maximum Order Value"
+
+# GMT 1600836470.1319
+msgctxt "xdelivery"
+msgid "Delivery Settings"
+msgstr "Delivery Settings"
+
+# GMT 1600836470.1320
+msgctxt "xdelivery"
+msgid "Average delivery time (In Min)"
+msgstr "Average delivery time (In Min)"
+
+# GMT 1600836470.1321
+msgctxt "xdelivery"
+msgid "Average Pick Up time (In Min)"
+msgstr "Average Pick Up time (In Min)"
+
+# GMT 1600836470.1322
+msgctxt "xdelivery"
+msgid "Valid From"
+msgstr "Valid From"
+
+# GMT 1600836470.1323
+msgctxt "xdelivery"
+msgid "Valid Until"
+msgstr "Valid Until"
+
+# GMT 1600836470.1324
+msgctxt "xdelivery"
+msgid "Image"
+msgstr "Image"
+
+# GMT 1600836470.1325
+msgctxt "xdelivery"
+msgid "Import an image"
+msgstr "Import an image"
+
+# GMT 1600836470.1326
+msgctxt "xdelivery"
+msgid "Display At"
+msgstr "Display At"
+
+# GMT 1600836470.1327
+msgctxt "xdelivery"
+msgid "Bank Transfer"
+msgstr "Bank Transfer"
+
+# GMT 1600836470.1328
+msgctxt "xdelivery"
+msgid "Label Name"
+msgstr "Label Name"
+
+# GMT 1600836470.1329
+msgctxt "xdelivery"
+msgid "Cash On Delivery"
+msgstr "Cash On Delivery"
+
+# GMT 1600836470.1330
+msgctxt "xdelivery"
+msgid "Check/Money Order"
+msgstr "Check/Money Order"
+
+# GMT 1600836470.1331
+msgctxt "xdelivery"
+msgid "Ewallet (add this features before use from 'features -> ewallet"
+msgstr "Ewallet (add this features before use from 'features -> ewallet"
+
+# GMT 1600836470.1332
+msgctxt "xdelivery"
+msgid "You are about to remove this slider ! Are you sure ?"
+msgstr "You are about to remove this slider ! Are you sure ?"
+
+# GMT 1600836470.1333
+msgctxt "xdelivery"
+msgid "Store Name"
+msgstr "Store Name"
+
+# GMT 1600836470.1334
+msgctxt "xdelivery"
+msgid "Store Phone"
+msgstr "Store Phone"
+
+# GMT 1600836470.1335
+msgctxt "xdelivery"
+msgid "Store Email"
+msgstr "Store Email"
+
+# GMT 1600836470.1336
+msgctxt "xdelivery"
+msgid "Store Address"
+msgstr "Store Address"
+
+# GMT 1600836470.1337
+msgctxt "xdelivery"
+msgid "Store City"
+msgstr "Store City"
+
+# GMT 1600836470.1338
+msgctxt "xdelivery"
+msgid "Store Zip"
+msgstr "Store Zip"
+
+# GMT 1600836470.1339
+#, mobile
+msgctxt "xdelivery"
+msgid "Error"
+msgstr "Error"
+
+# GMT 1600836470.4000
+#, mobile
+msgctxt "xdelivery"
+msgid "Are you sure you want to update order status for this Order?"
+msgstr "Are you sure you want to update order status for this Order?"
+
+# GMT 1600836470.4001
+#, mobile
+msgctxt "xdelivery"
+msgid "Are you sure you want to update payment status?"
+msgstr "Are you sure you want to update payment status?"
+
+# GMT 1600836470.4002
+#, mobile
+msgctxt "xdelivery"
+msgid ""
+msgstr ""
+
+# GMT 1600836470.1340
+#, mobile
+msgctxt "xdelivery"
+msgid "Are you sure want to Delete?"
+msgstr "Are you sure want to Delete?"
+
+# GMT 1600836470.1341
+#, mobile
+msgctxt "xdelivery"
+msgid "Confirm"
+msgstr "Confirm"
+
+# GMT 1600836470.1342
+#, mobile
+msgctxt "xdelivery"
+msgid "Cancel"
+msgstr "Cancel"
+
+# GMT 1600836470.1343
+#, mobile
+msgctxt "xdelivery"
+msgid "Success"
+msgstr "Success"
+
+# GMT 1600836470.1344
+#, mobile
+msgctxt "xdelivery"
+msgid "OK"
+msgstr "OK"
+
+# GMT 1600836470.1345
+#, mobile
+msgctxt "xdelivery"
+msgid "Are you sure want to Cancel Order?"
+msgstr "Are you sure want to Cancel Order?"
+
+# GMT 1600836470.1346
+#, mobile
+msgctxt "xdelivery"
+msgid "No"
+msgstr "No"
+
+# GMT 1600836470.1347
+#, mobile
+msgctxt "xdelivery"
+msgid "Yes"
+msgstr "Yes"
+
+# GMT 1600836470.1348
+#, mobile
+msgctxt "xdelivery"
+msgid "Cancel"
+msgstr "Cancel"
+
+# GMT 1600836470.1349
+#, mobile
+msgctxt "xdelivery"
+msgid "Warring"
+msgstr "Warring"
+
+# GMT 1600836470.1350
+#, mobile
+msgctxt "xdelivery"
+msgid "Quantity of products in cart must be"
+msgstr "Quantity of products in cart must be"
+
+# GMT 1600836470.1351
+#, mobile
+msgctxt "xdelivery"
+msgid "Item out of stock, Please remove from your cart!"
+msgstr "Item out of stock, Please remove from your cart!"
+
+# GMT 1600836470.1352
+#, mobile
+msgctxt "xdelivery"
+msgid "Minimum order quantity required"
+msgstr "Minimum order quantity required"
+
+# GMT 1600836470.1353
+#, mobile
+msgctxt "xdelivery"
+msgid "Maximum order quantity allowed is"
+msgstr "Maximum order quantity allowed is"
+
+# GMT 1600836470.1354
+#, mobile
+msgctxt "xdelivery"
+msgid "Minimum order amount required"
+msgstr "Minimum order amount required"
+
+# GMT 1600836470.1355
+#, mobile
+msgctxt "xdelivery"
+msgid "Maximum order amount allowed"
+msgstr "Maximum order amount allowed"
+
+# GMT 1600836470.1356
+#, mobile
+msgctxt "xdelivery"
+msgid "Home Delivery"
+msgstr "Home Delivery"
+
+# GMT 1600836470.1357
+#, mobile
+msgctxt "xdelivery"
+msgid "Pick-up"
+msgstr "Pick-up"
+
+# GMT 1600836470.1358
+#, mobile
+msgctxt "xdelivery"
+msgid "Your order"
+msgstr "Your order"
+
+# GMT 1600836470.1359
+#, mobile
+msgctxt "xdelivery"
+msgid "Get Personalised Experience, Use Wishlist & More"
+msgstr "Get Personalised Experience, Use Wishlist & More"
+
+# GMT 1600836470.1340
+#, mobile
+msgctxt "xdelivery"
+msgid "Click here for login!"
+msgstr "Click here for login!"
+
+# GMT 1600836470.1341
+#, mobile
+msgctxt "xdelivery"
+msgid "Welcome"
+msgstr "Welcome"
+
+# GMT 1600836470.1342
+#, mobile
+msgctxt "xdelivery"
+msgid "Orders"
+msgstr "Orders"
+
+# GMT 1600836470.1343
+#, mobile
+msgctxt "xdelivery"
+msgid "Wishlist"
+msgstr "Wishlist"
+
+# GMT 1600836470.1344
+#, mobile
+msgctxt "xdelivery"
+msgid "My Address"
+msgstr "My Address"
+
+# GMT 1600836470.1345
+#, mobile
+msgctxt "xdelivery"
+msgid "Cart"
+msgstr "Cart"
+
+# GMT 1600836470.1346
+#, mobile
+msgctxt "xdelivery"
+msgid "Total items"
+msgstr "Total items"
+
+# GMT 1600836470.1347
+#, mobile
+msgctxt "xdelivery"
+msgid "No products in the cart"
+msgstr "No products in the cart"
+
+# GMT 1600836470.1348
+#, mobile
+msgctxt "xdelivery"
+msgid "Continue shopping"
+msgstr "Continue shopping"
+
+# GMT 1600836470.1349
+#, mobile
+msgctxt "xdelivery"
+msgid "Order summary"
+msgstr "Order summary"
+
+# GMT 1600836470.1350
+#, mobile
+msgctxt "xdelivery"
+msgid "Sub Total"
+msgstr "Sub Total"
+
+# GMT 1600836470.1351
+#, mobile
+msgctxt "xdelivery"
+msgid "Taxes & Charges"
+msgstr "Taxes & Charges"
+
+# GMT 1600836470.1352
+#, mobile
+msgctxt "xdelivery"
+msgid "Grand Total"
+msgstr "Grand Total"
+
+# GMT 1600836470.1353
+#, mobile
+msgctxt "xdelivery"
+msgid "Total"
+msgstr "Total"
+
+# GMT 1600836470.1354
+#, mobile
+msgctxt "xdelivery"
+msgid "Checkout"
+msgstr "Checkout"
+
+# GMT 1600836470.1355
+#, mobile
+msgctxt "xdelivery"
+msgid "No Product Found!"
+msgstr "No Product Found!"
+
+# GMT 1600836470.1356
+#, mobile
+msgctxt "xdelivery"
+msgid "Total Amount"
+msgstr "Total Amount"
+
+# GMT 1600836470.1357
+#, mobile
+msgctxt "xdelivery"
+msgid "Delivery Type"
+msgstr "Delivery Type"
+
+# GMT 1600836470.1358
+#, mobile
+msgctxt "xdelivery"
+msgid "Date to"
+msgstr "Date to"
+
+# GMT 1600836470.1359
+#, mobile
+msgctxt "xdelivery"
+msgid "Select Date"
+msgstr "Select Date"
+
+# GMT 1600836470.1360
+#, mobile
+msgctxt "xdelivery"
+msgid "Time to"
+msgstr "Time to"
+
+# GMT 1600836470.1361
+#, mobile
+msgctxt "xdelivery"
+msgid "Billing details"
+msgstr "Billing details"
+
+# GMT 1600836470.1362
+#, mobile
+msgctxt "xdelivery"
+msgid "More address"
+msgstr "More address"
+
+# GMT 1600836470.1363
+#, mobile
+msgctxt "xdelivery"
+msgid "Note"
+msgstr "Note"
+
+# GMT 1600836470.1364
+#, mobile
+msgctxt "xdelivery"
+msgid "You have not completed your address yet"
+msgstr "You have not completed your address yet"
+
+# GMT 1600836470.1365
+#, mobile
+msgctxt "xdelivery"
+msgid "Complete your address"
+msgstr "Complete your address"
+
+# GMT 1600836470.1366
+#, mobile
+msgctxt "xdelivery"
+msgid "Billing details"
+msgstr "Billing details"
+
+# GMT 1600836470.1367
+#, mobile
+msgctxt "xdelivery"
+msgid "First name"
+msgstr "First name"
+
+# GMT 1600836470.1368
+#, mobile
+msgctxt "xdelivery"
+msgid "Last name"
+msgstr "Last name"
+
+# GMT 1600836470.1369
+#, mobile
+msgctxt "xdelivery"
+msgid "Last name"
+msgstr "Last name"
+
+# GMT 1600836470.1370
+#, mobile
+msgctxt "xdelivery"
+msgid "Phone"
+msgstr "Phone"
+
+# GMT 1600836470.1371
+#, mobile
+msgctxt "xdelivery"
+msgid "Additional information (Optional)"
+msgstr "Additional information (Optional)"
+
+# GMT 1600836470.1372
+#, mobile
+msgctxt "xdelivery"
+msgid "Continue"
+msgstr "Continue"
+
+# GMT 1600836470.1373
+#, mobile
+msgctxt "xdelivery"
+msgid "Orders"
+msgstr "Orders"
+
+# GMT 1600836470.1374
+#, mobile
+msgctxt "xdelivery"
+msgid "Order"
+msgstr "Order"
+
+# GMT 1600836470.1375
+#, mobile
+msgctxt "xdelivery"
+msgid "Items"
+msgstr "Items"
+
+# GMT 1600836470.1376
+#, mobile
+msgctxt "xdelivery"
+msgid "Amount"
+msgstr "Amount"
+
+# GMT 1600836470.1377
+#, mobile
+msgctxt "xdelivery"
+msgid "Placed On"
+msgstr "Placed On"
+
+# GMT 1600836470.1378
+#, mobile
+msgctxt "xdelivery"
+msgid "Delivery Type"
+msgstr "Delivery Type"
+
+# GMT 1600836470.1379
+#, mobile
+msgctxt "xdelivery"
+msgid "View Details"
+msgstr "View Details"
+
+# GMT 1600836470.1380
+#, mobile
+msgctxt "xdelivery"
+msgid "No order yet"
+msgstr "No order yet"
+
+# GMT 1600836470.1381
+#, mobile
+msgctxt "xdelivery"
+msgid "Delivery/Pick-up Date and Time"
+msgstr "Delivery/Pick-up Date and Time"
+
+# GMT 1600836470.1382
+#, mobile
+msgctxt "xdelivery"
+msgid "Address"
+msgstr "Address"
+
+# GMT 1600836470.1383
+#, mobile
+msgctxt "xdelivery"
+msgid "Contact"
+msgstr "Contact"
+
+# GMT 1600836470.1384
+#, mobile
+msgctxt "xdelivery"
+msgid "Select Payment Method"
+msgstr "Select Payment Method"
+
+# GMT 1600836470.1385
+#, mobile
+msgctxt "xdelivery"
+msgid "Place Order"
+msgstr "Place Order"
+
+# GMT 1600836470.1386
+#, mobile
+msgctxt "xdelivery"
+msgid "Please do not close this window or click the Back button on your device."
+msgstr "Please do not close this window or click the Back button on your device."
+
+# GMT 1600836470.1387
+#, mobile
+msgctxt "xdelivery"
+msgid "No product Found in this category!"
+msgstr "No product Found in this category!"
+
+# GMT 1600836470.1388
+#, mobile
+msgctxt "xdelivery"
+msgid "Search Products"
+msgstr "Search Products"
+
+# GMT 1600836470.1389
+#, mobile
+msgctxt "xdelivery"
+msgid "Thank you for your order"
+msgstr "Thank you for your order"
+
+# GMT 1600836470.1391
+#, mobile
+msgctxt "xdelivery"
+msgid "Order Number"
+msgstr "Order Number"
+
+# GMT 1600836470.1392
+#, mobile
+msgctxt "xdelivery"
+msgid "Order Summery"
+msgstr "Order Summery"
+
+# GMT 1600836470.1393
+#, mobile
+msgctxt "xdelivery"
+msgid "Date"
+msgstr "Date"
+
+# GMT 1600836470.1394
+#, mobile
+msgctxt "xdelivery"
+msgid "Amount"
+msgstr "Amount"
+
+# GMT 1600836470.1395
+#, mobile
+msgctxt "xdelivery"
+msgid "Payment Status"
+msgstr "Payment Status"
+
+# GMT 1600836470.1396
+#, mobile
+msgctxt "xdelivery"
+msgid "View Order"
+msgstr "View Order"
+
+# GMT 1600836470.1397
+#, mobile
+msgctxt "xdelivery"
+msgid "Payment Mode"
+msgstr "Payment Mode"
+
+# GMT 1600836470.1398
+#, mobile
+msgctxt "xdelivery"
+msgid "Order Details"
+msgstr "Order Details"
+
+# GMT 1600836470.1399
+#, mobile
+msgctxt "xdelivery"
+msgid "Order ID"
+msgstr "Order ID"
+
+# GMT 1600836470.1400
+#, mobile
+msgctxt "xdelivery"
+msgid "Date to Pickup"
+msgstr "Date to Pickup"
+
+# GMT 1600836470.1401
+#, mobile
+msgctxt "xdelivery"
+msgid "Time to Pickups"
+msgstr "Time to Pickups"
+
+# GMT 1600836470.1402
+#, mobile
+msgctxt "xdelivery"
+msgid "Date to Delivery"
+msgstr "Date to Delivery"
+
+# GMT 1600836470.1403
+#, mobile
+msgctxt "xdelivery"
+msgid "Time to Delivery"
+msgstr "Time to Delivery"
+
+# GMT 1600836470.1404
+#, mobile
+msgctxt "xdelivery"
+msgid "Booking Status"
+msgstr "Booking Status"
+
+# GMT 1600836470.1405
+#, mobile
+msgctxt "xdelivery"
+msgid "Booking Date"
+msgstr "Booking Date"
+
+# GMT 1600836470.1406
+#, mobile
+msgctxt "xdelivery"
+msgid "Phone Number"
+msgstr "Phone Number"
+
+# GMT 1600836470.1407
+#, mobile
+msgctxt "xdelivery"
+msgid "Deliver To"
+msgstr "Deliver To"
+
+# GMT 1600836470.1408
+#, mobile
+msgctxt "xdelivery"
+msgid "Order Summery"
+msgstr "Order Summery"
+
+# GMT 1600836470.1409
+#, mobile
+msgctxt "xdelivery"
+msgid "Items"
+msgstr "Items"
+
+# GMT 1600836470.1410
+#, mobile
+msgctxt "xdelivery"
+msgid "Taxes"
+msgstr "Taxes"
+
+# GMT 1600836470.1411
+#, mobile
+msgctxt "xdelivery"
+msgid "Item Total"
+msgstr "Item Total"
+
+# GMT 1600836470.1412
+#, mobile
+msgctxt "xdelivery"
+msgid "Store Info"
+msgstr "Store Info"
+
+# GMT 1600836470.1413
+#, mobile
+msgctxt "xdelivery"
+msgid "Cancel Order"
+msgstr "Cancel Order"
+
+# GMT 1600836470.1414
+#, mobile
+msgctxt "xdelivery"
+msgid "As order is accepted, cancellation at order level is not allowed."
+msgstr "As order is accepted, cancellation at order level is not allowed."
+
+# GMT 1600836470.1415
+#, mobile
+msgctxt "xdelivery"
+msgid "Select Variant"
+msgstr "Select Variant"
+
+# GMT 1600836470.1416
+#, mobile
+msgctxt "xdelivery"
+msgid "Add Toppings"
+msgstr "Add Toppings"
+
+# GMT 1600836470.1417
+#, mobile
+msgctxt "xdelivery"
+msgid "You can add more toppings"
+msgstr "You can add more toppings"
+
+# GMT 1600836470.1418
+#, mobile
+msgctxt "xdelivery"
+msgid "ADD TO CART"
+msgstr "ADD TO CART"
+
+# GMT 1600836470.1419
+#, mobile
+msgctxt "xdelivery"
+msgid "SAVE FOR LATER"
+msgstr "SAVE FOR LATER"
+
+# GMT 1600836470.1420
+#, mobile
+msgctxt "xdelivery"
+msgid "Additional information"
+msgstr "Additional information"
+
+# GMT 1600836470.1421
+#, mobile
+msgctxt "xdelivery"
+msgid "Description"
+msgstr "Description"
+
+# GMT 1600836470.1422
+#, mobile
+msgctxt "xdelivery"
+msgid "Shop by Category"
+msgstr "Shop by Category"
+
+# GMT 1600836470.1423
+#, mobile
+msgctxt "xdelivery"
+msgid "No Category Found!"
+msgstr "No Category Found!"
+
+# GMT 1600836470.1424
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter a Note"
+msgstr "Enter a Note"
+
+# GMT 1600836470.1425
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter a Postal Code"
+msgstr "Enter a Postal Code"
+
+# GMT 1600836470.1426
+#, mobile
+msgctxt "xdelivery"
+msgid "Select"
+msgstr "Select"
+
+# GMT 1600836470.1427
+#, mobile
+msgctxt "xdelivery"
+msgid "You can customize"
+msgstr "You can customize"
+
+# GMT 1600836470.1428
+#, mobile
+msgctxt "xdelivery"
+msgid "Select Options"
+msgstr "Select Options"
+
+# GMT 1600836470.1429
+#, mobile
+msgctxt "xdelivery"
+msgid "Done"
+msgstr "Done"
+
+# GMT 1600836470.1430
+#, mobile
+msgctxt "xdelivery"
+msgid "Pay"
+msgstr "Pay"
+
+# GMT 1600836470.1431
+msgctxt "xdelivery"
+msgid "Currency options"
+msgstr "Currency options"
+
+# GMT 1600836470.1432
+msgctxt "xdelivery"
+msgid "The following options affect how prices are displayed on the frontend"
+msgstr "The following options affect how prices are displayed on the frontend"
+
+# GMT 1600836470.1433
+msgctxt "xdelivery"
+msgid "Currency options"
+msgstr "Currency options"
+
+# GMT 1600836470.1434
+msgctxt "xdelivery"
+msgid "Currency position"
+msgstr "Currency position"
+
+# GMT 1600836470.1435
+msgctxt "xdelivery"
+msgid "Decimal separator"
+msgstr "Decimal separator"
+
+# GMT 1600836470.1436
+msgctxt "xdelivery"
+msgid "Thousand separator"
+msgstr "Thousand separator"
+
+# GMT 1600836470.1437
+msgctxt "xdelivery"
+msgid "Number of decimals"
+msgstr "Number of decimals"
+
+# GMT 1600836470.1438
+msgctxt "xdelivery"
+msgid "Left"
+msgstr "Left"
+
+# GMT 1600836470.1439
+msgctxt "xdelivery"
+msgid "Right"
+msgstr "Right"
+
+# GMT 1600836470.1440
+msgctxt "xdelivery"
+msgid "Left with space"
+msgstr "Left with space"
+
+# GMT 1600836470.1441
+msgctxt "xdelivery"
+msgid "Right with space"
+msgstr "Right with space"
+
+# GMT 1600836470.1442
+msgctxt "xdelivery"
+msgid "Please select a date"
+msgstr "Please select a date"
+
+# GMT 1600836470.1443
+msgctxt "xdelivery"
+msgid "Apply taxes to addons"
+msgstr "Apply taxes to addons"
+
+# GMT 1600836470.1444
+#, mobile
+msgctxt "xdelivery"
+msgid "Search a products"
+msgstr "Search a products"
+
+# GMT 1600836470.1445
+#, mobile
+msgctxt "xdelivery"
+msgid "Popular Searches"
+msgstr "Popular Searches"
+
+# GMT 1600836470.1446
+msgctxt "xdelivery"
+msgid "Maximum Qty Per Product"
+msgstr "Maximum Qty Per Product"
+
+# GMT 1600836470.1447
+msgctxt "xdelivery"
+msgid "Thank you for placing your order with %s. This email is to confirm your order has been placed successfully, and is ready for pickup."
+msgstr "Thank you for placing your order with %s. This email is to confirm your order has been placed successfully, and is ready for pickup."
+
+# GMT 1600836470.1448
+msgctxt "xdelivery"
+msgid "Thank you for placing your order with %s. This email is to confirm your order has been placed successfully, and will be processed & deliver to you soon."
+msgstr "Thank you for placing your order with %s. This email is to confirm your order has been placed successfully, and will be processed & deliver to you soon."
+
+# GMT 1600836470.1449
+#, mobile
+msgctxt "xdelivery"
+msgid "Please select some product options before adding this product to your cart"
+msgstr "Please select some product options before adding this product to your cart"
+
+# GMT 1600836470.1450
+#, mobile
+msgctxt "xdelivery"
+msgid "Please select $1 options before adding this product to your cart."
+msgstr "Please select $1 options before adding this product to your cart."
+
+# GMT 1600836470.1451
+msgctxt "xdelivery"
+msgid "Distance Based"
+msgstr "Distance Based"
+
+# GMT 1600836470.1452
+msgctxt "xdelivery"
+msgid "Click here for Manage Cost"
+msgstr "Click here for Manage Cost"
+
+# GMT 1600836470.1453
+msgctxt "xdelivery"
+msgid "Important: First make sure that you have configured the Google API keys correctly."
+msgstr "Important: First make sure that you have configured the Google API keys correctly."
+
+# GMT 1600836470.1454
+msgctxt "xdelivery"
+msgid "Flat Rate"
+msgstr "Flat Rate"
+
+# GMT 1600836470.1455
+msgctxt "xdelivery"
+msgid "Important: This condition is applied, when records are not matched with the Distance Based and Free Shipping Method."
+msgstr "Important: This condition is applied, when records are not matched with the Distance Based and Free Shipping Method."
+
+# GMT 1600836470.1456
+msgctxt "xdelivery"
+msgid "Free Shipping"
+msgstr "Free Shipping"
+
+# GMT 1600836470.1457
+msgctxt "xdelivery"
+msgid "Minimum Amount"
+msgstr "Minimum Amount"
+
+# GMT 1600836470.1458
+msgctxt "xdelivery"
+msgid "Shipping Method"
+msgstr "Shipping Method"
+
+# GMT 1600836470.1459
+msgctxt "xdelivery"
+msgid "Manage shipping distance cost"
+msgstr "Manage shipping distance cost"
+
+# GMT 1600836470.1460
+msgctxt "xdelivery"
+msgid "From (KM)"
+msgstr "From (KM)"
+
+# GMT 1600836470.1461
+msgctxt "xdelivery"
+msgid "UP To (KM)"
+msgstr "UP To (KM)"
+
+# GMT 1600836470.1462
+msgctxt "xdelivery"
+msgid "Price"
+msgstr "Price"
+
+# GMT 1600836470.1462
+msgctxt "xdelivery"
+msgid "Type"
+msgstr "Type"
+
+# GMT 1600836470.1463
+msgctxt "xdelivery"
+msgid "Category Design"
+msgstr "Category Design"
+
+# GMT 1600836470.1464
+msgctxt "xdelivery"
+msgid "Date & Time Format"
+msgstr "Date & Time Format"
+
+# GMT 1600836470.1465
+msgctxt "xdelivery"
+msgid "Time Format"
+msgstr "Time Format"
+
+# GMT 1600836470.1466
+msgctxt "xdelivery"
+msgid "Enable Date To Pickup Option"
+msgstr "Enable Date To Pickup Option"
+
+# GMT 1600836470.1467
+msgctxt "xdelivery"
+msgid "Enable this option for customers to be able to select a specific date to pickup the products based on Days store is opened"
+msgstr "Enable this option for customers to be able to select a specific date to pickup the products based on Days store is opened"
+
+# GMT 1600836470.1468
+msgctxt "xdelivery"
+msgid "Enable this option for customers to be able to select pickup option:"
+msgstr "Enable this option for customers to be able to select pickup option:"
+
+# GMT 1600836470.1469
+msgctxt "xdelivery"
+msgid "Ewallet (add this features before use from 'features -> ewallet')"
+msgstr "Ewallet (add this features before use from 'features -> ewallet')"
+
+# GMT 1600836470.1470
+msgctxt "xdelivery"
+msgid "Desciption"
+msgstr "Desciption"
+
+# GMT 1600836470.1471
+msgctxt "xdelivery"
+msgid "Publishable key"
+msgstr "Publishable key"
+
+# GMT 1600836470.1472
+msgctxt "xdelivery"
+msgid "Secret key"
+msgstr "Secret key"
+
+# GMT 1600836470.1473
+msgctxt "xdelivery"
+msgid "Sandbox Username"
+msgstr "Sandbox Username"
+
+# GMT 1600836470.1474
+msgctxt "xdelivery"
+msgid "Sandbox Signature"
+msgstr "Sandbox Signature"
+
+# GMT 1600836470.1475
+msgctxt "xdelivery"
+msgid "Sandbox Password"
+msgstr "Sandbox Password"
+
+# GMT 1600836470.1476
+msgctxt "xdelivery"
+msgid "Cost"
+msgstr "Cost"
+
+# GMT 1600836470.1477
+msgctxt "xdelivery"
+msgid "Rate (%)"
+msgstr "Rate (%)"
+
+# GMT 1600836470.1478
+msgctxt "xdelivery"
+msgid "Store Location"
+msgstr "Store Location"
+
+# GMT 1600836470.1479
+msgctxt "xdelivery"
+msgid "Required for distance calculation"
+msgstr "Required for distance calculation"
+
+# GMT 1600836470.1480
+msgctxt "xdelivery"
+msgid "Sub Category"
+msgstr "Sub Category"
+
+# GMT 1600836470.1481
+msgctxt "xdelivery"
+msgid "Edit"
+msgstr "Edit"
+
+# GMT 1600836470.1482
+msgctxt "xdelivery"
+msgid "Delete"
+msgstr "Delete"
+
+# GMT 1600836470.1483
+msgctxt "xdelivery"
+msgid "Stock"
+msgstr "Stock"
+
+# GMT 1600836470.1484
+msgctxt "xdelivery"
+msgid "Edit Product"
+msgstr "Edit Product"
+
+# GMT 1600836470.1485
+msgctxt "xdelivery"
+msgid "Create a new attributes"
+msgstr "Create a new attributes"
+
+# GMT 1600836470.1486
+msgctxt "xdelivery"
+msgid "Is Required"
+msgstr "Is Required"
+
+# GMT 1600836470.1487
+msgctxt "xdelivery"
+msgid "Payment method"
+msgstr "Payment method"
+
+# GMT 1600836470.1488
+msgctxt "xdelivery"
+msgid "Pending Payment"
+msgstr "Pending Payment"
+
+# GMT 1600836470.1489
+msgctxt "xdelivery"
+msgid "Processing"
+msgstr "Processing"
+
+# GMT 1600836470.1490
+msgctxt "xdelivery"
+msgid "Accepted"
+msgstr "Accepted"
+
+# GMT 1600836470.1491
+msgctxt "xdelivery"
+msgid "Shipped"
+msgstr "Shipped"
+
+# GMT 1600836470.1492
+msgctxt "xdelivery"
+msgid "Delivered"
+msgstr "Delivered"
+
+# GMT 1600836470.1493
+msgctxt "xdelivery"
+msgid "Completed"
+msgstr "Completed"
+
+# GMT 1600836470.1494
+msgctxt "xdelivery"
+msgid "Failed"
+msgstr "Failed"
+
+# GMT 1600836470.1495
+msgctxt "xdelivery"
+msgid "Canceled"
+msgstr "Canceled"
+
+# GMT 1600836470.1496
+msgctxt "xdelivery"
+msgid "On Hold"
+msgstr "On Hold"
+
+# GMT 1600836470.1497
+msgctxt "xdelivery"
+msgid "Refunded"
+msgstr "Refunded"
+
+# GMT 1600836470.1498
+msgctxt "xdelivery"
+msgid "Working Day/Time"
+msgstr "Working Day/Time"
+
+# GMT 1600836470.1499
+msgctxt "xdelivery"
+msgid "Opening time"
+msgstr "Opening time"
+
+# GMT 1600836470.1500
+msgctxt "xdelivery"
+msgid "Closing time"
+msgstr "Closing time"
+
+# GMT 1600836470.1501
+msgctxt "xdelivery"
+msgid "Enable delivery"
+msgstr "Enable delivery"
+
+# GMT 1600836470.1502
+msgctxt "xdelivery"
+msgid "Enable pickup"
+msgstr "Enable pickup"
+
+# GMT 1600836470.1503
+msgctxt "xdelivery"
+msgid "Days"
+msgstr "Days"
+
+# GMT 1600836470.1504
+msgctxt "xdelivery"
+msgid "Opening"
+msgstr "Opening"
+
+# GMT 1600836470.1505
+msgctxt "xdelivery"
+msgid "Closing"
+msgstr "Closing"
+
+# GMT 1600836470.1506
+msgctxt "xdelivery"
+msgid "Delivery"
+msgstr "Delivery"
+
+# GMT 1600836470.1507
+msgctxt "xdelivery"
+msgid "Pickup"
+msgstr "Pickup"
+
+# GMT 1600836470.1508
+msgctxt "xdelivery"
+msgid "Pending"
+msgstr "Pending"
+
+# GMT 1600836470.1509
+msgctxt "xdelivery"
+msgid "Your order is %s!"
+msgstr "Your order is %s!"
+
+# GMT 1600836470.1509
+msgctxt "xdelivery"
+msgid "Cancelled"
+msgstr "Cancelled"
+
+# GMT 1600836470.1509
+msgctxt "xdelivery"
+msgid "%s Order #%s is %s!"
+msgstr "%s Order #%s is %s!"
+
+# GMT 1600836470.1510
+msgctxt "xdelivery"
+msgid "Your order status has been %s!"
+msgstr "Your order status has been %s!"
+
+# GMT 1600836470.1511
+msgctxt "xdelivery"
+msgid "%s - Cancellation of order number #%s"
+msgstr "%s - Cancellation of order number #%s"
+
+# GMT 1600836470.1512
+msgctxt "xdelivery"
+msgid "This email is to formally inform you that I am cancelling order number %s. The amount of the order is %s %s. I placed the order on %s"
+msgstr "This email is to formally inform you that I am cancelling order number %s. The amount of the order is %s %s. I placed the order on %s"
+
+# GMT 1600836470.1513
+msgctxt "xdelivery"
+msgid "Please select a address"
+msgstr "Please select a address"
+
+# GMT 1600836470.1514
+msgctxt "xdelivery"
+msgid "Return Order"
+msgstr "Return Order"
+
+# GMT 1600836470.1515
+msgctxt "xdelivery"
+msgid "Enable Return"
+msgstr "Enable Return"
+
+# GMT 1600836470.1516
+msgctxt "xdelivery"
+msgid "Return Within"
+msgstr "Return Within"
+
+# GMT 1600836470.1517
+msgctxt "xdelivery"
+msgid "Enable Product Scan"
+msgstr "Enable Product Scan"
+
+# GMT 1600836470.1518
+msgctxt "xdelivery"
+msgid "Brands"
+msgstr "Brands"
+
+# GMT 1600836470.1519
+msgctxt "xdelivery"
+msgid "Create a new Brand"
+msgstr "Create a new Brand"
+
+# GMT 1600836470.1520
+msgctxt "xdelivery"
+msgid "Cod Fiscale"
+msgstr "Cod Fiscale"
+
+# GMT 1600836470.1521
+msgctxt "xdelivery"
+msgid "Company Name"
+msgstr "Company Name"
+
+# GMT 1600836470.1522
+msgctxt "xdelivery"
+msgid "PEC"
+msgstr "PEC"
+
+# GMT 1600836470.1523
+msgctxt "xdelivery"
+msgid "SDI"
+msgstr "SDI"
+
+# GMT 1600836470.1524
+msgctxt "xdelivery"
+msgid "Enter a Company Name"
+msgstr "Enter a Company Name"
+
+# GMT 1600836470.1525
+msgctxt "xdelivery"
+msgid "Enter a SDI"
+msgstr "Enter a SDI"
+
+# GMT 1600836470.1526
+msgctxt "xdelivery"
+msgid "Enter a Pec"
+msgstr "Enter a Pec"
+
+# GMT 1600836470.1527
+msgctxt "xdelivery"
+msgid "Enter a Cod Fiscale"
+msgstr "Enter a Cod Fiscale"
+
+# GMT 1600836470.1528
+msgctxt "xdelivery"
+msgid "Disable"
+msgstr "Disable"
+
+# GMT 1600836470.1529
+msgctxt "xdelivery"
+msgid "Optional"
+msgstr "Optional"
+
+# GMT 1600836470.1530
+msgctxt "xdelivery"
+msgid "Required"
+msgstr "Required"
+
+# GMT 1600836470.1531
+msgctxt "xdelivery"
+msgid "Other Infomations"
+msgstr "Other Infomations"
+
+# GMT 1600836470.1532
+msgctxt "xdelivery"
+msgid "Taxes enable"
+msgstr "Taxes enable"
+
+# GMT 1600836470.1532
+msgctxt "xdelivery"
+msgid "Calculate discount without Tax"
+msgstr "Calculate discount without Tax"
+
+# GMT 1600836470.1533
+msgctxt "xdelivery"
+msgid "Select Date Type"
+msgstr "Select Date Type"
+
+# GMT 1600836470.1534
+msgctxt "xdelivery"
+msgid "Select date type for date filter"
+msgstr "Select date type for date filter"
+
+# GMT 1600836470.1535
+#, mobile
+msgctxt "xdelivery"
+msgid "You have received a new order!"
+msgstr "You have received a new order!"
+
+# GMT 1600836470.1536
+#, mobile
+msgctxt "xdelivery"
+msgid "Your payment has been received successfully"
+msgstr "Your payment has been received successfully"
+
+# GMT 1600836470.1537
+#, mobile
+msgctxt "xdelivery"
+msgid "Your payment has been failed"
+msgstr "Your payment has been failed"
+
+# GMT 1600836470.1538
+#, mobile
+msgctxt "xdelivery"
+msgid "Phone Number with prefix (e.g. 39)"
+msgstr "Phone Number with prefix (e.g. 39)"
+
+# GMT 1600836470.1539
+#, mobile
+msgctxt "xdelivery"
+msgid "Selected the Minimum $2 Or Maximum $1"
+msgstr "Selected the Minimum $2 Or Maximum $1"
+
+# GMT 1600836470.1540
+msgctxt "xdelivery"
+msgid "Coupons"
+msgstr "Coupons"
+
+# GMT 1600836470.1541
+msgctxt "xdelivery"
+msgid "Create a new Coupon"
+msgstr "Create a new Coupon"
+
+# GMT 1600836470.1542
+msgctxt "xdelivery"
+msgid "Coupon code"
+msgstr "Coupon code"
+
+# GMT 1600836470.1543
+msgctxt "xdelivery"
+msgid "Start Date"
+msgstr "Start Date"
+
+# GMT 1600836470.1544
+msgctxt "xdelivery"
+msgid "End Date"
+msgstr "End Date"
+
+# GMT 1600836470.1545
+msgctxt "xdelivery"
+msgid "Are you sure you want to delete this Coupon?"
+msgstr "Are you sure you want to delete this Coupon?"
+
+# GMT 1600836470.1546
+msgctxt "xdelivery"
+msgid "Title"
+msgstr "Title"
+
+# GMT 1600836470.1547
+msgctxt "xdelivery"
+msgid "Discount Type"
+msgstr "Discount Type"
+
+# GMT 1600836470.1548
+msgctxt "xdelivery"
+msgid "Discount value"
+msgstr "Discount value"
+
+# GMT 1600836470.1549
+msgctxt "xdelivery"
+msgid "Minimum amount of order"
+msgstr "Minimum amount of order"
+
+# GMT 1600836470.1550
+msgctxt "xdelivery"
+msgid "Maximum amount of order"
+msgstr "Maximum amount of order"
+
+# GMT 1600836470.1551
+msgctxt "xdelivery"
+msgid "Use Limit per coupons"
+msgstr "Use Limit per coupons"
+
+# GMT 1600836470.1552
+msgctxt "xdelivery"
+msgid "Use Limit per customer"
+msgstr "Use Limit per customer"
+
+# GMT 1600836470.1553
+msgctxt "xdelivery"
+msgid "Start Time"
+msgstr "Start Time"
+
+# GMT 1600836470.1554
+msgctxt "xdelivery"
+msgid "End Time"
+msgstr "End Time"
+
+# GMT 1600836470.1555
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter Coupon Code"
+msgstr "Enter Coupon Code"
+
+# GMT 1600836470.1556
+#, mobile
+msgctxt "xdelivery"
+msgid "Offer"
+msgstr "Offer"
+
+# GMT 1600836470.1557
+#, mobile
+msgctxt "xdelivery"
+msgid "Apply"
+msgstr "Apply"
+
+# GMT 1600836470.1558
+#, mobile
+msgctxt "xdelivery"
+msgid "Remove"
+msgstr "Remove"
+
+# GMT 1600836470.1559
+#, mobile
+msgctxt "xdelivery"
+msgid "This Coupon code has expired!"
+msgstr "This Coupon code has expired!"
+
+# GMT 1600836470.1560
+#, mobile
+msgctxt "xdelivery"
+msgid "You have already used this Coupon code!"
+msgstr "You have already used this Coupon code!"
+
+# GMT 1600836470.1561
+#, mobile
+msgctxt "xdelivery"
+msgid "%s Coupon code applied successfully."
+msgstr "%s Coupon code applied successfully."
+
+# GMT 1600836470.1562
+#, mobile
+msgctxt "xdelivery"
+msgid "Sorry, Coupon code is either expired or not active yet!"
+msgstr "Sorry, Coupon code is either expired or not active yet!"
+
+# GMT 1600836470.1563
+#, mobile
+msgctxt "xdelivery"
+msgid "Please enter a valid Coupon code!"
+msgstr "Please enter a valid Coupon code!"
+
+# GMT 1600836470.1563
+#, mobile
+msgctxt "xdelivery"
+msgid "Coupon code removed!"
+msgstr "Coupon code removed!"
+
+# GMT 1600836470.1563
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter tip"
+msgstr "Enter tip"
+
+# GMT 1600836470.1564
+#, mobile
+msgctxt "xdelivery"
+msgid "Maximum amount must be %s%s or less"
+msgstr "Maximum amount must be %s%s or less"
+
+# GMT 1600836470.1565
+#, mobile
+msgctxt "xdelivery"
+msgid "Minimum amount must be %s%s or higher"
+msgstr "Minimum amount must be %s%s or higher"
+
+# GMT 1600836470.1566
+#, mobile
+msgctxt "xdelivery"
+msgid "Discount"
+msgstr "Discount"
+
+# GMT 1600836470.1567
+#, mobile
+msgctxt "xdelivery"
+msgid "Thank you for placing your order with %s. This message is to confirm your order has been placed successfully, and is ready for pickup."
+msgstr "Thank you for placing your order with %s. This message is to confirm your order has been placed successfully, and is ready for pickup."
+
+# GMT 1600836470.1568
+#, mobile
+msgctxt "xdelivery"
+msgid "Thank you for placing your order with %s. This message is to confirm your order has been placed successfully, and will be processed & deliver to you soon."
+msgstr "Thank you for placing your order with %s. This message is to confirm your order has been placed successfully, and will be processed & deliver to you soon."
+
+# GMT 1600836470.1569
+#, mobile
+msgctxt "xdelivery"
+msgid "To retrieve your token, connect to https://api.whatsender.it from the API"
+msgstr "To retrieve your token, connect to https://api.whatsender.it from the API"
+
+# GMT 1600836470.1570
+#, mobile
+msgctxt "xdelivery"
+msgid "Whatsender Settings"
+msgstr "Whatsender Settings"
+
+# GMT 1600836470.1571
+#, mobile
+msgctxt "xdelivery"
+msgid "API Key"
+msgstr "API Key"
+
+# GMT 1600836470.1572
+#, mobile
+msgctxt "xdelivery"
+msgid "Enable Add To Cart"
+msgstr "Enable Add To Cart"
+
+# GMT 1600836470.1573
+#, mobile
+msgctxt "xdelivery"
+msgid "Enable Save Later"
+msgstr "Enable Save Later"
+
+# GMT 1600836470.1574
+#, mobile
+msgctxt "xdelivery"
+msgid "Hide price"
+msgstr "Hide price"
+
+# GMT 1600836470.1575
+#, mobile
+msgctxt "xdelivery"
+msgid "Enable push notification for order status"
+msgstr "Enable push notification for order status"
+
+# GMT 1600836470.1576
+#, mobile
+msgctxt "xdelivery"
+msgid "Order %s!"
+msgstr "Order %s!"
+
+# GMT 1600836470.1577
+#, mobile
+msgctxt "xdelivery"
+msgid "Your %s order #%s has been %s!"
+msgstr "Your %s order #%s has been %s!"
+
+# GMT 1600836470.1578
+msgctxt "xdelivery"
+msgid "Tracking type"
+msgstr "Tracking type"
+
+# GMT 1600836470.1579
+msgctxt "xdelivery"
+msgid "Tracking Number/URL"
+msgstr "Tracking Number/URL"
+
+# GMT 1600836470.1580
+msgctxt "xdelivery"
+msgid "Number"
+msgstr "Number"
+
+# GMT 1600836470.1581
+msgctxt "xdelivery"
+msgid "Url"
+msgstr "Url"
+
+# GMT 1600836470.1582
+#, mobile
+msgctxt "xdelivery"
+msgid "Tracking Order"
+msgstr "Tracking Order"
+
+# GMT 1600836470.1583
+#, mobile
+msgctxt "xdelivery"
+msgid "Name"
+msgstr "Name"
+
+# GMT 1600836470.1584
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter a Name"
+msgstr "Enter a Name"
+
+# GMT 1600836470.1586
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter a Phone Number"
+msgstr "Enter a Phone Number"
+
+# GMT 1600836470.1587
+#, mobile
+msgctxt "xdelivery"
+msgid "House No"
+msgstr "House No"
+
+# GMT 1600836470.1588
+#, mobile
+msgctxt "xdelivery"
+msgid "Building"
+msgstr "Building"
+
+# GMT 1600836470.1589
+#, mobile
+msgctxt "xdelivery"
+msgid "Street"
+msgstr "Street"
+
+# GMT 1600836470.1590
+#, mobile
+msgctxt "xdelivery"
+msgid "Area"
+msgstr "Area"
+
+# GMT 1600836470.1591
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter a address"
+msgstr "Enter a address"
+
+# GMT 1600836470.1592
+#, mobile
+msgctxt "xdelivery"
+msgid "Locality"
+msgstr "Locality"
+
+# GMT 1600836470.1593
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter a Locality"
+msgstr "Enter a Locality"
+
+# GMT 1600836470.1594
+#, mobile
+msgctxt "xdelivery"
+msgid "City"
+msgstr "City"
+
+# GMT 1600836470.1595
+#, mobile
+msgctxt "xdelivery"
+msgid "District"
+msgstr "District"
+
+# GMT 1600836470.1596
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter a City"
+msgstr "Enter a City"
+
+# GMT 1600836470.1597
+#, mobile
+msgctxt "xdelivery"
+msgid "Postal Code"
+msgstr "Postal Code"
+
+# GMT 1600836470.1598
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter a Postal Code"
+msgstr "Enter a Postal Code"
+
+# GMT 1600836470.1599
+#, mobile
+msgctxt "xdelivery"
+msgid "Other Infomations"
+msgstr "Other Infomations"
+
+# GMT 1600836470.1600
+#, mobile
+msgctxt "xdelivery"
+msgid "Company Name"
+msgstr "Company Name"
+
+# GMT 1600836470.1601
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter a Company Name"
+msgstr "Enter a Company Name"
+
+# GMT 1600836470.1602
+#, mobile
+msgctxt "xdelivery"
+msgid "SDI"
+msgstr "SDI"
+
+# GMT 1600836470.1603
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter a SDI"
+msgstr "Enter a SDI"
+
+# GMT 1600836470.1604
+#, mobile
+msgctxt "xdelivery"
+msgid "PEC"
+msgstr "PEC"
+
+# GMT 1600836470.1605
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter a Pec"
+msgstr "Enter a Pec"
+
+# GMT 1600836470.1606
+#, mobile
+msgctxt "xdelivery"
+msgid "Cod Fiscale"
+msgstr "Cod Fiscale"
+
+# GMT 1600836470.1606
+#, mobile
+msgctxt "xdelivery"
+msgid "Welcome"
+msgstr "Welcome"
+
+# GMT 1600836470.1607
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter a Cod Fiscale"
+msgstr "Enter a Cod Fiscale"
+
+# GMT 1600836470.1608
+#, mobile
+msgctxt "xdelivery"
+msgid "Type of Address"
+msgstr "Type of Address"
+
+# GMT 1600836470.1609
+#, mobile
+msgctxt "xdelivery"
+msgid "Office"
+msgstr "Office"
+
+# GMT 1600836470.1610
+#, mobile
+msgctxt "xdelivery"
+msgid "Home"
+msgstr "Home"
+
+# GMT 1600836470.1611
+#, mobile
+msgctxt "xdelivery"
+msgid "Make this as my default address"
+msgstr "Make this as my default address"
+
+# GMT 1600836470.1612
+#, mobile
+msgctxt "xdelivery"
+msgid "Save"
+msgstr "Save"
+
+# GMT 1600836470.1613
+#, mobile
+msgctxt "xdelivery"
+msgid "Add Address"
+msgstr "Add Address"
+
+# GMT 1600836470.1614
+#, mobile
+msgctxt "xdelivery"
+msgid "Edit Address"
+msgstr "Edit Address"
+
+# GMT 1600836470.1615
+#, mobile
+msgctxt "xdelivery"
+msgid "Edit"
+msgstr "Edit"
+
+# GMT 1600836470.1616
+#, mobile
+msgctxt "xdelivery"
+msgid "Delete"
+msgstr "Delete"
+
+# GMT 1600836470.1617
+msgctxt "xdelivery"
+msgid "App Service Type"
+msgstr "App Service Type"
+
+# GMT 1600836470.1618
+msgctxt "xdelivery"
+msgid "Date Format"
+msgstr "Date Format"
+
+# GMT 1600836470.1619
+msgctxt "xdelivery"
+msgid "Company Address"
+msgstr "Company Address"
+
+# GMT 1600836470.1620
+msgctxt "xdelivery"
+msgid "Instruction"
+msgstr "Instruction"
+
+# GMT 1600836470.1621
+msgctxt "xdelivery"
+msgid "Stores"
+msgstr "Stores"
+
+# GMT 1600836470.1622
+msgctxt "xdelivery"
+msgid "Create a new Store"
+msgstr "Create a new Store"
+
+# GMT 1600836470.1623
+#, mobile
+msgctxt "xdelivery"
+msgid "Product is added to cart!"
+msgstr "Product is added to cart!"
+
+# GMT 1600836470.1624
+#, mobile
+msgctxt "xdelivery"
+msgid "Continue Shopping"
+msgstr "Continue Shopping"
+
+# GMT 1600836470.1625
+#, mobile
+msgctxt "xdelivery"
+msgid "Go To Cart"
+msgstr "Go To Cart"
+
+# GMT 1600836470.1626
+#, mobile
+msgctxt "xdelivery"
+msgid "Gratuity Amount"
+msgstr "Gratuity Amount"
+
+# GMT 1600836470.1627
+#, mobile
+msgctxt "xdelivery"
+msgid "Add Gratuity"
+msgstr "Add Gratuity"
+
+# GMT 1600836470.1628
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter a Gratuity"
+msgstr "Enter a Gratuity"
+
+# GMT 1600836470.1629
+msgctxt "xdelivery"
+msgid "All Stores"
+msgstr "All Stores"
+
+# GMT 1600836470.1630
+msgctxt "xdelivery"
+msgid "Today"
+msgstr "Today"
+
+# GMT 1600836470.1631
+msgctxt "xdelivery"
+msgid "Last 7 Days"
+msgstr "Last 7 Days"
+
+# GMT 1600836470.1632
+msgctxt "xdelivery"
+msgid "Last 30 Days"
+msgstr "Last 30 Days"
+
+# GMT 1600836470.1633
+msgctxt "xdelivery"
+msgid "Last 90 Days"
+msgstr "Last 90 Days"
+
+# GMT 1600836470.1634
+msgctxt "xdelivery"
+msgid "Custom Date"
+msgstr "Custom Date"
+
+# GMT 1600836470.1635
+msgctxt "xdelivery"
+msgid "From"
+msgstr "From"
+
+# GMT 1600836470.1636
+msgctxt "xdelivery"
+msgid "To"
+msgstr "To"
+
+# GMT 1600836470.1637
+msgctxt "xdelivery"
+msgid "Total NO"
+msgstr "Total NO"
+
+# GMT 1600836470.1638
+msgctxt "xdelivery"
+msgid "Gross"
+msgstr "Gross"
+
+# GMT 1600836470.1639
+msgctxt "xdelivery"
+msgid "Discount"
+msgstr "Discount"
+
+# GMT 1600836470.1640
+msgctxt "xdelivery"
+msgid "Tax"
+msgstr "Tax"
+
+# GMT 1600836470.1641
+msgctxt "xdelivery"
+msgid "Tip"
+msgstr "Tip"
+
+# GMT 1600836470.1642
+msgctxt "xdelivery"
+msgid "Delivery"
+msgstr "Delivery"
+
+# GMT 1600836470.1643
+msgctxt "xdelivery"
+msgid "Loading..."
+msgstr "Loading..."
+
+# GMT 1600836470.1644
+msgctxt "xdelivery"
+msgid "Start date must be lower than end date."
+msgstr "Start date must be lower than end date."
+
+# GMT 1600836470.1645
+msgctxt "xdelivery"
+msgid "You have to chose a start and an end date."
+msgstr "You have to chose a start and an end date."
+
+# GMT 1600836470.1646
+msgctxt "xdelivery"
+msgid "All Sales"
+msgstr "All Sales"
+
+# GMT 1600836470.1627
+msgctxt "xdelivery"
+msgid "Xdelivery Sales"
+msgstr "Xdelivery Sales"
+
+# GMT 1600836470.1628
+msgctxt "xdelivery"
+msgid "Enable Email notification for order status"
+msgstr "Enable Email notification for order status"
+
+# GMT 1600836470.1629
+msgctxt "xdelivery"
+msgid "Enable Whatsender Settings"
+msgstr "Enable Whatsender Settings"
+
+# GMT 1600836470.1630
+msgctxt "xdelivery"
+msgid "Twilio Settings"
+msgstr "Twilio Settings"
+
+# GMT 1600836470.1631
+msgctxt "xdelivery"
+msgid "Enable Twilio Settings"
+msgstr "Enable Twilio Settings"
+
+# GMT 1600836470.1632
+msgctxt "xdelivery"
+msgid "Account SID"
+msgstr "Account SID"
+
+# GMT 1600836470.1632
+msgctxt "xdelivery"
+msgid "Auth Token"
+msgstr "Auth Token"
+
+# GMT 1600836470.1633
+msgctxt "xdelivery"
+msgid "Phone Sim Id"
+msgstr "Phone Sim Id"
+
+# GMT 1600836470.1634
+msgctxt "xdelivery"
+msgid "Customer Settings"
+msgstr "Customer Settings"
+
+# GMT 1600836470.1635
+msgctxt "xdelivery"
+msgid "Admin Settings"
+msgstr "Admin Settings"
+
+# GMT 1600836470.1636
+msgctxt "xdelivery"
+msgid "Available Custom Tags"
+msgstr "Available Custom Tags"
+
+# GMT 1600836470.1637
+msgctxt "xdelivery"
+msgid "Select Order Status"
+msgstr "Select Order Status"
+
+# GMT 1600836470.1638
+msgctxt "xdelivery"
+msgid "Order Status"
+msgstr "Order Status"
+
+# GMT 1600836470.1639
+msgctxt "xdelivery"
+msgid "Notification Type Preferences"
+msgstr "Notification Type Preferences"
+
+# GMT 1600836470.1640
+msgctxt "xdelivery"
+msgid "PUSH"
+msgstr "PUSH"
+
+# GMT 1600836470.1641
+msgctxt "xdelivery"
+msgid "SMS"
+msgstr "SMS"
+
+# GMT 1600836470.1642
+msgctxt "xdelivery"
+msgid "Whatsender"
+msgstr "Whatsender"
+
+# GMT 1600836470.1643
+msgctxt "xdelivery"
+msgid "Notification Receiver Preferences"
+msgstr "Notification Receiver Preferences"
+
+# GMT 1600836470.1644
+msgctxt "xdelivery"
+msgid "Admin"
+msgstr "Admin"
+
+# GMT 1600836470.1645
+msgctxt "xdelivery"
+msgid "Customer / Client"
+msgstr "Customer / Client"
+
+# GMT 1600836470.1646
+msgctxt "xdelivery"
+msgid "PUSH Configrations"
+msgstr "PUSH Configrations"
+
+# GMT 1600836470.1647
+msgctxt "xdelivery"
+msgid "PUSH Title"
+msgstr "PUSH Title"
+
+# GMT 1600836470.1648
+msgctxt "xdelivery"
+msgid "PUSH Text"
+msgstr "PUSH Text"
+
+# GMT 1600836470.1649
+msgctxt "xdelivery"
+msgid "Custom URL"
+msgstr "Custom URL"
+
+# GMT 1600836470.1650
+msgctxt "xdelivery"
+msgid "Upload PUSH cover Image"
+msgstr "Upload PUSH cover Image"
+
+# GMT 1600836470.1651
+msgctxt "xdelivery"
+msgid "<span class="bold">Upload image</span>"
+msgstr "<span class="bold">Upload image</span>"
+
+# GMT 1600836470.1652
+msgctxt "xdelivery"
+msgid "<br /><span class="bold">Upload image</span>"
+msgstr "<br /><span class="bold">Upload image</span>"
+
+# GMT 1600836470.1653
+msgctxt "xdelivery"
+msgid "Email Configrations"
+msgstr "Email Configrations"
+
+# GMT 1600836470.1654
+msgctxt "xdelivery"
+msgid "Email Subject"
+msgstr "Email Subject"
+
+# GMT 1600836470.1655
+msgctxt "xdelivery"
+msgid "Email Body"
+msgstr "Email Body"
+
+# GMT 1600836470.1656
+msgctxt "xdelivery"
+msgid "SMS Configrations"
+msgstr "SMS Configrations"
+
+# GMT 1600836470.1657
+msgctxt "xdelivery"
+msgid "SMS Text"
+msgstr "SMS Text"
+
+# GMT 1600836470.1658
+msgctxt "xdelivery"
+msgid "Message"
+msgstr "Message"
+
+# GMT 1600836470.1659
+msgctxt "xdelivery"
+msgid "Whatsender Configrations"
+msgstr "Whatsender Configrations"
+
+# GMT 1600836470.1660
+msgctxt "xdelivery"
+msgid "Whatsender Text"
+msgstr "Whatsender Text"
+
+# GMT 1600836470.1661
+msgctxt "xdelivery"
+msgid "Are you sure you want to remove the picture?"
+msgstr "Are you sure you want to remove the picture?"
+
+# GMT 1600836470.1662
+msgctxt "xdelivery"
+msgid "Picture"
+msgstr "Picture"
+
+# GMT 1600836470.1663
+msgctxt "xdelivery"
+msgid "push title cannot be empty."
+msgstr "push title cannot be empty."
+
+# GMT 1600836470.1664
+msgctxt "xdelivery"
+msgid "push text cannot be empty."
+msgstr "push text cannot be empty."
+
+# GMT 1600836470.1665
+msgctxt "xdelivery"
+msgid "email subject cannot be empty."
+msgstr "email subject cannot be empty."
+
+# GMT 1600836470.1666
+msgctxt "xdelivery"
+msgid "email body cannot be empty."
+msgstr "email body cannot be empty."
+
+# GMT 1600836470.1667
+msgctxt "xdelivery"
+msgid "sms text cannot be empty."
+msgstr "sms text cannot be empty."
+
+# GMT 1600836470.1668
+msgctxt "xdelivery"
+msgid "whatsender text cannot be empty."
+msgstr "whatsender text cannot be empty."
+
+# GMT 1600836470.1669
+msgctxt "xdelivery"
+msgid "Notification data saved successfully."
+msgstr "Notification data saved successfully."
+
+# GMT 1600836470.1670
+msgctxt "xdelivery"
+msgid "Product Name"
+msgstr "Product Name"
+
+# GMT 1600836470.1671
+msgctxt "xdelivery"
+msgid "Store (UID)"
+msgstr "Store (UID)"
+
+# GMT 1600836470.1672
+msgctxt "xdelivery"
+msgid "Brand (UID)"
+msgstr "Brand (UID)"
+
+# GMT 1600836470.1673
+msgctxt "xdelivery"
+msgid "Tax Class (UID)"
+msgstr "Tax Class (UID)"
+
+# GMT 1600836470.1674
+msgctxt "xdelivery"
+msgid "Manage Stock (Yes,No)"
+msgstr "Manage Stock (Yes,No)"
+
+# GMT 1600836470.1675
+msgctxt "xdelivery"
+msgid "Attributes (UID)"
+msgstr "Attributes (UID)"
+
+# GMT 1600836470.1676
+msgctxt "xdelivery"
+msgid "Product Categories (UID)"
+msgstr "Product Categories (UID)"
+
+# GMT 1600836470.1677
+msgctxt "xdelivery"
+msgid "Is Active (Yes, No)"
+msgstr "Is Active (Yes, No)"
+
+# GMT 1600836470.1678
+msgctxt "xdelivery"
+msgid "Export to CSV"
+msgstr "Export to CSV"
+
+# GMT 1600836470.1679
+msgctxt "xdelivery"
+msgid "Select CSV File"
+msgstr "Select CSV File"
+
+# GMT 1600836470.1680
+msgctxt "xdelivery"
+msgid "Invalid request."
+msgstr "Invalid request."
+
+# GMT 1600836470.1681
+msgctxt "xdelivery"
+msgid "CSV data imported successfully."
+msgstr "CSV data imported successfully."
+
+# GMT 1600836470.1682
+msgctxt "xdelivery"
+msgid "Error reading CSV file."
+msgstr "Error reading CSV file."
+
+# GMT 1600836470.1683
+msgctxt "xdelivery"
+msgid "Only CSV files are allowed."
+msgstr "Only CSV files are allowed."
+
+# GMT 1600836470.1684
+msgctxt "xdelivery"
+msgid "Store UID"
+msgstr "Store UID"
+
+# GMT 1600836470.1685
+msgctxt "xdelivery"
+msgid "App Admins / Store Owners"
+msgstr "App Admins / Store Owners"
+
+# GMT 1600836470.1686
+msgctxt "xdelivery"
+msgid "Id"
+msgstr "Id"
+
+# GMT 1600836470.1687
+msgctxt "xdelivery"
+msgid "Owner Store"
+msgstr "Owner Store"
+
+# GMT 1600836470.1688
+msgctxt "xdelivery"
+msgid "Is Owner?"
+msgstr "Is Owner?"
+
+# GMT 1600836470.1689
+msgctxt "xdelivery"
+msgid "No data available in table"
+msgstr "No data available in table"
+
+# GMT 1600836470.1690
+msgctxt "xdelivery"
+msgid "Showing _START_ to _END_ of _TOTAL_ entries"
+msgstr "Showing _START_ to _END_ of _TOTAL_ entries"
+
+# GMT 1600836470.1691
+msgctxt "xdelivery"
+msgid "Showing 0 to 0 of 0 entries"
+msgstr "Showing 0 to 0 of 0 entries"
+
+# GMT 1600836470.1692
+msgctxt "xdelivery"
+msgid "(filtered from _MAX_ total entries)"
+msgstr "(filtered from _MAX_ total entries)"
+
+# GMT 1600836470.1693
+msgctxt "xdelivery"
+msgid "Show _MENU_ entries"
+msgstr "Show _MENU_ entries"
+
+# GMT 1600836470.1694
+msgctxt "xdelivery"
+msgid "Loading..."
+msgstr "Loading..."
+
+# GMT 1600836470.1695
+msgctxt "xdelivery"
+msgid "Processing..."
+msgstr "Processing..."
+
+# GMT 1600836470.1696
+msgctxt "xdelivery"
+msgid "Search:"
+msgstr "Search:"
+
+# GMT 1600836470.1697
+msgctxt "xdelivery"
+msgid "No matching records found"
+msgstr "No matching records found"
+
+# GMT 1600836470.1698
+msgctxt "xdelivery"
+msgid "First"
+msgstr "First"
+
+# GMT 1600836470.1699
+msgctxt "xdelivery"
+msgid "Last"
+msgstr "Last"
+
+# GMT 1600836470.1700
+msgctxt "xdelivery"
+msgid "Next"
+msgstr "Next"
+
+# GMT 1600836470.1701
+msgctxt "xdelivery"
+msgid "Previous"
+msgstr "Previous"
+
+# GMT 1600836470.1702
+msgctxt "xdelivery"
+msgid ": activate to sort column ascending"
+msgstr ": activate to sort column ascending"
+
+# GMT 1600836470.1703
+msgctxt "xdelivery"
+msgid ": activate to sort column descending"
+msgstr ": activate to sort column descending"
+
+# GMT 1600836470.1704
+msgctxt "xdelivery"
+msgid "App Admins"
+msgstr "App Admins"
+
+# GMT 1600836470.1705
+msgctxt "xdelivery"
+msgid "Notifications"
+msgstr "Notifications"
+
+# GMT 1600836470.1706
+msgctxt "xdelivery"
+msgid "Order Status Notifications"
+msgstr "Order Status Notifications"
+
+# GMT 1600836470.1707
+msgctxt "xdelivery"
+msgid "Order Status cannot be empty"
+msgstr "Order Status cannot be empty"
+
+# GMT 1600836470.1708
+msgctxt "xdelivery"
+msgid "Food App (Select Date and Time slot)"
+msgstr "Food App (Select Date and Time slot)"
+
+# GMT 1600836470.1709
+msgctxt "xdelivery"
+msgid "Other (Not select Date and Time slot)"
+msgstr "Other (Not select Date and Time slot)"
+
+# GMT 1600836470.1710
+msgctxt "xdelivery"
+msgid "Discount calculation"
+msgstr "Discount calculation"
+
+# GMT 1600836470.1711
+msgctxt "xdelivery"
+msgid "Discount after Tax"
+msgstr "Discount after Tax"
+
+# GMT 1600836470.1712
+msgctxt "xdelivery"
+msgid "Discount before Tax"
+msgstr "Discount before Tax"
+
+# GMT 1600836470.1713
+msgctxt "xdelivery"
+msgid "Taxes With Product"
+msgstr "Taxes With Product"
+
+# GMT 1600836470.1714
+msgctxt "xdelivery"
+msgid "Gratuity enable"
+msgstr "Gratuity enable"
+
+# GMT 1600836470.1715
+msgctxt "xdelivery"
+msgid "External Field"
+msgstr "External Field"
+
+# GMT 1600836470.1716
+msgctxt "xdelivery"
+msgid "Token"
+msgstr "Token"
+
+# GMT 1600836470.1717
+msgctxt "xdelivery"
+msgid "Sender"
+msgstr "Sender"
+
+# GMT 1600836470.1718
+msgctxt "xdelivery"
+msgid "To retrieve your token, connect to https://api2.whatsender.it from the API"
+msgstr "To retrieve your token, connect to https://api2.whatsender.it from the API"
+
+# GMT 1600836470.1719
+msgctxt "xdelivery"
+msgid "Return received"
+msgstr "Return received"
+
+# GMT 1600836470.1720
+msgctxt "xdelivery"
+msgid "Xdelivery Sale Reports"
+msgstr "Xdelivery Sale Reports"
+
+# GMT 1600836470.1722
+msgctxt "xdelivery"
+msgid "Date Range"
+msgstr "Date Range"
+
+# GMT 1600836470.1723
+msgctxt "xdelivery"
+msgid "Total Sales Count"
+msgstr "Total Sales Count"
+
+# GMT 1600836470.1724
+msgctxt "xdelivery"
+msgid "Total Sales Revenue"
+msgstr "Total Sales Revenue"
+
+# GMT 1600836470.1725
+msgctxt "xdelivery"
+msgid "Total Discounts Applied"
+msgstr "Total Discounts Applied"
+
+# GMT 1600836470.1726
+msgctxt "xdelivery"
+msgid "Total Tax Collected"
+msgstr "Total Tax Collected"
+
+# GMT 1600836470.1727
+msgctxt "xdelivery"
+msgid "Total Tips Received"
+msgstr "Total Tips Received"
+
+# GMT 1600836470.1728
+msgctxt "xdelivery"
+msgid "Total Delivery Charges"
+msgstr "Total Delivery Charges"
+
+# GMT 1600836470.1729
+msgctxt "xdelivery"
+msgid "Gross Sale Values Overview"
+msgstr "Gross Sale Values Overview"
+
+# GMT 1600836470.1730
+msgctxt "xdelivery"
+msgid "Total Orders Count"
+msgstr "Total Orders Count"
+
+# GMT 1600836470.1731
+msgctxt "xdelivery"
+msgid "Total Orders Revenue"
+msgstr "Total Orders Revenue"
+
+# GMT 1600836470.1732
+msgctxt "xdelivery"
+msgid "Total Discounts Applied"
+msgstr "Total Discounts Applied"
+
+# GMT 1600836470.1733
+msgctxt "xdelivery"
+msgid "Total Tax Collected"
+msgstr "Total Tax Collected"
+
+# GMT 1600836470.1734
+msgctxt "xdelivery"
+msgid "AVG N/A"
+msgstr "AVG N/A"
+
+# GMT 1600836470.1735
+msgctxt "xdelivery"
+msgid "Gross Order Values Overview"
+msgstr "Gross Order Values Overview"
+
+# GMT 1600836470.1736
+msgctxt "xdelivery"
+msgid "Total Revenue"
+msgstr "Total Revenue"
+
+# GMT 1600836470.1737
+msgctxt "xdelivery"
+msgid "Total Quantity"
+msgstr "Total Quantity"
+
+# GMT 1600836470.1738
+msgctxt "xdelivery"
+msgid "Total Tax"
+msgstr "Total Tax"
+
+# GMT 1600836470.1739
+msgctxt "xdelivery"
+msgid "Revenue"
+msgstr "Revenue"
+
+# GMT 1600836470.1740
+msgctxt "xdelivery"
+msgid "Quantity"
+msgstr "Quantity"
+
+# GMT 1600836470.1741
+msgctxt "xdelivery"
+msgid "No data found"
+msgstr "No data found"
+
+# GMT 1600836470.1742
+msgctxt "xdelivery"
+msgid "CSV"
+msgstr "CSV"
+
+# GMT 1600836470.1743
+msgctxt "xdelivery"
+msgid "Coupon Redemptions"
+msgstr "Coupon Redemptions"
+
+# GMT 1600836470.1744
+msgctxt "xdelivery"
+msgid "Redemptions Value"
+msgstr "Redemptions Value"
+
+# GMT 1600836470.1745
+msgctxt "xdelivery"
+msgid "Unique Redeemers Count"
+msgstr "Unique Redeemers Count"
+
+# GMT 1600836470.1746
+msgctxt "xdelivery"
+msgid "Coupon Redemption Values Overview"
+msgstr "Coupon Redemption Values Overview"
+
+# GMT 1600836470.1747
+msgctxt "xdelivery"
+msgid "Taxable Transactions Count"
+msgstr "Taxable Transactions Count"
+
+# GMT 1600836470.1748
+msgctxt "xdelivery"
+msgid "Total Tax Collected"
+msgstr "Total Tax Collected"
+
+# GMT 1600836470.1749
+msgctxt "xdelivery"
+msgid "Unique Taxed Customers"
+msgstr "Unique Taxed Customers"
+
+# GMT 1600836470.1750
+msgctxt "xdelivery"
+msgid "Tax Collections Overview"
+msgstr "Tax Collections Overview"
+
+# GMT 1600836470.1751
+msgctxt "xdelivery"
+msgid "5 Minutes"
+msgstr "5 Minutes"
+
+# GMT 1600836470.1752
+msgctxt "xdelivery"
+msgid "10 Minutes"
+msgstr "10 Minutes"
+
+# GMT 1600836470.1753
+msgctxt "xdelivery"
+msgid "20 Minutes"
+msgstr "20 Minutes"
+
+# GMT 1600836470.1754
+msgctxt "xdelivery"
+msgid "30 Minutes"
+msgstr "30 Minutes"
+
+# GMT 1600836470.1755
+msgctxt "xdelivery"
+msgid "40 Minutes"
+msgstr "40 Minutes"
+
+# GMT 1600836470.1756
+msgctxt "xdelivery"
+msgid "50 Minutes"
+msgstr "50 Minutes"
+
+# GMT 1600836470.1757
+msgctxt "xdelivery"
+msgid "60 Minutes"
+msgstr "60 Minutes"
+
+# GMT 1600836470.1758
+msgctxt "xdelivery"
+msgid "1.5 Hours"
+msgstr "1.5 Hours"
+
+# GMT 1600836470.1759
+msgctxt "xdelivery"
+msgid "2 Hours"
+msgstr "2 Hours"
+
+# GMT 1600836470.1760
+msgctxt "xdelivery"
+msgid "2.5 Hours"
+msgstr "2.5 Hours"
+
+# GMT 1600836470.1761
+msgctxt "xdelivery"
+msgid "3 Hours"
+msgstr "3 Hours"
+
+# GMT 1600836470.1762
+msgctxt "xdelivery"
+msgid "Enable Date To Deliver Option"
+msgstr "Enable Date To Deliver Option"
+
+# GMT 1600836470.1763
+msgctxt "xdelivery"
+msgid "Sales"
+msgstr "Sales"
+
+# GMT 1600836470.1764
+msgctxt "xdelivery"
+msgid "Xdelivery Order Reports"
+msgstr "Xdelivery Order Reports"
+
+# GMT 1600836470.1765
+msgctxt "xdelivery"
+msgid "Top Products"
+msgstr "Top Products"
+
+# GMT 1600836470.1766
+msgctxt "xdelivery"
+msgid "Top Customers"
+msgstr "Top Customers"
+
+# GMT 1600836470.1767
+msgctxt "xdelivery"
+msgid "Xdelivery Top 10 Products"
+msgstr "Xdelivery Top 10 Products"
+
+# GMT 1600836470.1768
+msgctxt "xdelivery"
+msgid "Report Type"
+msgstr "Report Type"
+
+# GMT 1600836470.1769
+msgctxt "xdelivery"
+msgid "Based on Revenue"
+msgstr "Based on Revenue"
+
+# GMT 1600836470.1770
+msgctxt "xdelivery"
+msgid "Based on Quantity"
+msgstr "Based on Quantity"
+
+# GMT 1600836470.1771
+msgctxt "xdelivery"
+msgid "Past 7 Days"
+msgstr "Past 7 Days"
+
+# GMT 1600836470.1772
+msgctxt "xdelivery"
+msgid "Past 30 Days"
+msgstr "Past 30 Days"
+
+# GMT 1600836470.1772
+msgctxt "xdelivery"
+msgid "Past 90 Days"
+msgstr "Past 90 Days"
+
+# GMT 1600836470.1773
+msgctxt "xdelivery"
+msgid "Xdelivery Top 10 Customers"
+msgstr "Xdelivery Top 10 Customers"
+
+# GMT 1600836470.1774
+msgctxt "xdelivery"
+msgid "Based on Most Revenue"
+msgstr "Based on Most Revenue"
+
+# GMT 1600836470.1775
+msgctxt "xdelivery"
+msgid "Based on Most Orders"
+msgstr "Based on Most Orders"
+
+# GMT 1600836470.1776
+msgctxt "xdelivery"
+msgid "Total Tips"
+msgstr "Total Tips"
+
+# GMT 1600836470.1777
+msgctxt "xdelivery"
+msgid "Coupons List"
+msgstr "Coupons List"
+
+# GMT 1600836470.1778
+msgctxt "xdelivery"
+msgid "Reports"
+msgstr "Reports"
+
+# GMT 1600836470.1779
+msgctxt "xdelivery"
+msgid "Xdelivery Coupon Reports"
+msgstr "Xdelivery Coupon Reports"
+
+# GMT 1600836470.1780
+msgctxt "xdelivery"
+msgid "Import"
+msgstr "Import"
+
+# GMT 1600836470.1780
+msgctxt "xdelivery"
+msgid "Print customer details on order slip"
+msgstr "Print customer details on order slip"
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid ""
+msgstr ""
+

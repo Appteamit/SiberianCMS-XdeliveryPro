@@ -1,0 +1,184 @@
+<?php include(dirname(__DIR__)."/left-menu.phtml"); ?>
+<?php $category = $this->getCurrentCategory();  ?>
+<?php $parentCategory = $this->getParentCategory();  ?>
+<div class="third-main-panel">
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-content-wrapper form-horizontal">
+            <div class="content solo-page">
+                <h3 class="title-editor border-blue text-center">
+                    <?php echo p__("xdelivery","Edit Category"); ?>
+               </h3>
+                  <div id="customer_forms" class="first-row-feature content-color container-fluid">
+                    <div id="customer_form_new">
+
+                        <form id="categoryForm" action="<?php echo $this->getUrl('xdelivery/category/save'); ?>" method="post" class="form-horizontal">
+                            <input type="hidden" name="value_id" value="<?php echo $category->getValueId(); ?>">
+                            <input type="hidden" name="id" value="<?php echo $category->getId(); ?>" class="required input-flat"/>
+                             <div class="form-group">
+                                <div class="col-md-6">
+
+                                     <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label for="category_name"><?php echo p__("xdelivery", 'Category Name'); ?><span>*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" value="<?php echo $category->getCategoryName(); ?>" class="required input-flat" name="category_name" id="category_name" />
+                                        </div>
+                                    </div>
+
+                                     <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label for="short_summery"><?php echo p__("xdelivery", 'Short Description'); ?><span>*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" value="<?php echo $category->getShortSummery(); ?>" class="input-flat" name="short_summery" id="short_summery" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label for="parent_id"><?php echo p__("xdelivery", 'Parent Category'); ?></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <select class="styled-select color-blue" name="parent_id" id="parent_id"> <option value="0"><?php echo p__("xdelivery", 'None'); ?></option>
+                                            <?php foreach ($parentCategory as $key => $value)  : ?>
+                                                <option value="<?php echo $value['id'] ?>" <?php echo $value['id'] == $category->getParentId() ? 'selected="selected"' : '';  ?> ><?php echo $value['category_name'] ?></option>
+                                            <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label for="parent_id"><?php echo p__("xdelivery", 'Image'); ?></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                             <div class="category-images-container uploadImage">
+                                                <?php if(empty($category->getImage())): ?>
+                                                    <img src="/app/local/modules/Xdelivery/resources/design/desktop/flat/images/shop-placeholder.png" width="100px" height="100px">
+                                                 <?php else: ?>
+                                                    <img src="/images/application/<?php echo $category->getImage(); ?>" width="100px" height="100px">
+                                                 <?php endif ?>
+                                             </div> 
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <label for="is_active" class="checkbox-inline">
+                                                <input type="checkbox" id="is_active" name="is_active" value="1" class="color-blue checkbox sb-tour" <?php echo $category->getIsActive() == 1 ? "checked='checked'" : ""; ?> />
+                                               <?php echo p__("xdelivery", 'Active'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <label for="is_popular_search" class="checkbox-inline">
+                                                <input type="checkbox" id="is_popular_search" name="is_popular_search" value="1"  <?php echo $category->getIsPopularSearch() == 1 ? "checked='checked'" : ""; ?> class="color-blue checkbox sb-tour" />
+                                               <?php echo p__("xdelivery", 'Display In Popular Search?'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                               </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    * <?php echo p__("xdelivery", 'Required fields'); ?>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-2 col-xs-12">
+                                    <?php if($category->getParentId() > 0) : ?>
+                                        <a href="/xdelivery/category/subcategory/id/<?php echo $category->getParentId(); ?>" id="cancel_category" class="color-blue btn sb-tour"><?php  echo p__("xdelivery", "Cancel"); ?></a>
+                                    <?php else: ?>
+                                         <a href="/xdelivery/category/list" id="cancel_category" class="color-blue btn sb-tour"><?php  echo p__("xdelivery", "Cancel"); ?></a>
+                                    <?php endif; ?>
+
+                                    <button id="sb-tour-save_user" type="submit" class="color-blue btn pull-right sb-tour"><?php echo p__("xdelivery", "Save"); ?></button>
+                                </div>
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div>
+ 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+ 
+<form id="category_image_form"  method="post" role="form"  enctype="multipart/form-data" >
+     <input style="display:none" id="category_image_file" class="uploader" type="file" name="files" data-url="<?php echo $this->getUrl('template/crop/upload'); ?>"> 
+</form>
+
+<script type="text/javascript">
+ 
+    $('#categoryForm').submit(function() {
+        if($(this).valid()) {
+            reload(this, this.action, true, function(data) {
+                if(data.success) {
+                    window.location = $('#cancel_category').attr( "href" );
+                }
+            });
+        }
+        return false;
+    });
+
+    /*function for upload image*/
+
+
+    $(".uploadImage").click(function (e) {
+        $('#category_image_file').trigger('click'); 
+    });
+
+
+     var Uploader = new Uploader();
+     var image_view_template = '<?php echo str_replace("\n", "", '<div class="cms-image" style="background-image: url(#THUMBNAIL_PATH#);"><img src="/images/application/placeholder/blank-512.png" class="cms-image-unit" /><input type="hidden" name="slider[]" value="%IMAGE_PATH%" /></div>' ); ?>';
+     $('#category_image_file').fileupload({
+            dataType: 'json',
+            add: function(e, data) {
+                data.submit();
+                Uploader.showProgressbar();
+            },
+            progressall: function(e, data) {
+                Uploader.moveProgressbar(data);
+            },
+            fail: function (el, data) {
+                Uploader.hide();
+                Uploader.showError(JSON.parse(data.jqXHR.responseText).message);
+            },
+            done: function(e, data) {
+                if (data.result.error) {
+                    Uploader.hide();
+                    Uploader.showError(data.result.message);
+                }
+                if (data.result.success) {
+                    Uploader.hide();
+                    var params = [];
+                    params["url"] = '<?php echo $this->getUrl('template/crop/crop'); ?>';
+                    params["file"] = data.result.files;
+                    params["output_w"] = 200;
+                    params["output_h"] = 200;
+                    params["output_url"] = '<?php echo str_replace('/', '$', $this->getUrl('xdelivery/application/crop')) ?>';
+                    params["uploader"] = 'Uploader';
+                    Uploader.crop(params);
+
+                    Uploader.callback = function(file) {
+                           var cms_image = image_view_template;
+                           cms_image = cms_image.replace("%IMAGE_PATH%", file);
+                           cms_image = cms_image.replace("#THUMBNAIL_PATH#",  '<?php echo Core_Model_Directory::getTmpDirectory(); ?>/' + file);
+                           $(".category-images-container").html(cms_image);
+                    };
+                }
+            }
+        });
+
+
+ 
+</script>

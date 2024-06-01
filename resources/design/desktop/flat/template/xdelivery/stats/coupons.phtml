@@ -1,0 +1,434 @@
+<?php 
+include(dirname(__DIR__)."/left-menu.phtml"); 
+$app_id = $this->getApplication()->getId();
+$value_id = (new Xdelivery_Model_Xdelivery())->getCurrentValueId();
+$stores = (new Xdelivery_Model_Store())->findAll(['value_id' => $value_id, 'is_active' => 1]);
+$coupons = (new Xdelivery_Model_Coupons())->findAll($value_id);
+?>
+<script type="text/javascript" language="javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+<div id="third-main-panel" style='padding-left:100px;'>
+    <div id='pagecontainer'>
+        <div class="application_analytics application content" id="content">
+            <h3 class="title-editor border-blue text-center"><?php echo p__('xdelivery', 'Xdelivery Coupon Reports') ?>
+            </h3>
+            <div class="container-fluid subcontent content-color">
+                <!-- Navigation Bar START -->
+                <?php include(dirname(__DIR__)."/stats-top-menu.phtml"); ?>
+                <!-- Navigation Bar End -->
+                <!-- Stat Filter Start -->
+                <div class="row">
+                    <div class="col-md-2" style="padding-bottom:3px;">
+                        <select id="store_id" class="input-flat color-blue" name="store_dropdown">
+                            <option value="0"><?php echo p__('xdelivery', 'All Stores') ?></option>
+                            <?php foreach ($stores as $store): ?>
+                            <option value="<?= $store['store_id'] ?>">
+                                <?= $store['store_name'] ?>
+                            </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-2" style="padding-bottom:3px;">
+                        <select class="input-flat color-blue" name="status" id="coupon_id">
+                            <option value=""><?php echo p__("xdelivery", 'Coupons List'); ?></option>
+                            <?php foreach ($coupons as $key => $value) { ?>
+                            <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="col-md-2" style="padding-bottom:3px;">
+                        <select onChange="filterType()" id="range_filter" class="input-flat color-blue" name="">
+                            <option value="1"><?php echo p__('xdelivery', 'Today') ?></option>
+                            <option value="2"><?php echo p__('xdelivery', 'Last 7 Days') ?></option>
+                            <option value="3" selected><?php echo p__('xdelivery', 'Last 30 Days') ?></option>
+                            <option value="4"><?php echo p__('xdelivery', 'Last 90 Days') ?></option>
+                            <option style="font-weight:600" value="100"><?php echo p__('xdelivery', 'Date Range') ?>
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-4" id="custom_date_filter_container" style="display:none;">
+                        <div id="row_filter_metrics" class="row sb-tour">
+                            <div class="col-md-2 col-sm-6 col-xs-6">
+                                <label for="from"><?php echo p__('xdelivery', 'From'); ?></label>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-6">
+                                <input type="text" id="from" name="from" class="input-flat sb-tour">
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-6">
+                                <label for="to"><?php echo p__('xdelivery', 'To'); ?></label>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-6">
+                                <input type="text" id="to" name="to" class="input-flat sb-tour">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <button data-html2canvas-ignore="true" class="btn color-blue" onclick="loadCouponsStats()">
+                            <i class="fa fa-filter"></i>
+                        </button>
+                    </div>
+                    <div class='col-md-1'>
+                        <button style='float:right;' data-html2canvas-ignore='true' class="btn color-blue"
+                            onclick="printPdf()">
+                            <i class="fa fa-download"></i>
+                            <span style="display:none;" id="pdf_download_loader"><i
+                                    class="fa fa-circle-o-notch fa-spin fa-fw"></i></span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Stat Filter End -->
+                <!-- TOTAL SALES START-->
+                <div class="row first-row-feature" style="padding-top:0px;">
+                    <div class="row" style="padding-left:20px;padding-right:20px;padding-top:10px;padding-bottom:10px;">
+                        <div class="col-md-4">
+                            <div class="stat-calculate" style="">
+                                <p><?php echo p__('xdelivery', 'Coupon Redemptions') ?></p>
+                                <h1 class="dfault-0" id="total_redemptions"></h1>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-calculate" style="">
+                                <p><?php echo p__('xdelivery', 'Redemptions Value') ?></p>
+                                <h1 class="dfault-0" id="total_redemption_value"></h1>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-calculate" style="">
+                                <p><?php echo p__('xdelivery', 'Unique Redeemers Count') ?></p>
+                                <h1 class="dfault-0" id="total_unique_redeemers"></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-right:20px;padding-top:10px;padding-bottom:10px;">
+                        <div class="col-md-12 col-xs-12" style="max-height:348px">
+                            <div style="margin-left:46%;position: absolute;top: 40%;" id="total_coupon_loader"
+                                class="loader_metrics"><i
+                                    class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i><br /><?php echo p__('xdelivery', 'Loading...'); ?>
+                            </div>
+                            <canvas style="border:1px solid #dedddd" id="total_coupon_redemptions"
+                                class="content-white-bkg sb-tour" width="400" height="340"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!-- TOTAL SALES END-->
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"
+    integrity="sha512-Z8CqofpIcnJN80feS2uccz+pXWgZzeKxDsDNMD/dJ6997/LSRY+W4NmEt9acwR+Gt9OHN0kkI1CTianCwoqcjQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+// START Date Picker
+var today = new Date(); // get current date
+var oneYearAgo = new Date(); // create new date object
+oneYearAgo.setFullYear(today.getFullYear() - 1); // set year to previous year
+if ($.datepicker.regional['<?php echo Core_Model_Language::getCurrentLanguageDatepicker(); ?>']) {
+    $.datepicker.setDefaults($.datepicker.regional[
+        '<?php echo Core_Model_Language::getCurrentLanguageDatepicker(); ?>']);
+} else {
+    $.datepicker.setDefaults($.datepicker.regional['en']);
+}
+
+$("#from").datepicker({
+    changeMonth: true,
+    changeYear: true,
+    numberOfMonths: 3,
+    minDate: oneYearAgo,
+    onClose: function(selectedDate) {
+        $("#to").datepicker("option", "minDate", selectedDate);
+    }
+});
+
+$("#to").datepicker({
+    changeMonth: true,
+    changeYear: true,
+    numberOfMonths: 3,
+    onClose: function(selectedDate) {
+        $("#from").datepicker("option", "maxDate", selectedDate);
+    }
+});
+$("#to").datepicker('setDate', new Date());
+$("#from").datepicker('setDate', -30);
+
+function computeDateRange() {
+    var start_timestamp = parseInt($.datepicker.formatDate("@", $("#from").datepicker("getDate")) / 1000);
+    var end_timestamp = parseInt($.datepicker.formatDate("@", $("#to").datepicker("getDate")) / 1000);
+    //We go to 23:59
+    end_timestamp = end_timestamp + (60 * 60 * 24) - 60;
+    date_range = {
+        "start": start_timestamp,
+        "end": end_timestamp
+    };
+    return date_range;
+}
+var date_range_params = '';
+
+function filterStats() {
+    if ($("#from").val() && $("#to").val()) {
+        date_range_params = computeDateRange();
+        if (date_range_params.start <= date_range_params.end) {
+            console.log("Called");
+        } else {
+            var page_message = new AlertMessage(
+                "<?php echo p__('xdelivery',"Start date must be lower than end date."); ?>");
+            page_message.addButton(true);
+            page_message.setTimer(false);
+            page_message.isError(true);
+            page_message.show();
+        }
+    } else {
+        var page_message = new AlertMessage(
+            "<?php echo p__('xdelivery',"You have to chose a start and an end date."); ?>");
+        page_message.addButton(true);
+        page_message.setTimer(false);
+        page_message.isError(true);
+        page_message.show();
+    }
+}
+// END Date Picker    
+// Chart identifiers
+var total_coupons_ctx = $("#total_coupon_redemptions");
+// Bar Chart Configrations                       
+var datasetMeta = [{
+    label: "<?php echo p__('xdelivery',"Coupon Redemption Values Overview"); ?>",
+    backgroundColor: "#0099C7",
+    borderColor: "#0099C7",
+    borderWidth: 1,
+    hoverBackgroundColor: "#0099C7",
+    hoverBorderColor: "#0099C7",
+    data: []
+}];
+var lineChartConfig = {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: datasetMeta
+    },
+    options: {
+        "responsive": true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                min: 0,
+                ticks: {
+                    precision: 0
+                }
+            }
+        },
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(context) {
+                        if (context[0].datasetIndex === 1) {
+                            return prev_total_ref_labels[context[0].dataIndex];
+                        }
+                    }
+                }
+            }
+        }
+    }
+};
+// END line Chart Configrations        
+// Report Range Section
+var prev_total_ref_labels = [];
+var total_coupons = new Chart(total_coupons_ctx, lineChartConfig);
+// Empty No Graph
+loadCouponsStats();
+var is_custome_date_filter = 0;
+
+function filterType() {
+    range_filter = $("#range_filter").val();
+    if (range_filter == 100) {
+        is_custome_date_filter = 1;
+        $("#custom_date_filter_container").show();
+    } else {
+        is_custome_date_filter = 0;
+        $("#custom_date_filter_container").hide();
+    }
+}
+
+function loadCouponsStats() {
+    //Show loaders  
+    $("#total_coupon_loader").show();
+    range_filter = $("#range_filter").val();
+    store_id = $("#store_id").val();
+    coupon_id = $("#coupon_id").val();
+    filterStats();
+    $(".dfault-0").text(0); //Reset stats to 0
+    $(".avg-dfault-na").text('AVG N/A'); //Reset stats to 0
+    $.ajax({
+        method: "POST",
+        dataType: 'json',
+        url: "/xdelivery/stats/couponstats",
+        data: {
+            app_id: '<?php echo $app_id; ?>',
+            value_id: '<?php echo $value_id; ?>',
+            range_filter: range_filter,
+            coupon_id: coupon_id,
+            store_id: store_id,
+            date_range_params: date_range_params,
+            is_custome_date_filter: is_custome_date_filter
+        }
+    }).done(function(data) {
+        if (true) { // (Total Coupons Line Chart)                                
+            var total_ref_labels = [];
+            var total_ref = [];
+            var success_ref = [];
+            $.each(data.total_graph_coupons, function(ind, elem) {
+                total_ref_labels.push(elem.labels);
+                prev_total_ref_labels.push(elem.prev_labels);
+                total_ref.push(elem.total_redemption_value);
+                success_ref.push(elem.prev_ref);
+            });
+            total_coupons.data.datasets[0].data = total_ref;
+            total_coupons.data.labels = total_ref_labels;
+            total_coupons.update();
+        }
+        if (true) { // Total Coupons Count Show           
+            if (data.total_coupons_count[0]) {
+                var couponsData = data.total_coupons_count[0];
+                if (couponsData.total_redemptions !== null) {
+                    $("#total_redemptions").text(couponsData.total_redemptions);
+                }
+                if (couponsData.total_redemption_value !== null) {
+                    $("#total_redemption_value").text(couponsData.total_redemption_value);
+                }
+                if (couponsData.total_unique_redeemers !== null) {
+                    $("#total_unique_redeemers").text(couponsData.total_unique_redeemers);
+                }
+
+            }
+            $("#total_coupon_loader").hide();
+
+            // Background Work for PDF PRINT
+            const divElement = document.getElementById('pagecontainer');
+            // Get the innerHTML of the div element
+            const htmlContent = divElement.innerHTML;
+            $("#newcontent").remove();
+            // Create a new element to pass the same data
+            newElement = document.createElement('div');
+            newElement.setAttribute('id', 'newcontent');
+            newElement.style.width = '1284px';
+            newElement.style.marginLeft = '200px';
+            newElement.style.position = "absolute";
+            newElement.style.bottom = "100%";
+            newElement.innerHTML = htmlContent;
+            // Get the duplicated chart canvas and chart instance
+            duplicateChartCanvas = newElement.querySelector('#total_coupon_redemptions');
+            duplicateChart = new Chart(duplicateChartCanvas, {
+                type: total_coupons.config.type,
+                data: total_coupons.config.data,
+                options: total_coupons.config.options
+            });
+            duplicateChartCanvas.style.height = '348px';
+            // Manage filter elements for print
+            from_date = $("#from").val();
+            to_date = $("#to").val();
+            range_filter = $("#range_filter").val();
+            myDropdown = newElement.querySelector('#range_filter');
+            optionWithValue100 = myDropdown.querySelector(`option[value="${range_filter}"]`);
+            optionWithValue100.selected = true;
+
+            store_filter = $("#store_id").val();
+            myDropdown = newElement.querySelector('#store_id');
+            optionWithValue100 = myDropdown.querySelector(`option[value="${store_filter}"]`);
+            optionWithValue100.selected = true;
+
+            fromInput = newElement.querySelector('#from');
+            fromInput.setAttribute('value', from_date);
+            toInput = newElement.querySelector('#to');
+            toInput.setAttribute('value', to_date);
+            document.body.appendChild(newElement);
+        }
+    }).error(function() {
+        console.log("Error");
+    });
+}
+// PDF Print execution
+function printPdf() {
+    const doc = new jsPDF();
+    html2canvas(newElement.querySelector("#content")).then((canvas) => {
+        var imgData = canvas.toDataURL();
+        var imgWidth = 210;
+        var pageHeight = 295;
+        var imgHeight = canvas.height * imgWidth / canvas.width;
+        var heightLeft = imgHeight;
+        var doc = new jsPDF('p', 'mm');
+        var position = 3; // give some top padding to first page
+        doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+        while (heightLeft >= 0) {
+            position = heightLeft - imgHeight; // top padding for other pages        
+            doc.addPage();
+            doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+        }
+        doc.save('XDelivery Coupons.pdf');
+    });
+}
+</script>
+<style>
+/* Stat CSS */
+.stat-calculate {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background: #f7f7f7;
+    text-align: center;
+    transition: transform .7s;
+}
+
+.stat-calculate h1 {
+    font-weight: 700;
+    margin-top: 18px;
+    margin-bottom: 21px;
+    line-height: 40px;
+
+}
+
+.stat-calculate p {
+    font-weight: 700;
+    font-size: large;
+    line-height: 35px;
+    overflow: hidden;
+}
+
+.stat-headings {
+    color: white;
+    background-color: #0099C7;
+    padding: 9px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.pagecontainer {
+    padding-left: 100px;
+}
+
+.hide-placeholder {
+    opacity: 0;
+}
+
+.avg-dfault-na {
+    color: coral;
+}
+
+#row_filter_metrics label {
+    line-height: 29px
+}
+</style>

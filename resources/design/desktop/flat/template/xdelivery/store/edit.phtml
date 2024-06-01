@@ -1,0 +1,269 @@
+<?php include(dirname(__DIR__)."/left-menu.phtml"); ?>
+<?php   $value_id = (new Xdelivery_Model_Xdelivery())->getCurrentValueId();
+$store = $this->getCurrentStore();
+/*Store Manage*/
+$storeFrom = new Xdelivery_Form_Store_From();
+$storeFrom->addNav("ads-save-nav", "Save", false);
+$storeData = $store->getData();
+$storeFrom->populate($storeData);
+
+$workingdays = (new Xdelivery_Model_WorkingTimes())::getWorkingDays($store->getStoreId(), $value_id);
+
+?>
+
+<div class="third-main-panel">
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-content-wrapper form-horizontal">
+            <div class="content solo-page">
+                <h3 class="title-editor border-blue text-center">
+                    <?php echo p__("xdelivery","Create a new Store"); ?>
+                    <a href="/xdelivery/store/list" id="cancel_store" class="color-blue btn sb-tour pull-right">
+                          <?php  echo p__("xdelivery", "Back"); ?>
+                    </a>
+                </h3>
+                  <div id="customer_forms" class="first-row-feature content-color container-fluid">
+                    <div id="customer_form_new">
+                        <?php echo $storeFrom; ?>
+
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="parent_id"><?php echo p__("xdelivery", 'Image'); ?></label>
+                            </div>
+                            <div class="col-sm-8">
+                                 <div class="category-images-container uploadImage">
+                                    <?php if(!empty($store->getImage())): ?>
+                                         <img src="/images/application/<?php echo $store->getImage(); ?>" width="100px" height="100px">
+                                     <?php endif ?>
+                                 </div> 
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="feature-block-list">
+                    <div class="margin-top">
+                        <h3 class="title-editor no-border-radius title-feature-indent">
+                            <?php echo p__('xdelivery', 'Working Day/Time'); ?>
+                        </h3>
+                        <div class="container-fluid first-row-feature feature-manage-items">
+                            <table class="table content-white-bkg sb-pager">
+                                <thead>
+                                <tr class="border-blue">
+                                   <th style="width:10%;"><?php echo p__('xdelivery', 'S.NO'); ?></th>
+                                   <th style="width:15%;"><?php echo p__('xdelivery', 'Days'); ?></th>
+                                    <th  style="width:15%;"> <?php echo p__('xdelivery', 'Opening'); ?></th>
+                                    <th  style="width:15%;"> <?php echo p__('xdelivery', 'Closing'); ?></th>
+                                    <th  style="width:15%;"> <?php echo p__('xdelivery', 'Delivery'); ?></th>
+                                    <th  style="width:15%;"> <?php echo p__('xdelivery', 'Pickup'); ?></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach($workingdays as $key => $working): ?>
+                                    <tr id="working_manage_element_<?php echo $working->getId(); ?>" class="working-manage-element sb-pager">
+                                        <td><?php echo $key+1; ?></td>
+                                        <td><?php echo p__('xdelivery', ucfirst($working->getWorkingDay())); ?></td>
+                                        <td><?php echo $working->getOpeningTime(); ?></td>
+                                        <td><?php echo $working->getClosingTime(); ?></td>
+                                        <td><?php echo $working->getEnableDelivery() == 1 ? p__('xdelivery', "Active"): p__('xdelivery', "In Active"); ?></td>
+                                        <td><?php echo $working->getEnablePickup()== 1 ? p__('xdelivery', "Active"): p__('xdelivery', "In Active");; ?></td>
+                                        <td class="edit-action open-edit text-right" data-id="working_<?php echo $working->getId(); ?>" data-form-url="<?php echo __path("/xdelivery/working/loadform", array("working_id" => $working->getId(), "value_id" => $value_id)); ?>">
+                                            <i class="fa fa-pencil"></i>
+                                        </td>
+                                    </tr>
+                                    <tr class="edit-form" data-id="working_<?php echo $working->getId(); ?>" style="display: none;">
+                                          <td colspan="7">
+                                              <p class="close-edit" data-id="working_<?php echo $working->getId(); ?>">
+                                                  <i class="fa fa-times"></i><?php p__('xdelivery', "Close") ?>
+                                              </p>
+                                          </td>
+                                      </tr>
+                                 <?php endforeach; ?>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+ <form id="category_image_form"  method="post" role="form"  enctype="multipart/form-data" >
+     <input style="display:none" id="store_image_file" class="uploader" type="file" name="files" data-url="<?php echo $this->getUrl('template/crop/upload'); ?>"> 
+</form>
+
+
+<script type="text/javascript">
+
+    $('#form-add-store').submit(function() {
+        if($(this).valid()) {
+            reload(this, this.action, true, function(data) {
+                if(data.success) {
+                    window.location = $('#cancel_store').attr( "href" );
+                }
+            });
+        }
+        return false;
+    });     
+
+
+    <?php if($storeData['is_default'] == 1){ ?>
+        $('#commision_percentage').attr('readonly','readonly');
+        $('#is_active').css("display", "none");
+    <?php } ?> 
+    
+</script>
+    <!-- Map Start  -->
+<?php 
+ $googlemaps_key =  $this->getApplication()->getGooglemapsKey();
+ ?>
+ <script type="text/javascript">     
+  function initMap(){
+        var autocomplete = new google.maps.places.Autocomplete($("#store_location")[0], {});
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            var place = autocomplete.getPlace();
+             var near_place = autocomplete.getPlace();
+             document.getElementById('address_lat').value = near_place.geometry.location.lat();
+             document.getElementById('address_lng').value = near_place.geometry.location.lng();
+        });
+    }
+ </script>
+ <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&key=<?php echo $googlemaps_key;?>&libraries=places&callback=initMap"></script>    
+<!-- Map end  -->
+
+<script type="text/javascript">
+   
+     /** Table toggle edit */
+    $('table .open-edit').on('click', function () {
+        var el = $(this);
+        if (el.data('is-loading') === true) {
+            console.log('prevents multi-click on open-edit');
+            return;
+        }
+
+        el.data('is-loading', true);
+
+        var object_id = el.data('id');
+        var callback = el.data('callback');
+
+        $('tr.edit-form[data-id!='+object_id+']').hide();
+
+        var tr_edit = $('tr.edit-form[data-id='+object_id+']');
+
+        /** Move the tr-edit right under the current object (avoiding conflicts with any search) */
+        el.parents('tr').after(tr_edit);
+
+        tr_edit.toggle();
+
+        /** Load form if not present */
+        if ($('tr.edit-form[data-id='+object_id+'] form').length == 0) {
+            $('tr.edit-form[data-id='+object_id+'] p.close-edit').after('<div class="feature-loader loader-'+object_id+'"><img src="/app/sae/design/desktop/flat/images/customization/ajax/ajax-loader-black.gif"></div>');
+
+            $.ajax({
+                type: 'GET',
+                url: el.data('form-url'),
+                dataType: 'json',
+                success: function (data) {
+                    el.data('is-loading', false);
+                    if (data.success) {
+                        $('tr.edit-form[data-id='+object_id+'] p.close-edit').after(data.form);
+                        $('tr.edit-form[data-id='+object_id+'] .loader-'+object_id).remove();
+
+                        setTimeout(function () {
+                            bindForms('tr.edit-form[data-id='+object_id+']');
+                            if (typeof callback !== 'undefined') {
+                                try {
+                                    eval(callback);
+                                } catch (e) {}
+                            }
+                        }, 100);
+                    } else if (data.error) {
+                        feature_form_error(data.message, data.message_timeout);
+                    }
+                },
+                error: function () {
+                    el.data('is-loading', false);
+                    feature_form_error('An error occured, please try again.');
+                }
+            });
+        } else {
+            setTimeout(function () {
+                el.data('is-loading', false);
+                bindForms('tr.edit-form[data-id='+object_id+']');
+                if (typeof callback !== 'undefined') {
+                    try {
+                        eval(callback);
+                    } catch (e) {}
+                }
+            }, 100);
+        }
+
+    });
+
+    /** Table toggle edit */
+    $('table .close-edit').on('click', function () {
+        var el = $(this);
+        var object_id = el.data('id');
+        var clear = (typeof el.data('clear') !== 'undefined');
+
+        $('tr.edit-form[data-id]').hide();
+
+        /** Clear if we want to use multiple forms, or just reload every-time */
+        if (clear) {
+            $('tr.edit-form[data-id='+object_id+']').removeData('binded');
+            $('tr.edit-form[data-id='+object_id+'] p.close-edit').next('form').remove();
+        }
+    });
+    
+       /*function for upload image*/
+    $("#image_button").click(function (e) {
+        $('#store_image_file').trigger('click'); 
+    });
+    var Uploader = new Uploader();
+    var image_view_template = '<?php echo str_replace("\n", "", '<div class="cms-image" style="background-image: url(#THUMBNAIL_PATH#);"><img src="/images/application/placeholder/blank-512.png" class="cms-image-unit" /><input type="hidden" name="slider[]" value="%IMAGE_PATH%" /></div>' ); ?>';
+
+    $('#store_image_file').fileupload({
+        dataType: 'json',
+        add: function(e, data) {
+            data.submit();
+            Uploader.showProgressbar();
+        },
+        progressall: function(e, data) {
+            Uploader.moveProgressbar(data);
+        },
+        fail: function (el, data) {
+            Uploader.hide();
+            Uploader.showError(JSON.parse(data.jqXHR.responseText).message);
+        },
+        done: function(e, data) {
+            if (data.result.error) {
+                Uploader.hide();
+                Uploader.showError(data.result.message);
+            }
+            if (data.result.success) {
+                Uploader.hide();
+                var params = [];
+                params["url"] = '<?php echo $this->getUrl('template/crop/crop'); ?>';
+                params["file"] = data.result.files;
+                params["output_w"] = 512;
+                params["output_h"] = 320;
+                params["output_url"] = '<?php echo str_replace('/', '$', $this->getUrl('xdelivery/application/crop')) ?>';
+                params["uploader"] = 'Uploader';
+                Uploader.crop(params);
+
+                Uploader.callback = function(file) {
+                       var cms_image = image_view_template;
+                       cms_image = cms_image.replace("%IMAGE_PATH%", file);
+                       cms_image = cms_image.replace("#THUMBNAIL_PATH#",  '<?php echo Core_Model_Directory::getTmpDirectory(); ?>/' + file);
+                       $(".store-images-container").html(cms_image);
+                };
+            }
+        }
+    });
+       
+</script>

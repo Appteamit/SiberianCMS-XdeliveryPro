@@ -1,0 +1,537 @@
+<?php 
+include(dirname(__DIR__)."/left-menu.phtml"); 
+$app_id = $this->getApplication()->getId();
+$value_id = (new Xdelivery_Model_Xdelivery())->getCurrentValueId();
+$stores = (new Xdelivery_Model_Store())->findAll(['value_id' => $value_id, 'is_active' => 1 ]);
+
+?>
+<script type="text/javascript" language="javascript"
+    src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+<div id="third-main-panel" style='padding-left:100px;'>
+    <div id='pagecontainer'>
+        <div class="application_analytics application content" id="content">
+            <h3 class="title-editor border-blue text-center">
+                <?php echo p__('xdelivery', 'Xdelivery Top 10 Customers') ?></h3>
+            <div class="container-fluid subcontent content-color">
+                <!-- Navigation Bar START -->
+                <?php include(dirname(__DIR__)."/stats-top-menu.phtml"); ?>
+                <!-- Navigation Bar End -->
+                <!-- Stat Filter Start -->
+                <div class="row">
+                    <div class="col-md-2" style="padding-bottom:3px;">
+                        <select id="store_id" class="input-flat color-blue" name="store_dropdown">
+                            <option value="0"><?php echo p__('xdelivery', 'All Stores') ?></option>
+                            <?php foreach ($stores as $store): ?>
+                            <option value="<?= $store['store_id'] ?>">
+                                <?= $store['store_name'] ?>
+                            </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-2" style="padding-bottom:3px;">
+                        <select class="input-flat color-blue" name="status" id="report_type">
+                            <option value=""><?php echo p__("xdelivery", 'Report Type'); ?></option>
+                            <option selected value="1"><?php echo p__('xdelivery', 'Based on Most Revenue') ?></option>
+                            <option value="2"><?php echo p__('xdelivery', 'Based on Most Orders') ?></option>
+                        </select>
+                    </div>
+                    <div class="col-md-2" style="padding-bottom:3px;">
+                        <select onChange="filterType()" id="range_filter" class="input-flat color-blue" name="">
+                            <option value="1"><?php echo p__('xdelivery', 'Today') ?></option>
+                            <option value="2"><?php echo p__('xdelivery', 'Past 7 Days') ?></option>
+                            <option value="3" selected><?php echo p__('xdelivery', 'Past 30 Days') ?></option>
+                            <option value="4"><?php echo p__('xdelivery', 'Past 90 Days') ?></option>
+                            <option style="font-weight:600" value="100"><?php echo p__('xdelivery', 'Date Range') ?>
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-5" id="custom_date_filter_container" style="display:none;">
+                        <div id="row_filter_metrics" class="row sb-tour">
+                            <div class="col-md-2 col-sm-6 col-xs-6">
+                                <label for="from"><?php echo p__('xdelivery', 'From'); ?></label>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-6">
+                                <input type="text" id="from" name="from" class="input-flat sb-tour">
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-6">
+                                <label for="to"><?php echo p__('xdelivery', 'To'); ?></label>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-6">
+                                <input type="text" id="to" name="to" class="input-flat sb-tour">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <button data-html2canvas-ignore="true" class="btn color-blue" onclick="loadCustomerStats()">
+                            <i class="fa fa-filter"></i>
+                        </button>
+                    </div>
+                    <div class='col-md-2'>
+                        <button style='float:right;' data-html2canvas-ignore='true' class="btn color-blue"
+                            onclick="printPdf()">
+                            <i class="fa fa-download"></i>
+                            <span style="display:none;" id="pdf_download_loader"><i
+                                    class="fa fa-circle-o-notch fa-spin fa-fw"></i></span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Stat Filter End -->
+                <!-- TOTAL SALES START-->
+                <div class="row first-row-feature" style="padding-top:0px;">
+                    <div class="row" style="padding-left:20px;padding-right:20px;padding-top:10px;padding-bottom:10px;">
+                        <div class="col-md-4">
+                            <div class="stat-calculate" style="">
+                                <p><?php echo p__('xdelivery', 'Total Revenue') ?></p>
+                                <h1 class="dfault-0" id="total_top_customer_revenue"></h1>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-calculate" style="">
+                                <p><?php echo p__('xdelivery', 'Total Quantity') ?></p>
+                                <h1 class="dfault-0" id="total_top_customer_quantity"></h1>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-calculate" style="">
+                                <p><?php echo p__('xdelivery', 'Total Tax') ?></p>
+                                <h1 class="dfault-0" id="total_top_customer_tax"></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding-left:20px;padding-right:20px;padding-top:10px;padding-bottom:10px;">
+                        <div class="col-md-4">
+                            <div class="stat-calculate" style="">
+                                <p><?php echo p__('xdelivery', 'Total Tips') ?></p>
+                                <h1 class="dfault-0" id="total_top_customer_tips"></h1>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <div class="stat-calculate" style="">
+                                <p><?php echo p__('xdelivery', 'Total Quantity') ?></p>
+                                <h1 class="dfault-0" id="total_top_customer_quantity"></h1>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-calculate" style="">
+                                <p><?php echo p__('xdelivery', 'Total Tax') ?></p>
+                                <h1 class="dfault-0" id="total_top_customer_tax"></h1>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- TOTAL SALES END-->
+                <!-- Total Agents Chart -->
+                <div class="row first-row-feature" style="padding-top:0px;">
+                    <div class="row" style="padding-left:20px;padding-right:20px;padding-top:10px;padding-bottom:10px;">
+                        <div class="col-md-12 col-xs-12">
+                            <table class="table table-bordered" id="total_agent_charts">
+                                <thead>
+                                    <tr>
+                                        <th><?php echo p__('xdelivery','ID') ?></th>
+                                        <th><?php echo p__('xdelivery','Name') ?></th>
+                                        <th><?php echo p__('xdelivery','Revenue') ?></th>
+                                        <th><?php echo p__('xdelivery','Quantity') ?></th>
+                                        <th><?php echo p__('xdelivery','Total Tax') ?></th>
+                                        <th><?php echo p__('xdelivery','Total Tips') ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="total_agent_charts_body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"
+    integrity="sha512-Z8CqofpIcnJN80feS2uccz+pXWgZzeKxDsDNMD/dJ6997/LSRY+W4NmEt9acwR+Gt9OHN0kkI1CTianCwoqcjQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+// START Date Picker
+var today = new Date(); // get current date
+var oneYearAgo = new Date(); // create new date object
+oneYearAgo.setFullYear(today.getFullYear() - 1); // set year to previous year
+if ($.datepicker.regional['<?php echo Core_Model_Language::getCurrentLanguageDatepicker(); ?>']) {
+    $.datepicker.setDefaults($.datepicker.regional[
+        '<?php echo Core_Model_Language::getCurrentLanguageDatepicker(); ?>']);
+} else {
+    $.datepicker.setDefaults($.datepicker.regional['en']);
+}
+
+$("#from").datepicker({
+    changeMonth: true,
+    changeYear: true,
+    numberOfMonths: 3,
+    minDate: oneYearAgo,
+    onClose: function(selectedDate) {
+        $("#to").datepicker("option", "minDate", selectedDate);
+    }
+});
+
+$("#to").datepicker({
+    changeMonth: true,
+    changeYear: true,
+    numberOfMonths: 3,
+    onClose: function(selectedDate) {
+        $("#from").datepicker("option", "maxDate", selectedDate);
+    }
+});
+$("#to").datepicker('setDate', new Date());
+$("#from").datepicker('setDate', -30);
+
+function computeDateRange() {
+    var start_timestamp = parseInt($.datepicker.formatDate("@", $("#from").datepicker("getDate")) / 1000);
+    var end_timestamp = parseInt($.datepicker.formatDate("@", $("#to").datepicker("getDate")) / 1000);
+    //We go to 23:59
+    end_timestamp = end_timestamp + (60 * 60 * 24) - 60;
+    date_range = {
+        "start": start_timestamp,
+        "end": end_timestamp
+    };
+    return date_range;
+}
+var date_range_params = '';
+
+function filterStats() {
+    if ($("#from").val() && $("#to").val()) {
+        date_range_params = computeDateRange();
+        if (date_range_params.start <= date_range_params.end) {
+            console.log("Called");
+        } else {
+            var page_message = new AlertMessage(
+                "<?php echo p__('xdelivery',"Start date must be lower than end date."); ?>");
+            page_message.addButton(true);
+            page_message.setTimer(false);
+            page_message.isError(true);
+            page_message.show();
+        }
+    } else {
+        var page_message = new AlertMessage(
+            "<?php echo p__('xdelivery',"You have to chose a start and an end date."); ?>");
+        page_message.addButton(true);
+        page_message.setTimer(false);
+        page_message.isError(true);
+        page_message.show();
+    }
+}
+// END Date Picker          
+var is_custome_date_filter = 0;
+
+function filterType() {
+    range_filter = $("#range_filter").val();
+    if (range_filter == 100) {
+        is_custome_date_filter = 1;
+        $("#custom_date_filter_container").show();
+    } else {
+        is_custome_date_filter = 0;
+        $("#custom_date_filter_container").hide();
+    }
+}
+// Datatable
+//   Agent Table  //
+var dataTableLanguage = {
+    "decimal": "",
+    "emptyTable": "<?php echo p__('xdelivery',"No data found") ?>",
+    "info": "<?php echo p__('xdelivery',"Showing _START_ to _END_ of _TOTAL_ entries") ?>",
+    "infoEmpty": "<?php echo p__('xdelivery',"Showing 0 to 0 of 0 entries") ?>",
+    "infoFiltered": "<?php echo p__('xdelivery',"(filtered from _MAX_ total entries)") ?>",
+    "infoPostFix": "",
+    "thousands": ",",
+    "loadingRecords": "<?php echo p__('xdelivery',"Loading...") ?>",
+    "processing": "<?php echo p__('xdelivery',"Processing...") ?>",
+    "search": "<?php echo p__('xdelivery',"Search: ") ?>",
+    "zeroRecords": "<?php echo p__('xdelivery',"No matching records found") ?>",
+    "paginate": {
+        "first": "<?php echo p__('xdelivery',"First") ?>",
+        "last": "<?php echo p__('xdelivery',"Last") ?>",
+        "next": "<?php echo p__('xdelivery',"Next") ?>",
+        "previous": "<?php echo p__('xdelivery',"Previous") ?>"
+    },
+    "aria": {
+        "sortAscending": "<?php echo p__('xdelivery',": activate to sort column ascending") ?>",
+        "sortDescending": "<?php echo p__('xdelivery',": activate to sort column descending") ?>"
+    }
+};
+
+function loadCustomerStats() {
+    loadCustomerCountStats();
+    $("#date_range_orders_loader").show();
+    range_filter = $("#range_filter").val();
+    store_id = $("#store_id").val();
+    report_type = $("#report_type").val();
+    filterStats();
+    $('#total_agent_charts').DataTable().destroy();
+    $('#total_agent_charts').dataTable({
+        language: dataTableLanguage,
+        bLengthChange: false,
+        bFilter: false, // Hides the search box
+        order: [
+            [2, 'desc']
+        ],
+        sPaginationType: "full_numbers",
+        paging: false, // Hides pagination
+        dom: 'Bfrt', // Modified DOM structure (removed 'l', 'i', and 'p')
+        buttons: {
+            buttons: [{
+                extend: 'csv',
+                className: 'btn btn-lg btn-xs btn-success right-side btn-table-download',
+                text: '<i class="fa fa-download" aria-hidden="true"></i> <?php echo p__('xdelivery',"CSV"); ?>',
+                attr: {
+                    'data-html2canvas-ignore': 'true'
+                }
+            }, ]
+        },
+        ajax: '<?php echo $this->getUrl('xdelivery/stats/customerstats?value_id='.$value_id.'&range_filter='); ?>' +
+            range_filter + '&store_id=' + store_id + '&date_range_params_start=' + date_range_params.start +
+            '&date_range_params_end=' + date_range_params.end + '&report_type=' + report_type,
+    });
+
+}
+
+function loadCustomerCountStats() {
+    //Show loaders  
+    $("#date_range_orders_loader").show();
+    range_filter = $("#range_filter").val();
+    store_id = $("#store_id").val();
+    report_type = $("#report_type").val();
+    filterStats();
+    $(".dfault-0").text(0); //Reset stats to 0
+    $.ajax({
+        method: "POST",
+        dataType: 'json',
+        url: "/xdelivery/stats/customercountstats",
+        data: {
+            app_id: '<?php echo $app_id; ?>',
+            value_id: '<?php echo $value_id; ?>',
+            range_filter: range_filter,
+            store_id: store_id,
+            date_range_params: date_range_params,
+            report_type: report_type
+        }
+    }).done(function(data) {
+        if (true) { // Total Orders Count Show           
+            if (data.total_customers_count[0]) {
+                var customersData = data.total_customers_count[0];
+                if (customersData.total_revenue !== null) {
+                    $("#total_top_customer_revenue").text(customersData.total_revenue);
+                }
+                if (customersData.total_count !== null) {
+                    $("#total_top_customer_quantity").text(customersData.total_count);
+                }
+                if (customersData.total_tax !== null) {
+                    $("#total_top_customer_tax").text(customersData.total_tax);
+                }
+                if (customersData.total_tips !== null) {
+                    $("#total_top_customer_tips").text(customersData.total_tips);
+                }
+            }
+            // Background Work for PDF PRINT
+            const divElement = document.getElementById('pagecontainer');
+            // Get the innerHTML of the div element
+            const htmlContent = divElement.innerHTML;
+            $("#newcontent").remove();
+            // Create a new element to pass the same data
+            newElement = document.createElement('div');
+            newElement.setAttribute('id', 'newcontent');
+            newElement.style.width = '1284px';
+            newElement.style.marginLeft = '200px';
+            newElement.style.position = "absolute";
+            newElement.style.bottom = "100%";
+            newElement.innerHTML = htmlContent;
+            // Manage filter elements for print
+            from_date = $("#from").val();
+            to_date = $("#to").val();
+            range_filter = $("#range_filter").val();
+            myDropdown = newElement.querySelector('#range_filter');
+            optionWithValue100 = myDropdown.querySelector(`option[value="${range_filter}"]`);
+            optionWithValue100.selected = true;
+
+            store_filter = $("#store_id").val();
+            myDropdown = newElement.querySelector('#store_id');
+            optionWithValue100 = myDropdown.querySelector(`option[value="${store_filter}"]`);
+            optionWithValue100.selected = true;
+
+            fromInput = newElement.querySelector('#from');
+            fromInput.setAttribute('value', from_date);
+            toInput = newElement.querySelector('#to');
+            toInput.setAttribute('value', to_date);
+            document.body.appendChild(newElement);
+        }
+    }).error(function() {
+        console.log("Error");
+    });
+}
+loadCustomerStats();
+// PDF Print execution
+function printPdf() {
+    const doc = new jsPDF();
+    html2canvas(newElement.querySelector("#content")).then((canvas) => {
+        var imgData = canvas.toDataURL();
+        var imgWidth = 210;
+        var pageHeight = 295;
+        var imgHeight = canvas.height * imgWidth / canvas.width;
+        var heightLeft = imgHeight;
+        var doc = new jsPDF('p', 'mm');
+        var position = 3; // give some top padding to first page
+        doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+        while (heightLeft >= 0) {
+            position = heightLeft - imgHeight; // top padding for other pages        
+            doc.addPage();
+            doc.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+        }
+        doc.save('XDelivery Top Customers.pdf');
+    });
+}
+</script>
+<style>
+/* Stat CSS */
+.stat-calculate {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background: #f7f7f7;
+    text-align: center;
+    transition: transform .7s;
+}
+
+.stat-calculate h1 {
+    font-weight: 700;
+    margin-top: 18px;
+    margin-bottom: 21px;
+    line-height: 40px;
+
+}
+
+.stat-calculate p {
+    font-weight: 700;
+    font-size: large;
+    line-height: 35px;
+    overflow: hidden;
+}
+
+.stat-headings {
+    color: white;
+    background-color: #0099C7;
+    padding: 9px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.pagecontainer {
+    padding-left: 100px;
+}
+
+/* START Data Table  style*/
+.sub_heading {
+    border-bottom: 2px solid #0099c7;
+    padding-bottom: 13px;
+}
+
+.remove_btn {
+    background-color: red;
+}
+
+.emptydataset {
+    text-align: center;
+}
+
+table {
+    background-color: white;
+}
+
+table.dataTable {
+    margin: 20px 0 10px;
+    width: 100% !important;
+}
+
+table.dataTable th {
+    text-align: left;
+}
+
+table.dataTable tbody tr.edit_product {
+    cursor: pointer;
+}
+
+.dataTables_info {
+    float: left;
+    padding: 10px;
+}
+
+.dataTables_paginate {
+    float: right;
+}
+
+.dataTables_paginate a {
+    display: block;
+    float: left;
+    margin-left: 4px;
+    padding: 6px;
+}
+
+.dataTables_paginate a.paginate_button_disabled {
+    opacity: 0.3
+}
+
+.dataTable tbody tr:last-of-type {
+    border-bottom: 0;
+}
+
+#migasms {
+    overflow: auto;
+}
+
+#contantcontainer {
+    border-radius: 0px !important;
+}
+
+#contentheader {
+    background-color: #f3f3f3 !important;
+    padding: 8px !important;
+}
+
+#contentfooter {
+    padding: 5px !important;
+}
+
+.right-side {
+    float: right;
+    margin-right: 5px;
+}
+
+#delbtn {
+    float: right;
+}
+
+#delbtner {
+    float: right;
+}
+
+/* END Data Table  style*/
+#row_filter_metrics label {
+    line-height: 29px
+}
+</style>

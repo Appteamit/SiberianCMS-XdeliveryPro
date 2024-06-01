@@ -1,0 +1,44 @@
+<?php include(dirname(__DIR__)."/xdelivery/header.phtml"); ?>
+
+<?php $currentLink = $this->getCurrentLink(); ?>
+<ul class="nav nav-tabs" role="tablist" data-html2canvas-ignore='true'>
+        <li class="<?php echo $currentLink == 'xdeliverystats' ? 'active' : ''; ?>">
+            <a href="/xdelivery/stats/sales">
+                <i class="fa fa-area-chart" aria-hidden="true"></i>
+                <span><?php  echo p__("xdelivery", "Sales"); ?></span>
+            </a>
+        </li>        
+        <li class="<?php echo $currentLink == 'xdeliveryorderstats' ? 'active' : ''; ?>">
+            <a href="/xdelivery/stats/orders">
+                <i class="fa fa-area-chart" aria-hidden="true"></i>
+                <span><?php  echo p__("xdelivery", "Orders"); ?></span>
+            </a>
+        </li>        
+        <li class="<?php echo $currentLink == 'xdeliveryproductstats' ? 'active' : ''; ?>">
+            <a href="/xdelivery/stats/products">
+                <i class="fa fa-area-chart" aria-hidden="true"></i>
+                <span><?php  echo p__("xdelivery", "Top Products"); ?></span>
+            </a>
+        </li>        
+        <li class="<?php echo $currentLink == 'xdeliverycustomerstats' ? 'active' : ''; ?>">
+            <a href="/xdelivery/stats/customers">
+                <i class="fa fa-area-chart" aria-hidden="true"></i>
+                <span><?php  echo p__("xdelivery", "Top Customers"); ?></span>
+            </a>
+        </li>
+        <li class="<?php echo $currentLink == 'xdeliverycouponsstats' ? 'active' : ''; ?>">
+            <a href="/xdelivery/stats/coupons">
+                <i class="fa fa-area-chart" aria-hidden="true"></i>
+                <span><?php  echo p__("xdelivery", "Coupons"); ?></span>
+            </a>
+        </li>
+        <li class="<?php echo $currentLink == 'xdeliverytaxasstats' ? 'active' : ''; ?>">
+            <a href="/xdelivery/stats/taxes">
+                <i class="fa fa-area-chart" aria-hidden="true"></i>
+                <span><?php  echo p__("xdelivery", "Taxes"); ?></span>
+            </a>
+        </li>
+</ul>
+ <style type="text/css">
+     
+</style>

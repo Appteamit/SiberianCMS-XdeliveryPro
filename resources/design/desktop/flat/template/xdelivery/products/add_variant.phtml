@@ -1,0 +1,390 @@
+<?php include(dirname(__DIR__)."/left-menu.phtml"); ?>
+<?php $product = $this->getProduct(); 
+ if(empty($product['parent_id'])){
+   header("Location: /xdelivery/products/list"); 
+ }
+$value_id = (new Xdelivery_Model_Xdelivery())->getCurrentValueId();
+$taxes = (new Xdelivery_Model_Tax())->findAll(['value_id' => $value_id , 'status != ?' => 'deleted'])->toArray();
+
+$productattrObj = $this->getProductAttributes();
+ 
+$product_attributes = [];
+foreach ($productattrObj as $key => $value) {
+    if($value['is_variant'] == 0) continue;
+    $product_attributes[$value['attribute_id']]['values'][] = $value;
+    $product_attributes[$value['attribute_id']]['name'] = $value['attribute_name'];     
+}
+
+$productVarientAvailble = (new Xdelivery_Model_ProductVariant())->findAll(['product_id' => $product['id']])->toArray();
+$productVarientAvailbleIds = [];
+
+foreach ($productVarientAvailble as $key => $vValue) {
+    $productVarientAvailbleIds[] = $vValue['product_attribute_id'];
+}
+ 
+?>
+<div class="third-main-panel">
+   <div class="row" id="add-product-form">
+    <div class="col-md-12">
+        <div class="page-content-wrapper form-horizontal">
+            <div class="content solo-page">
+                <h3 class="title-editor border-blue text-center">
+                <?php echo p__("xdelivery","Add Variant for Product #%s", $product['id']); ?>             
+                <a href="/xdelivery/products/edit/id/<?php echo $product['parent_id']; ?>" id="edit_product" class="color-blue btn pull-right sb-tour"><?php  echo p__("xdelivery", "Back to main product"); ?></a>             
+               </h3>
+           </div>
+       </div>
+
+
+    <form id="productForm" action="<?php echo $this->getUrl('xdelivery/products/update-variant'); ?>" method="post" class="form-horizontal">
+      <input type="hidden" name="value_id" value="<?php echo $value_id ?>">
+      <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+      
+       <div class="row">
+            <!-- First div -->
+            <div class="col-md-8">
+              <div class="page-content-wrapper form-horizontal">
+                  <div class="content solo-page">
+                       <div id="customer_forms" class="first-row-feature content-color container-fluid">
+                          <div id="customer_form_new">
+                              <!-- add_product_box -->
+                               <div class="form-group">
+                                  <div class="col-sm-3">
+                                      <label for="product_name"><?php echo p__('xdelivery', 'Products ID') ?><span>*</span></label>
+                                  </div>
+                                  <div class="col-sm-9">
+                                      <b>#<?php echo $product['id']; ?></b>
+                                  </div>
+                              </div>
+                         
+                             <div id="attribute_product_values">
+
+                               <div class="form-group sb-form-line ">
+                                   <div color="color-blue" class="sb-form-html text-center">
+                                       <div class="alert alert-info"><?php echo p__('xdelivery', 'Attributes') ?>
+                                       </div>
+                                    </div>
+                                </div>
+
+                              <?php foreach ($product_attributes as $key => $value) : ?>
+                                  <div class="form-group" id="attribute_value_box_<?php echo $key; ?>">
+                                      <div class="col-sm-3">
+                                          <label for="values"><?php echo $value['name']; ?></label>
+                                      </div>
+                                      <div class="col-sm-9">
+                                          <select class="styled-select variant_values required" name="variant_values[]">
+                                              <option value=""><?php echo p__('xdelivery', 'Select  %s', $value['name']) ?></option>
+                                              <?php foreach ($value['values'] as $v => $value) : ?>
+                                                <option value="<?php echo $value['id'].'-'.$value['attribute_id']; ?>"  <?php echo in_array($value['id'], $productVarientAvailbleIds) ? 'selected=selected' : ''; ?>>
+                                                  <?php echo $value['value_name']; ?>
+                                                </option>
+                                              <?php endforeach; ?>
+                                           </select>
+                                      </div>
+                                 </div>
+                                <?php endforeach; ?>
+                              </div>
+
+
+                               <!-- add_product_box end-->
+                                <div class="simple_product_box">                                   
+                                    <div class="form-group sb-form-line ">
+                                       <div color="color-blue" class="sb-form-html text-center">
+                                           <div class="alert alert-info"><?php echo p__('xdelivery', 'General Settings') ?></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for="price"><?php echo p__('xdelivery', 'Regular Price') ?><span>*</span></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" value="<?php echo $product['price']; ?>" class="required input-flat" name="price" id="price" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for="special_price"><?php echo p__('xdelivery', 'Special Price') ?></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" value="<?php echo $product['special_price']; ?>" class="input-flat" name="special_price" id="special_price" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for="special_price_start"><?php echo p__('xdelivery', 'Special Price Start') ?></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" value="<?php echo $product['special_price_start']; ?>" class="input-flat" name="special_price_start" id="special_price_start" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for="special_price_end"><?php echo p__('xdelivery', 'Special Price End') ?></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" value="<?php echo $product['special_price_end']; ?>" class="input-flat" name="special_price_end" id="special_price_end" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for="tax_id"><?php echo p__('xdelivery', 'Tax Class'); ?></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                           <select class="styled-select" name="tax_id" id="tax_id">  
+                                            <option value="">
+                                                <?php echo p__('xdelivery', 'Select Tax Class'); ?>
+                                             </option>
+                                             <?php foreach ($taxes as $key => $value)  : ?>  
+                                                <option value="<?php echo $value['id'] ?>" <?php echo $product['tax_id'] == $value['id']? 'selected=selected' : ''; ?>>
+                                                <?php echo $value['name'] ?>
+                                              </option>
+                                            <?php endforeach; ?>
+                                             </select>
+                                        </div>
+                                    </div>
+                                </div> 
+
+                                 <!-- Simple product info end -->
+                                 <!-- Stock Manage -->
+                             <div class="form-group sb-form-line ">
+                                 <div name="inventory_settings" id="inventory_settings" is_form_horizontal="1" color="color-blue" class="sb-form-html text-center">
+                                     <div class="alert alert-info">
+                                     <?php echo p__('xdelivery', 'Inventory Settings') ?></div>
+                                  </div>
+                              </div>
+
+                              <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for="sku"><?php echo p__('xdelivery', 'SKU') ?></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" value="<?php echo $product['sku']; ?>" class="input-flat" name="sku" id="sku" />
+                                        </div>
+                                    </div>
+
+                                   <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for="manage_stock"><?php echo p__('xdelivery', 'Manage stock') ?></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                           <input type="checkbox" id="manage_stock" name="manage_stock" value="1" <?php echo $product['manage_stock'] == 1 ? "checked='checked'" : ""; ?> class="color-blue checkbox" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for="qty"><?php echo p__('xdelivery', 'Qty') ?></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" value="<?php echo $product['qty']; ?>" class="input-flat" name="qty" id="qty" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for="low_stock_threshold"><?php echo p__('xdelivery', 'Low stock threshold') ?></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" value="<?php echo $product['low_stock_threshold']; ?>" class="input-flat" name="low_stock_threshold" id="low_stock_threshold" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for="in_stock"><?php echo p__('xdelivery', 'Stock status'); ?></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                           <select class="styled-select" name="in_stock" id="in_stock">  
+                                            <option value="1"  <?php echo $product['in_stock'] == 1 ? 'selected=selected' : ''; ?>><?php echo p__('xdelivery', 'In Stock'); ?></option>
+                                             <option value="0"  <?php echo $product['in_stock'] == 0 ? 'selected=selected' : ''; ?>><?php echo p__('xdelivery', 'Out of Stock'); ?></option>
+                                             </select>
+                                        </div>
+                                    </div>
+                            <!-- End Stock Manage -->
+                             
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                       <!-- Second div -->
+                    <div class="col-md-4">
+                       <h5 class="title-editor border-blue text-center">
+                          <?php echo p__("xdelivery","Publish"); ?>
+                      </h5>
+                      <div class="publish-box content-bg-color">
+                          <br>
+                          <div class="form-group">
+                              <div class="col-sm-3">
+                                  <label for="is_active"><?php echo p__('xdelivery', 'Active') ?></label>
+                              </div>
+                               <div class="col-sm-3">
+                               <input type="checkbox" id="is_active" name="is_active" value="1" class="color-blue checkbox" <?php echo $product['is_active'] == 1 ? "checked='checked'" : ""; ?>  />
+                            </div>
+                              
+                              <div class="col-sm-6">
+                                  <button  name="submit" value="publish"  type="submit" class="color-blue btn pull-right publish-draft-button"><?php echo p__("xdelivery", "Publish"); ?></button>
+                              </div>
+
+                          </div>
+                      </div>
+                     
+                       <br>
+                      <h5 class="title-editor border-blue text-center">
+                          <?php echo p__("xdelivery","Product Image"); ?>
+                      </h5>
+                      <div class="content-bg-color">
+                          <div class="form-group">
+                             <div class="col-sm-12 text-center">
+                                   <div class="product-images-container uploadSingleImage">
+                                      <?php if(empty($product['image'])) : ?>
+                                          <img src="/app/local/modules/Xdelivery/resources/design/desktop/flat/images/shop-placeholder.png" width="200px" height="200px">
+                                      <?php else: ?>
+                                          <img src="/images/application/<?php echo $product['image']; ?>" width="200px" height="200px">
+                                      <?php endif; ?>
+                                   </div> 
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Product Image end --> 
+
+
+                      </div>
+                    <!-- Second DIv end  -->
+                  </div>
+             </form>
+        </div>
+    </div>
+</div>
+
+ <form id="product_image_form"  method="post" role="form"  enctype="multipart/form-data" >
+     <input style="display:none" id="product_image_file" class="uploader" type="file" name="files" data-url="<?php echo $this->getUrl('template/crop/upload'); ?>"> 
+</form>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+        bindForms("#add-product-form");
+
+   $('#productForm').submit(function() {
+            if($(this).valid()) {
+                reload(this, this.action, true, function(data) {
+                    if(data.success) {
+                         feature_form_success(data.message);
+                         window.location = $('#edit_product').attr( "href" );                 
+                    }else{
+                        feature_form_error(data.message);
+                    }
+                });
+            }
+            return false;
+        });
+
+    /*Manage stock settings*/
+        function manageStock() {
+            if($('#manage_stock').is(":checked")){
+                $('#in_stock').parent().parent().hide();
+                $('#qty').parent().parent().show();
+                $('#low_stock_threshold').parent().parent().show();
+                $('#qty').addClass('required');
+                $('#low_stock_threshold').addClass('required');
+            }else{
+                $('#in_stock').parent().parent().show();
+                $('#qty').parent().parent().hide();
+                $('#low_stock_threshold').parent().parent().hide();
+                $('#qty').removeClass('required');
+                $('#low_stock_threshold').removeClass('required');
+            }
+        }
+
+        manageStock(); // On Load        
+       
+        $('#manage_stock').on("change", function(){
+            manageStock();                    
+        });
+
+    });
+
+           /*Image Upload*/
+    $(".uploadSingleImage").click(function (e) {
+        $('#product_image_file').trigger('click'); 
+    });
+
+    var Uploader = new Uploader();
+    var image_view_template = '<?php echo str_replace("\n", "", '<div class="cms-image" style="background-image: url(#THUMBNAIL_PATH#);"><img src="/images/application/placeholder/blank-512.png"  width="200px" height="200px" class="cms-image-unit" /><input type="hidden" name="images[]" value="%IMAGE_PATH%" /></div>' ); ?>';
+   
+    $('#product_image_file').fileupload({
+        dataType: 'json',
+        add: function(e, data) {
+            data.submit();
+            Uploader.showProgressbar();
+        },
+        progressall: function(e, data) {
+            Uploader.moveProgressbar(data);
+        },
+        fail: function (el, data) {
+            Uploader.hide();
+            Uploader.showError(JSON.parse(data.jqXHR.responseText).message);
+        },
+        done: function(e, data) {
+            if (data.result.error) {
+                Uploader.hide();
+                Uploader.showError(data.result.message);
+            }
+            if (data.result.success) {
+                Uploader.hide();
+                var params = [];
+                params["url"] = '<?php echo $this->getUrl('template/crop/crop'); ?>';
+                params["file"] = data.result.files;
+                params["output_w"] = 200;
+                params["output_h"] = 200;
+                params["output_url"] = '<?php echo str_replace('/', '$', $this->getUrl('xdelivery/application/crop')) ?>';
+                params["uploader"] = 'Uploader';
+                Uploader.crop(params);
+
+                Uploader.callback = function(file) {
+                       var cms_image = image_view_template;
+                       cms_image = cms_image.replace("%IMAGE_PATH%", file);
+                       cms_image = cms_image.replace("#THUMBNAIL_PATH#",  '<?php echo Core_Model_Directory::getTmpDirectory(); ?>/' + file);
+                       $(".product-images-container").html(cms_image);
+                };
+            }
+        }
+    });
+
+
+
+        /*Date Pickers*/
+        if($.datepicker.regional['<?php echo Core_Model_Language::getCurrentLanguageDatepicker(); ?>']) {
+            $.datepicker.setDefaults($.datepicker.regional['<?php echo Core_Model_Language::getCurrentLanguageDatepicker(); ?>']);
+        } else {
+            $.datepicker.setDefaults($.datepicker.regional['en']);
+        }
+        $( "#special_price_start" ).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            numberOfMonths: 1,
+            dateFormat: 'yy-mm-dd',
+            onClose: function( selectedDate ) {
+                $( "#special_price_end" ).datepicker( "option", "minDate", selectedDate );
+            }
+        });
+        $( "#special_price_end" ).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            numberOfMonths: 1,
+            dateFormat: 'yy-mm-dd',
+            onClose: function( selectedDate ) {
+                $( "#special_price_start" ).datepicker( "option", "maxDate", selectedDate );
+            }
+        });
+
+   /*End Image upload code*/   
+</script>

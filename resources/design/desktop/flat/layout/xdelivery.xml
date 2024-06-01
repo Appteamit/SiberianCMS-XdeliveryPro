@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+
+    <xdelivery_application_edit>
+        <views>
+            <content class="application_view_customization_features_edit_tabbareditor" template="application/customization/features/edit/tabbar_editor.phtml" />
+            <content_editor class="core_view_default" template="xdelivery/application/edit.phtml" />
+        </views>
+    </xdelivery_application_edit>
+
+    <xdelivery_dashboard_index>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Dashboard</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/dashboard/index.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverydashboard</code></content>
+        </actions>
+    </xdelivery_dashboard_index>
+
+    <xdelivery_category_list>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Category</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/category/list.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverycategory</code></content>
+        </actions>
+    </xdelivery_category_list>
+
+     <xdelivery_category_subcategory>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Sub Category</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/category/sub-category.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverycategory</code></content>
+        </actions>
+    </xdelivery_category_subcategory>
+
+    <xdelivery_category_add>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Category Add</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/category/add.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverycategory</code></content>
+        </actions>
+    </xdelivery_category_add>
+
+    <xdelivery_category_edit>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Category Edit</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/category/edit.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverycategory</code></content>
+        </actions>
+    </xdelivery_category_edit>
+
+    <xdelivery_products_list>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery products</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/products/list.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryproduct</code></content>
+        </actions>
+    </xdelivery_products_list>
+
+    <xdelivery_products_add>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Add Product</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/products/add.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryproduct</code></content>
+        </actions>
+    </xdelivery_products_add> 
+
+    <xdelivery_products_variants>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Add Product variants</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/products/add_variant.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryproduct</code></content>
+        </actions>
+    </xdelivery_products_variants>  
+
+    <xdelivery_products_edit>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Edit Product</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/products/edit.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryproduct</code></content>
+        </actions>
+    </xdelivery_products_edit>   
+
+
+    <xdelivery_orders_list>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Orders</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/orders/list.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryorders</code></content>
+        </actions>
+    </xdelivery_orders_list>
+
+    <xdelivery_orders_details>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Orders Details</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/orders/details.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryorders</code></content>
+        </actions>
+    </xdelivery_orders_details>
+
+    <xdelivery_orders_transactions>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Transactions</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/transactions/list.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverytransactions</code></content>
+        </actions>
+    </xdelivery_orders_transactions>
+
+
+    <xdelivery_attributes_list>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Attributes</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/attributes/list.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryattributes</code></content>
+        </actions>
+    </xdelivery_attributes_list>
+
+    <xdelivery_attributes_add>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Attributes Add</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/attributes/add.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryattributes</code></content>
+        </actions>
+    </xdelivery_attributes_add>
+
+    <xdelivery_attributes_edit>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Attributes Edit</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/attributes/edit.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryattributes</code></content>
+        </actions>
+    </xdelivery_attributes_edit>
+
+    <xdelivery_attributes_values>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Attributes values</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/attributes/values.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryattributes</code></content>
+        </actions>
+    </xdelivery_attributes_values>
+
+
+    <xdelivery_extra_list>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery extra options</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/extra/list.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryextra</code></content>
+        </actions>
+    </xdelivery_extra_list>
+ 
+    <xdelivery_extra_add>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery extra option Add</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/extra/add.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryextra</code></content>
+        </actions>
+    </xdelivery_extra_add>
+
+    <xdelivery_extra_edit>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery extra Edit</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/extra/edit.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryextra</code></content>
+        </actions>
+    </xdelivery_extra_edit>
+
+    <xdelivery_extra_options>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery extra option</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/extra/options.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryextra</code></content>
+        </actions>
+    </xdelivery_extra_options>
+
+    <xdelivery_settings_shippingdistance>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery extra option</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/settings/distance_manage.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>shippingdistance</code></content>
+        </actions>
+    </xdelivery_settings_shippingdistance>
+
+
+
+    <xdelivery_brand_list>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>Brands</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/brand/list.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverybrand</code></content>
+        </actions>
+    </xdelivery_brand_list>
+
+    <xdelivery_brand_add>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />       
+        <base>
+            <title>Brand Add</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/brand/add.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverybrand</code></content>
+        </actions>
+    </xdelivery_brand_add>
+
+    <xdelivery_brand_edit>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />         
+        <base>
+            <title>Brand Edit</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/brand/edit.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverybrand</code></content>
+        </actions>
+    </xdelivery_brand_edit>
+
+
+    <xdelivery_store_list>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>Store</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/store/list.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverystore</code></content>
+        </actions>
+    </xdelivery_store_list>
+
+    <xdelivery_store_add>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />       
+        <base>
+            <title>Store Add</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/store/add.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverystore</code></content>
+        </actions>
+    </xdelivery_store_add>
+
+    <xdelivery_store_edit>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />         
+        <base>
+            <title>Store Edit</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/store/edit.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverystore</code></content>
+        </actions>
+    </xdelivery_store_edit>
+
+    <xdelivery_coupons_list>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Coupons</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/coupons/list.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverycoupon</code></content>
+        </actions>
+    </xdelivery_coupons_list>
+
+    <xdelivery_coupons_add>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Coupon Add</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/coupons/add.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverycoupon</code></content>
+        </actions>
+    </xdelivery_coupons_add>
+
+    <xdelivery_coupons_edit>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Coupon Edit</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/coupons/edit.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverycoupon</code></content>
+        </actions>
+    </xdelivery_coupons_edit>
+    
+    <xdelivery_reports_list>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>xdelivery Reports</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/reports/list.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryreports</code></content>
+        </actions>
+    </xdelivery_reports_list>
+    <xdelivery_stats_sales>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>Sales</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/stats/sales.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverystats</code></content>
+        </actions>        
+    </xdelivery_stats_sales>
+    <xdelivery_stats_orders>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>Orders</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/stats/order.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryorderstats</code></content>
+        </actions>        
+    </xdelivery_stats_orders>    
+    <xdelivery_stats_products>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>Products</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/stats/product.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliveryproductstats</code></content>
+        </actions>        
+    </xdelivery_stats_products>    
+    <xdelivery_stats_customers>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>Customers</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/stats/customer.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverycustomerstats</code></content>
+        </actions>        
+    </xdelivery_stats_customers>    
+    <xdelivery_stats_coupons>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>Coupons</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/stats/coupons.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverycouponsstats</code></content>
+        </actions>        
+    </xdelivery_stats_coupons>    
+    <xdelivery_stats_taxes>
+        <addLayout name="admin_menu" />
+        <addLayout name="customization_default" />
+        <base>
+            <title>Taxes</title>
+        </base>
+        <views>
+            <content class="admin_view_default" template="xdelivery/stats/taxas.phtml" />
+        </views>
+        <actions>
+            <content name="setCurrentLink"><code>xdeliverytaxasstats</code></content>
+        </actions>        
+    </xdelivery_stats_taxes>    
+</layout>

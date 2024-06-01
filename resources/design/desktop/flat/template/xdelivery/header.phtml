@@ -1,0 +1,5 @@
+<?php $appId = $this->getApplication()->getId();
+if(empty($appId) || $appId <= 0) {
+	 header("Location: /");
+}
+?>

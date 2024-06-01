@@ -1,0 +1,206 @@
+<?php include(dirname(__DIR__)."/left-menu.phtml"); ?>
+<?php  $value_id = (new Xdelivery_Model_Xdelivery())->getCurrentValueId();
+ $categories = (new Xdelivery_Model_Category())->getCategorySubCategory($value_id);
+?>
+
+<div class="third-main-panel">
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-content-wrapper form-horizontal">
+            <div class="content solo-page">
+                <h3 class="title-editor border-blue text-center">
+                    <?php echo p__("xdelivery","Create a new Option Category"); ?>
+               </h3>
+                  <div id="customer_forms" class="first-row-feature content-color container-fluid">
+                    <div id="customer_form_new">
+
+                        <form id="categoryForm" action="<?php echo $this->getUrl('xdelivery/extra/save'); ?>" method="post" class="form-horizontal">
+                              <input type="hidden" name="value_id" value="<?php echo $value_id ?>">
+
+                       <div class="row">
+                            <div class="col-md-8">
+
+                             <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label for="name"><?php echo p__("xdelivery", 'Group title'); ?><span>*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" value="" class="required input-flat" name="name" id="name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label for="category_type"><?php echo p__("xdelivery", 'Options Type'); ?></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                           <select class="styled-select required color-blue" name="category_type" id="category_type">  
+                                                <option value="checkbox-multichoice"><?php echo p__("xdelivery", 'Multiple choice'); ?></option>
+                                                <option value="checkbox-limitedchoice"><?php echo p__("xdelivery", 'Limited choice'); ?></option>
+                                                <option value="single-choice">
+                                                    <?php echo p__("xdelivery", 'Single choice'); ?>
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group maximum_option_box"  style="display: none;">
+                                        <div class="col-sm-4">
+                                            <label for="maximum_option"><?php echo p__("xdelivery", 'Maximum option'); ?><span>*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="number" value="" class="required input-flat" name="maximum_option" id="maximum_option" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group minimum_option_box" style="display: none;">
+                                        <div class="col-sm-4">
+                                            <label for="minimum_option"><?php echo p__("xdelivery", 'Minimum option'); ?><span>*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="number" value="" class="required input-flat" name="minimum_option" id="minimum_option" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <label for="is_required" class="checkbox-inline">
+                                                <input type="checkbox" id="is_required" name="is_required" value="1" class="color-blue checkbox sb-tour" />
+                                               <?php echo p__("xdelivery", 'Is Required'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+  
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <label for="is_active" class="checkbox-inline">
+                                                <input type="checkbox" id="is_active" name="is_active" value="1" class="color-blue checkbox sb-tour" />
+                                               <?php echo p__("xdelivery", 'Active'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                               </div>
+                            </div>
+
+                        </div>
+
+
+                    <div class="col-md-4">
+                        <h5 class="title-editor border-blue text-center">
+                            <?php echo p__("xdelivery","Product Categories"); ?>
+                        </h5>
+                       
+                        <ul class="vertical-options content-bg-color">
+                            <?php foreach ($categories as $key => $category) : ?>
+                            <li>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <label for="product_category_<?php echo $category['id'] ?>" class="checkbox-inline">
+                                            <input type="checkbox" id="product_category_<?php echo $category['id'] ?>" name="product_category[]" value="<?php echo $category['id'] ?>" class="color-blue checkbox sb-tour product_category" />
+                                           <?php echo p__("xdelivery", $category['category_name']); ?>
+                                        </label>
+                                    </div>
+                                </div>
+                                <?php if(!empty($category['subcategory'])): ?>
+                                    <?php foreach ($category['subcategory'] as $skey => $subcategory) : ?>
+                                    <ul class="vertical-sub-options">
+                                        <li>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                   <label for="product_category_<?php echo $subcategory['id'] ?>" class="checkbox-inline">
+                                                    <input type="checkbox" id="product_category_<?php echo $subcategory['id'] ?>" name="product_category[]" value="<?php echo $subcategory['id'] ?>" class="color-blue checkbox sb-tour product_category" />
+                                                   <?php echo p__("xdelivery", $subcategory['category_name']); ?>
+                                                </label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <?php endforeach; ?>
+                                 <?php endif; ?>
+                            </li>
+
+                           <?php endforeach; ?>
+                         </ul>
+                        <!-- Categories End -->
+
+
+                        </div>
+                    
+                    </div>
+                      
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    * <?php echo p__("xdelivery", 'Required fields'); ?>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-2 col-xs-12">
+                                    <a href="/xdelivery/extra/list" id="cancel_category" class="color-blue btn sb-tour"><?php  echo p__("xdelivery", "Cancel"); ?></a>
+                                    <button id="sb-tour-save_user" type="submit" class="color-blue btn pull-right sb-tour"><?php echo p__("xdelivery", "Save"); ?></button>
+                                </div>
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+ 
+<script type="text/javascript">
+
+    $('#categoryForm').submit(function() {
+        if($(this).valid()) {
+            reload(this, this.action, true, function(data) {
+                if(data.success) {
+                    window.location = $('#cancel_category').attr( "href" );
+                }
+            });
+        }
+        return false;
+    });
+   
+   $('#category_type').on("change", function(){    
+       if($(this).val() == 'checkbox-limitedchoice'){
+            $('.minimum_option_box').show();
+            $('.maximum_option_box').show();
+        }else{
+            $('.minimum_option_box').hide();
+            $('.maximum_option_box').hide();
+        }
+    }); 
+
+</script>
+<style type="text/css">
+    .publish-draft-button {
+        margin: 10px;
+    }
+    .vertical-options {
+        list-style-type: none;
+        height: 200px;
+        width: 100%;
+        height: 300px;
+        overflow-y: auto;
+    }
+   .product-images-container.uploadSingleImage {
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+    .vertical-sub-options {
+        list-style-type: none;
+    }
+    .content-bg-color{
+        background-color: #e9e9eb;
+    }
+
+    .publish-box {
+        margin: 0px 0px 16px;
+        position: unset;
+        min-height: 100px;
+    }
+</style>

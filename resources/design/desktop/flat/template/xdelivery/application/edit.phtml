@@ -1,0 +1,1707 @@
+<?php $option_value = $this->getOptionValue(); 
+ $value_id = $option_value->getId();
+ $app_id         = $this->getApplication()->getId();
+
+/*Settings Manage*/
+$settingsFrom = new Xdelivery_Form_Settings();
+$settingsFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$settingsFrom->setElementValueById('value_id', $option_value->getId());
+$settingModel = (new Xdelivery_Model_Settings())->find(['value_id' => $option_value->getId()]);
+if ($settingModel->getId()) {
+    $settingData = $settingModel->getData();
+    $settingsFrom->populate($settingData);
+}else{
+   $settingModel =  (new Xdelivery_Model_Settings())->find(['value_id' => $option_value->getId()])->setValueId($option_value->getId())->save();
+    $settingData = $settingModel->getData();
+    $settingsFrom->populate($settingData);
+}
+
+/*Store Manage*/
+$storeFrom = new Xdelivery_Form_Store_From();
+$storeFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$storeFrom->setElementValueById('value_id', $option_value->getId());
+$storeFrom->setElementValueById('commision_percentage', 100);
+$storeModel = (new Xdelivery_Model_Store())->find(['value_id' => $option_value->getId()]);
+if ($storeModel->getStoreId()) {
+    $storeData = $storeModel->getData();
+    $storeFrom->populate($storeData);
+}
+$workingdays = (new Xdelivery_Model_WorkingTimes())::getWorkingDays($storeModel->getStoreId(), $value_id);
+
+/*Payment Method Manage*/
+$cashondeliveryFrom = new Xdelivery_Form_PaymentMethod_CashOnDelivery();
+$cashondeliveryFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$cashondeliveryFrom->setElementValueById('value_id', $option_value->getId());
+$cashondeliveryModel = (new Xdelivery_Model_PaymentMethod())->find(['value_id' => $option_value->getId(), 'method_type' => 'cash_on_delivery']);
+if ($cashondeliveryModel->getId()) {
+    $cashondeliveryData = $cashondeliveryModel->getData();
+    $cashondeliveryFrom->populate($cashondeliveryData);
+}
+
+/*Payment Method Manage*/
+$banktransferFrom = new Xdelivery_Form_PaymentMethod_BankTransfer();
+$banktransferFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$banktransferFrom->setElementValueById('value_id', $option_value->getId());
+$banktransferModel = (new Xdelivery_Model_PaymentMethod())->find(['value_id' => $option_value->getId(), 'method_type' => 'bank_transfer']);
+if ($banktransferModel->getId()) {
+    $banktransferData = $banktransferModel->getData();
+    $banktransferFrom->populate($banktransferData);
+}
+
+/*Payment Method Manage*/
+$checkmoneyFrom = new Xdelivery_Form_PaymentMethod_CheckMoneyOrder();
+$checkmoneyFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$checkmoneyFrom->setElementValueById('value_id', $option_value->getId());
+$checkmoneyModel = (new Xdelivery_Model_PaymentMethod())->find(['value_id' => $option_value->getId(), 'method_type' => 'check_money_order']);
+if ($checkmoneyModel->getId()) {
+    $checkmoneyData = $checkmoneyModel->getData();
+    $checkmoneyFrom->populate($checkmoneyData);
+}
+
+/*Payment Method Manage*/
+$ewalletFrom = new Xdelivery_Form_PaymentMethod_Ewallet();
+$ewalletFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$ewalletFrom->setElementValueById('value_id', $option_value->getId());
+$ewalletModel = (new Xdelivery_Model_PaymentMethod())->find(['value_id' => $option_value->getId(), 'method_type' => 'ewallet']);
+if ($ewalletModel->getId()) {
+    $ewalletData = $ewalletModel->getData();
+    $ewalletFrom->populate($ewalletData);
+}
+
+/*Payment Method Manage*/
+$stripeFrom = new Xdelivery_Form_PaymentMethod_Stripe();
+$stripeFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$stripeFrom->setElementValueById('value_id', $option_value->getId());
+$stripeModel = (new Xdelivery_Model_PaymentMethod())->find(['value_id' => $option_value->getId(), 'method_type' => 'stripe']);
+if ($stripeModel->getId()) {
+    $stripeData = $stripeModel->getData();
+    $stripeFrom->populate($stripeData);
+}
+
+/*Payment Method Manage*/
+$paypalFrom = new Xdelivery_Form_PaymentMethod_Paypal();
+$paypalFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$paypalFrom->setElementValueById('value_id', $option_value->getId());
+$paypalModel = (new Xdelivery_Model_PaymentMethod())->find(['value_id' => $option_value->getId(), 'method_type' => 'paypal']);
+if ($paypalModel->getId()) {
+    $paypalData = $paypalModel->getData();
+    $paypalFrom->populate($paypalData);
+}
+
+/*shipping_methodg Method Manage*/
+$freeShippingFrom = new Xdelivery_Form_ShippingMethod_Free();
+$freeShippingFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$freeShippingFrom->setElementValueById('value_id', $option_value->getId());
+$freeShippingModel = (new Xdelivery_Model_ShippingMethod())->find(['value_id' => $option_value->getId(), 'method_type' => 'free']);
+if ($freeShippingModel->getId()) {
+    $freeShippingData = $freeShippingModel->getData();
+    $freeShippingFrom->populate($freeShippingData);
+}
+ 
+$flatShippingFrom = new Xdelivery_Form_ShippingMethod_Flat();
+$flatShippingFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$flatShippingFrom->setElementValueById('value_id', $option_value->getId());
+$FlatShippingModel = (new Xdelivery_Model_ShippingMethod())->find(['value_id' => $option_value->getId(), 'method_type' => 'flat']);
+if ($FlatShippingModel->getId()) {
+    $FlatShippingData = $FlatShippingModel->getData();
+    $flatShippingFrom->populate($FlatShippingData);
+}
+
+$distanceShippingFrom = new Xdelivery_Form_ShippingMethod_Distance();
+$distanceShippingFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$distanceShippingFrom->setElementValueById('value_id', $option_value->getId());
+$distanceShippingModel = (new Xdelivery_Model_ShippingMethod())->find(['value_id' => $option_value->getId(), 'method_type' => 'distance']);
+if ($distanceShippingModel->getId()) {
+    $distanceShippingData = $distanceShippingModel->getData();
+    $distanceShippingFrom->populate($distanceShippingData);
+}
+/*
+$pincodeShippingFrom = new Xdelivery_Form_ShippingMethod_Pincode();
+$pincodeShippingFrom->addNav("ads-save-nav", "Save", false);
+$pincodeShippingFrom->setElementValueById('value_id', $option_value->getId());
+$pincodeShippingModel = (new Xdelivery_Model_ShippingMethod())->find(['value_id' => $option_value->getId(), 'method_type' => 'pincode']);
+if ($pincodeShippingModel->getId()) {
+    $settingData = $pincodeShippingModel->getData();
+    $pincodeShippingFrom->populate($settingData);
+}*/
+
+/*taxes Manage*/
+$taxesFrom = new Xdelivery_Form_Tax_From();
+$taxesFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$taxesFrom->setElementValueById('value_id', $option_value->getId());
+$taxesDeleteFrom = new Xdelivery_Form_Tax_Delete();
+$taxes = (new Xdelivery_Model_Tax())->findAll($value_id);
+
+/*Business day*/
+$businessDayFrom = new Xdelivery_Form_BusinessDay();
+$businessDayFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$businessDayFrom->setElementValueById('value_id', $option_value->getId());
+$businessDayModel = (new Xdelivery_Model_BusinessDay())->find(['value_id' => $option_value->getId()]);
+if ($businessDayModel->getId()) {
+    $businessDayData = $businessDayModel->getData();
+    $businessDayFrom->populate($businessDayData);
+}
+
+$parentCategory = (new Xdelivery_Model_Category())->findAll(['value_id' => $value_id, 'parent_id' => 0, 'is_active' => 1 ], 'category_name ASC')->toArray();
+
+$categories = array('0' => 'Home Screen');
+foreach ($parentCategory  as $key => $value) {
+     $categories[$value['id']] =  $value['category_name'].' Screen' ;
+}
+ 
+/*Slider Manage*/
+$sliderFrom = new Xdelivery_Form_Slider();
+$sliderFrom->form($categories);
+$sliderFrom->addNav("ads-save-nav", "Submit", false);
+$sliderFrom->setElementValueById('value_id', $option_value->getId());
+$sliders = (new Xdelivery_Model_Slider())->findAll(['value_id' => $value_id, 'status != ?' => 'deleted']);
+$deleteSliderFrom = new Xdelivery_Form_Slider_Delete();
+/*Slider Manage End*/
+
+$foodSettingsFrom = new Xdelivery_Form_FoodSettings();
+$foodSettingsFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$foodSettingsFrom->setElementValueById('value_id', $option_value->getId());
+if ($settingModel->getId()) {
+    $foodSettingsData = $settingModel->getData();
+    $foodSettingsFrom->populate($foodSettingsData);
+}
+ 
+/*APP Notifications */
+$order_status = (new Xdelivery_Model_Orders)->getStatus();
+?>
+
+<div id="loadContent">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs parent-tab  recognition_list" role="tablist">
+        <?php if($storeModel->getId()) { ?>
+        <li class="active" role="presentation">
+            <a href="#settings" aria-controls="access" role="tab" data-toggle="tab">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                <i class="fa fa-spinner fa-spin dynamic-loader hide"></i>
+                <span class="hidden-xs access"><?php echo p__('xdelivery', "Settings") ?></span>
+            </a>
+        </li>
+
+        <?php if($settingModel->getAppServiceType() == 'food') { ?>
+        <li role="presentation">
+            <a href="#foodsettings" aria-controls="access" role="tab" data-toggle="tab">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                <i class="fa fa-spinner fa-spin dynamic-loader hide"></i>
+                <span class="hidden-xs access"><?php echo p__('xdelivery', "Delivery/Pickup") ?></span>
+            </a>
+        </li>
+        <?php } ?>
+
+        <li role="presentation">
+            <a href="#payment_method" aria-controls="options" role="tab" data-toggle="tab">
+                <i class="fa fa-credit-card" aria-hidden="true"></i>
+                <i class="fa fa-spinner fa-spin dynamic-loader hide"></i>
+                <span class="hidden-xs option"><?php echo p__('xdelivery', "Payment Method") ?></span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#app_admins_tab" aria-controls="options" role="tab" data-toggle="tab">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                <i class="fa fa-users fa-spin dynamic-loader hide"></i>
+                <span class="hidden-xs option"><?php echo p__('xdelivery', "App Admins") ?></span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#app_notifications_tab" aria-controls="options" role="tab" data-toggle="tab">
+                <i class="fa fa-bell" aria-hidden="true"></i>
+                <i class="fa fa-bell fa-spin dynamic-loader hide"></i>
+                <span class="hidden-xs option"><?php echo p__('xdelivery', "Notifications") ?></span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#shipping_method" aria-controls="options" role="tab" data-toggle="tab">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+                <span class="hidden-xs option"><?php echo p__('xdelivery', "Shipping Method") ?></span>
+            </a>
+        </li>
+
+        <li role="presentation">
+            <a href="/xdelivery/products/list" target="_blank">
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                <span class="hidden-xs option"><?php echo p__('xdelivery', "Products") ?></span>
+            </a>
+        </li>
+
+        <li role="presentation">
+            <a href="/xdelivery/orders/list" target="_blank">
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                <span class="hidden-xs option"><?php echo p__('xdelivery', "Orders") ?></span>
+            </a>
+        </li>
+
+        <li role="presentation">
+            <a href="#taxes" aria-controls="options" role="tab" data-toggle="tab">
+                <i class="fa fa-money" aria-hidden="true"></i>
+                <span class="hidden-xs option"><?php echo p__('xdelivery', "Taxes") ?></span>
+            </a>
+        </li>
+        <!--  <li role="presentation">
+            <a href="#business_day" aria-controls="options" role="tab" data-toggle="tab" >
+               <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+               <span class="hidden-xs option"><?php echo p__('xdelivery', "Business Day") ?></span>
+            </a>
+        </li> -->
+
+        <li role="presentation">
+            <a href="#slider" aria-controls="options" role="tab" data-toggle="tab">
+                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                <span class="hidden-xs option"><?php echo p__('xdelivery', "Slider") ?></span>
+            </a>
+        </li>
+
+        <?php } ?>
+
+        <li role="presentation">
+            <?php if($storeModel->getId()) { ?>
+            <a href="/xdelivery/store/list" target="_blank">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span class="hidden-xs option"><?php echo p__('xdelivery', "Stores") ?></span>
+            </a>
+            <?php }else { ?>
+            <a href="#store" aria-controls="options" role="tab" data-toggle="tab">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span class="hidden-xs option"><?php echo p__('xdelivery', "Store") ?></span>
+            </a>
+            <?php } ?>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+
+        <!-- Layout settings tab -->
+        <div role="tabpanel" class="tab-pane <?php echo !empty($storeModel->getStoreId()) ?  'active' : ''; ?>"
+            id="settings">
+            <div class="feature-block-list">
+                <h3 class="title-editor no-border-radius title-feature-indent" style="position: relative;">
+                    <?php echo p__('xdelivery', 'Settings'); ?>
+                </h3>
+            </div>
+            <br>
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php echo $settingsFrom; ?>
+            </div>
+            <br>
+            <!-- Passcode background set -->
+            <div class="section">
+                <?php echo $this->importBackground($option_value, false, false); ?>
+            </div>
+        </div>
+
+
+
+        <!-- Layout food settings tab -->
+        <div role="tabpanel" class="tab-pane" id="foodsettings">
+            <div class="feature-block-list">
+                <h3 class="title-editor no-border-radius title-feature-indent" style="position: relative;">
+                    <?php echo p__('xdelivery', 'Delivery/Pickup Settings'); ?>
+                </h3>
+            </div>
+            <br>
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php echo $foodSettingsFrom; ?>
+            </div>
+        </div>
+
+
+        <!-- Layout Payment Method tab -->
+        <div role="tabpanel" class="tab-pane" id="payment_method">
+            <div class="feature-block-list">
+                <h3 class="title-editor no-border-radius title-feature-indent" style="position: relative;">
+                    <?php echo p__('xdelivery', 'Payment Method'); ?>
+                </h3>
+            </div>
+            <br>
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php echo $ewalletFrom; ?>
+            </div>
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php echo $cashondeliveryFrom; ?>
+            </div>
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php echo $banktransferFrom; ?>
+            </div>
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php echo $checkmoneyFrom; ?>
+            </div>
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php echo $stripeFrom; ?>
+            </div>
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php echo $paypalFrom; ?>
+            </div>
+
+        </div>
+        <!-- Layout App Admins Method tab -->
+        <div role="tabpanel" class="tab-pane" id="app_admins_tab">
+            <div class="feature-block-list">
+                <h3 class="title-editor no-border-radius title-feature-indent" style="position: relative;">
+                    <?php echo p__('xdelivery', 'App Admins / Store Owners'); ?>
+                </h3>
+            </div>
+            <br>
+
+            <table id="table_appowners" class="table display responsive nowrap content-white-bkg" style="width:100%">
+
+                <thead>
+
+                    <tr class="border-grey">
+
+                        <th><?php echo p__('xdelivery','Id'); ?></th>
+
+                        <th><?php echo p__('xdelivery','Name'); ?></th>
+
+                        <th><?php echo p__('xdelivery','Email'); ?></th>
+
+                        <th><?php echo p__('xdelivery','Owner Store'); ?></th>
+
+                        <th><?php echo p__('xdelivery','Is Owner?'); ?></th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                </tbody>
+
+            </table>
+        </div>
+        <!-- Layout App Notificaton Method tab -->
+        <div role="tabpanel" class="tab-pane" id="app_notifications_tab">
+            <div class="feature-block-list">
+                <h3 class="title-editor no-border-radius title-feature-indent" style="position: relative;">
+                    <?php echo p__('xdelivery', 'Order Status Notifications'); ?>
+                </h3>
+            </div>
+            <div class="container-fluid content-feature pt30">
+                <form id="notification_form" action="<?php echo $this->getUrl('xdelivery/notification/save') ?>"
+                    method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="value_id" value="<?=$value_id ?>">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="alert alert-info">
+                                    <p style="padding-left:15px;">
+                                        <?php echo p__('xdelivery','Available Custom Tags') ?>
+                                        <?php echo p__('xdelivery','@@order_no@@, @@order_date@@, @@customer_status@@, @@customer_name@@, @@customer_phone@@, @@admin_name@@, @@total_amount@@, @@store_name@@, @@app_name@@') ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label
+                                    for="notification_order_status"><?php echo p__('xdelivery','Select Order Status'); ?>
+                                    *</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <select class="form-control required input-flat order-status"
+                                    id="notification_order_status" name="notification_order_status">
+                                    <option value=""><?php echo p__("xdelivery", "Order Status"); ?></option>
+                                    <?php foreach ($order_status as $key => $value): ?>
+                                    <option value="<?php echo $key; ?>">
+                                        <?php echo p__("xdelivery", $value); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for=""><?php echo p__('xdelivery','Notification Receiver Preferences'); ?>
+                                    *</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="col-sm-2">
+                                    <?php  echo p__('xdelivery',"Admin"); ?>
+                                </div>
+                                <div class="col-sm-1">
+                                    <input id="notification_is_admin" value='1' class="inpirt-falt checkbox"
+                                        name="notification_is_admin" type="checkbox">
+                                </div>
+                                <div class="col-sm-2">
+                                    <?php  echo p__('xdelivery',"Customer / Client"); ?>
+                                </div>
+                                <div class="col-sm-1">
+                                    <input id="notification_is_customer" checked value='1' class="inpirt-falt checkbox"
+                                        name="notification_is_customer" type="checkbox">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Notificatio Templates -->
+                        <div class="" id="block_customer_notification" style="">
+                            <div class="feature-block-list">
+                                <h3 class="title-editor no-border-radius title-feature-indent"
+                                    style="position: relative;">
+                                    <?php echo p__('xdelivery', 'Customer Settings'); ?>
+                                </h3>
+                            </div>
+                            <div
+                                style="padding: 6px 20px 4px;background-color: rgb(218, 218, 221);margin-top: 0px;margin-bottom: 0px;display: block;border-left: 4px solid rgb(143, 162, 171);">
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <label
+                                            for="notification-to-user"><?php echo p__('xdelivery','Notification Type Preferences'); ?>
+                                            *</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="col-sm-2">
+                                            <?php  echo p__('xdelivery',"PUSH"); ?>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input onClick="toggleContainer('app_push_notification')" value='1'
+                                                class="inpirt-falt checkbox" name="notification_customer_is_push"
+                                                id="notification_customer_is_push" type="checkbox">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <?php  echo p__('xdelivery',"Email"); ?>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input onClick="toggleContainer('app_email_notification')" value='1'
+                                                class="inpirt-falt checkbox" name="notification_customer_is_email"
+                                                id="notification_customer_is_email" type="checkbox">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <?php  echo p__('xdelivery',"SMS"); ?>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input onClick="toggleContainer('app_sms_notification')" value='1'
+                                                class="inpirt-falt checkbox" name="notification_customer_is_sms"
+                                                id="notification_customer_is_sms" type="checkbox">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <?php  echo p__('xdelivery',"Whatsender"); ?>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input onClick="toggleContainer('app_whatsender_notification')" value='1'
+                                                class="inpirt-falt checkbox" name="notification_customer_is_whatsender"
+                                                id="notification_customer_is_whatsender" type="checkbox">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- PUSH Notification -->
+                                <div id="app_push_notification" style="display: none;">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="alert alert-info">
+                                                <p style="padding-left:15px;">
+                                                    <?php echo p__('xdelivery','PUSH Configrations') ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for=""><?php echo p__('xdelivery','PUSH Title'); ?> *</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input value="" type="text" name="notification_customer_push_title"
+                                                id="notification_customer_push_title"
+                                                class="prz-text required input-flat"
+                                                placeholder="<?php echo p__('xdelivery','PUSH Title'); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for=""><?php echo p__('xdelivery',"PUSH Text") ?> *</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <textarea rows="4" cols="40" type="text"
+                                                id="notification_customer_push_text"
+                                                class="prz-text replace-with-ckeditor input-flat"
+                                                name="notification_customer_push_text"
+                                                placeholder="<?php echo p__('xdelivery','PUSH Text') ?>"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for=""><?php echo p__('xdelivery','Custom URL'); ?></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input value="" type="text" name="notification_customer_push_custom_url"
+                                                id="notification_customer_push_custom_url"
+                                                class="prz-text required input-flat"
+                                                placeholder="<?php echo p__('xdelivery','Custom URL'); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label
+                                                for="notification_customer_push_cover"><?php echo p__('xdelivery','Upload PUSH cover Image'); ?></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="">
+                                                <button id="upload_notification_customer_push_cover_btn" type="button"
+                                                    class="btn btn-block color-blue">
+                                                    <i class="icon-camera-retro"></i>
+                                                    <?php echo p__("xdelivery",'Picture'); ?>
+                                                </button>
+                                                <input id="tmp_notification_customer_push_cover" class="uploader"
+                                                    style="display:none" type="file" name="files[]"
+                                                    data-url="<?php echo $this->getUrl('template/crop/upload'); ?>">
+                                                <img id="show_notification_customer_push_cover"
+                                                    style="display:none;width: 100%;" />
+                                                <a href="" style="display:none;"
+                                                    id="remove_notification_customer_push_cover" class="btn color-blue">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                                <input type="hidden" id="notification_customer_push_cover"
+                                                    name="notification_customer_push_cover" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Email Notification -->
+                                <div id="app_email_notification" style="display: none;">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="alert alert-info">
+                                                <p style="padding-left:15px;">
+                                                    <?php echo p__('xdelivery','Email Configrations') ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for=""><?php echo p__('xdelivery','Email Subject'); ?> *</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input value="" type="text" name="notification_customer_email_subject"
+                                                id="notification_customer_email_subject"
+                                                class="prz-text required input-flat"
+                                                placeholder="<?php echo p__('xdelivery','Email Subject'); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for=""><?php echo p__('xdelivery',"Email Body") ?> *</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <textarea rows="4" cols="30" type="text"
+                                                id="notification_customer_email_body"
+                                                class="prz-text replace-with-ckeditor input-flat ckeditor"
+                                                name="notification_customer_email_body"
+                                                placeholder="<?php echo p__('xdelivery','Message') ?>"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- SMS Notification -->
+                                <div id="app_sms_notification" style="display: none;">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="alert alert-info">
+                                                <p style="padding-left:15px;">
+                                                    <?php echo p__('xdelivery','SMS Configrations') ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label
+                                                for="notification_customer_sms_text"><?php echo p__('xdelivery',"SMS Text") ?>
+                                                *</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <textarea rows="4" cols="30" id="notification_customer_sms_text"
+                                                class="prz-text notification_customer_sms_text input-flat"
+                                                name="notification_customer_sms_text"
+                                                placeholder="<?php echo p__('xdelivery','Message'); ?>"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- What sender Notification -->
+                                <div id="app_whatsender_notification" style="display: none;">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="alert alert-info">
+                                                <p style="padding-left:15px;">
+                                                    <?php echo p__('xdelivery','Whatsender Configrations') ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label
+                                                for="notification_customer_whatsender_text"><?php echo p__('xdelivery',"Whatsender Text") ?>
+                                                *</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <textarea rows="4" cols="30" id="notification_customer_whatsender_text"
+                                                class="prz-text notification_customer_whatsender_text input-flat"
+                                                name="notification_customer_whatsender_text"
+                                                placeholder="<?php echo p__('xdelivery','Message'); ?>"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="" id="block_admin_notification" style="display: none;">
+                            <div class="feature-block-list">
+                                <h3 class="title-editor no-border-radius title-feature-indent"
+                                    style="position: relative;">
+                                    <?php echo p__('xdelivery', 'Admin Settings'); ?>
+                                </h3>
+                            </div>
+                            <div
+                                style="padding: 6px 20px 4px;background-color: rgb(218, 218, 221);margin-top: 0px;margin-bottom: 0px;display: block;border-left: 4px solid rgb(143, 162, 171);">
+
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <label
+                                            for="notification-to-user"><?php echo p__('xdelivery','Notification Type Preferences'); ?>
+                                            *</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="col-sm-2">
+                                            <?php  echo p__('xdelivery',"PUSH"); ?>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input onClick="toggleContainer('admin_app_push_notification')" value='1'
+                                                class="inpirt-falt checkbox" name="notification_admin_is_push"
+                                                id="notification_admin_is_push" type="checkbox">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <?php  echo p__('xdelivery',"Email"); ?>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input onClick="toggleContainer('admin_app_email_notification')" value='1'
+                                                class="inpirt-falt checkbox" name="notification_admin_is_email"
+                                                id="notification_admin_is_email" type="checkbox">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <?php  echo p__('xdelivery',"SMS"); ?>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input onClick="toggleContainer('admin_app_sms_notification')" value='1'
+                                                class="inpirt-falt checkbox" name="notification_admin_is_sms"
+                                                id="notification_admin_is_sms" type="checkbox">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <?php  echo p__('xdelivery',"Whatsender"); ?>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input onClick="toggleContainer('admin_app_whatsender_notification')"
+                                                value='1' class="inpirt-falt checkbox"
+                                                name="notification_admin_is_whatsender"
+                                                id="notification_admin_is_whatsender" type="checkbox">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- PUSH Notification -->
+                                <div id="admin_app_push_notification" style="display: none;">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="alert alert-info">
+                                                <p style="padding-left:15px;">
+                                                    <?php echo p__('xdelivery','PUSH Configrations') ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label
+                                                for="notification_admin_push_title"><?php echo p__('xdelivery','PUSH Title'); ?>
+                                                *</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input value="" type="text" name="notification_admin_push_title"
+                                                id="notification_admin_push_title" class="prz-text required input-flat"
+                                                placeholder="<?php echo p__('xdelivery','PUSH Title'); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label for=""><?php echo p__('xdelivery',"PUSH Text") ?> *</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <textarea rows="4" cols="40" type="text" id="notification_admin_push_text"
+                                                class="prz-text replace-with-ckeditor input-flat"
+                                                name="notification_admin_push_text"
+                                                placeholder="<?php echo p__('xdelivery','Message') ?>"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label
+                                                for="notification_admin_push_custom_url"><?php echo p__('xdelivery','Custom URL'); ?>
+                                                *</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input value="" type="text" name="notification_admin_push_custom_url"
+                                                id="notification_admin_push_custom_url"
+                                                class="prz-text required input-flat"
+                                                placeholder="<?php echo p__('xdelivery','Custom URL'); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label
+                                                for="notification_admin_push_cover"><?php echo p__('xdelivery','Upload PUSH cover Image'); ?></label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <button id="upload_notification_admin_push_cover_btn" type="button"
+                                                class="btn btn-block color-blue">
+                                                <i class="icon-camera-retro"></i>
+                                                <?php echo p__("xdelivery",'Picture'); ?>
+                                            </button>
+                                            <input id="tmp_notification_admin_push_cover" class="uploader"
+                                                style="display:none" type="file" name="files[]"
+                                                data-url="<?php echo $this->getUrl('template/crop/upload'); ?>">
+                                            <img id="show_notification_admin_push_cover"
+                                                style="display:none;width: 100%;" />
+                                            <a href="" style="display:none;" id="remove_notification_admin_push_cover"
+                                                class="btn color-blue">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                            <input type="hidden" id="notification_admin_push_cover"
+                                                name="notification_admin_push_cover" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Email Notification -->
+                                <div id="admin_app_email_notification" style="display: none;">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="alert alert-info">
+                                                <p style="padding-left:15px;">
+                                                    <?php echo p__('xdelivery','Email Configrations') ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label
+                                                for="notification_admin_email_subject"><?php echo p__('xdelivery','Email Subject'); ?>
+                                                *</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input value="" type="text" name="notification_admin_email_subject"
+                                                id="notification_admin_email_subject"
+                                                class="prz-text required input-flat"
+                                                placeholder="<?php echo p__('xdelivery','Email Subject'); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label
+                                                for="notification_admin_email_body"><?php echo p__('xdelivery',"Email Body") ?>
+                                                *</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <textarea rows="4" cols="30" type="text" id="notification_admin_email_body"
+                                                class="prz-text replace-with-ckeditor input-flat ckeditor"
+                                                name="notification_admin_email_body"
+                                                placeholder="<?php echo p__('xdelivery','Message') ?>"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- SMS Notification -->
+                                <div id="admin_app_sms_notification" style="display: none;">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="alert alert-info">
+                                                <p style="padding-left:15px;">
+                                                    <?php echo p__('xdelivery','SMS Configrations') ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label
+                                                for="notification_admin_sms_text"><?php echo p__('xdelivery',"SMS Text") ?>
+                                                *</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <textarea rows="4" cols="30" id="notification_admin_sms_text"
+                                                class="prz-text notification_admin_sms_text input-flat"
+                                                name="notification_admin_sms_text"
+                                                placeholder="<?php echo p__('xdelivery','Message'); ?>"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- What sender Notification -->
+                                <div id="admin_app_whatsender_notification" style="display: none;">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="alert alert-info">
+                                                <p style="padding-left:15px;">
+                                                    <?php echo p__('xdelivery','Whatsender Configrations') ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <label
+                                                for="notification_admin_whatsender_text"><?php echo p__('xdelivery',"Whatsender Text") ?>
+                                                *</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <textarea rows="4" cols="30" id="notification_admin_whatsender_text"
+                                                class="prz-text notification_admin_whatsender_text input-flat"
+                                                name="notification_admin_whatsender_text"
+                                                placeholder="<?php echo p__('xdelivery','Message'); ?>"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="" class="button btn bt_save color-blue pull-right" id=""
+                                placeholder='' value="<?php echo p__("xdelivery",'Save'); ?>"
+                                style="margin-right: 15px;">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Layout Shipping Method tab -->
+        <div role="tabpanel" class="tab-pane" id="shipping_method">
+            <div class="feature-block-list">
+                <h3 class="title-editor no-border-radius title-feature-indent" style="position: relative;">
+                    <?php echo p__('xdelivery', 'Shipping Method'); ?>
+                </h3>
+            </div>
+            <br>
+
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php echo $freeShippingFrom; ?>
+            </div>
+
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php echo $flatShippingFrom; ?>
+            </div>
+
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php echo $distanceShippingFrom; ?>
+            </div>
+
+            <!-- <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                    <?php echo $pincodeShippingFrom; ?>
+                </div> -->
+        </div>
+
+        <!-- Layout Store tab -->
+        <div role="tabpanel" class="tab-pane <?php echo empty($storeModel->getId())?  'active' : ''; ?>" id="store">
+            <div class="feature-block-list">
+                <h3 class="title-editor no-border-radius title-feature-indent" style="position: relative;">
+                    <?php echo p__('xdelivery', 'Store'); ?>
+                </h3>
+            </div>
+            <br>
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php echo $storeFrom; ?>
+            </div>
+            <?php if($storeModel->getId()) { ?>
+            <div class="feature-block-list">
+                <div class="margin-top">
+                    <h3 class="title-editor no-border-radius title-feature-indent">
+                        <?php echo p__('xdelivery', 'Working Day/Time'); ?>
+                    </h3>
+                    <div class="container-fluid first-row-feature feature-manage-items">
+                        <table class="table content-white-bkg sb-pager">
+                            <thead>
+                                <tr class="border-blue">
+                                    <th style="width:10%;"><?php echo p__('xdelivery', 'S.NO'); ?></th>
+                                    <th style="width:15%;"><?php echo p__('xdelivery', 'Days'); ?></th>
+                                    <th style="width:15%;"> <?php echo p__('xdelivery', 'Opening'); ?></th>
+                                    <th style="width:15%;"> <?php echo p__('xdelivery', 'Closing'); ?></th>
+                                    <th style="width:15%;"> <?php echo p__('xdelivery', 'Delivery'); ?></th>
+                                    <th style="width:15%;"> <?php echo p__('xdelivery', 'Pickup'); ?></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($workingdays as $key => $working): ?>
+                                <tr id="working_manage_element_<?php echo $working->getId(); ?>"
+                                    class="working-manage-element sb-pager">
+                                    <td><?php echo $key+1; ?></td>
+                                    <td><?php echo p__('xdelivery', ucfirst($working->getWorkingDay())); ?></td>
+                                    <td><?php echo $working->getOpeningTime(); ?></td>
+                                    <td><?php echo $working->getClosingTime(); ?></td>
+                                    <td><?php echo $working->getEnableDelivery() == 1 ? p__('xdelivery', "Active"): p__('xdelivery', "In Active"); ?>
+                                    </td>
+                                    <td><?php echo $working->getEnablePickup()== 1 ? p__('xdelivery', "Active"): p__('xdelivery', "In Active");; ?>
+                                    </td>
+                                    <td class="edit-action open-edit text-right"
+                                        data-id="working_<?php echo $working->getId(); ?>"
+                                        data-form-url="<?php echo __path("/xdelivery/working/loadform", array("working_id" => $working->getId(), "value_id" => $value_id)); ?>">
+                                        <i class="fa fa-pencil"></i>
+                                    </td>
+                                </tr>
+                                <tr class="edit-form" data-id="working_<?php echo $working->getId(); ?>"
+                                    style="display: none;">
+                                    <td colspan="7">
+                                        <p class="close-edit" data-id="working_<?php echo $working->getId(); ?>">
+                                            <i class="fa fa-times"></i><?php p__('xdelivery', "Close") ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+
+        <!--business day -->
+        <div role="tabpanel" class="tab-pane" id="business_day">
+            <div class="feature-block-list">
+                <h3 class="title-editor no-border-radius title-feature-indent" style="position: relative;">
+                    <?php echo p__('xdelivery', 'Business Day'); ?>
+                </h3>
+            </div>
+            <br>
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php  echo $businessDayFrom; ?>
+            </div>
+        </div>
+
+        <!-- slider settings tab -->
+        <div role="tabpanel" class="tab-pane" id="slider">
+            <!-- Services block -->
+            <div class="feature-block-add margin-top">
+                <h3 class="title-editor no-border-radius title-feature-indent">
+                    <?php echo p__('xdelivery', 'Slider'); ?>
+                    <button type="button"
+                        class="feature-toggle-add toggle_design color-blue pull-right bt-header-right btn">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </h3>
+            </div>
+
+            <div class="feature-block-create margin-top">
+                <h3 class="title-editor no-border-radius title-feature-indent">
+                    <?php echo p__('xdelivery', 'Create a New Slider'); ?>
+                </h3>
+                <div class="container-fluid">
+                    <?php echo $sliderFrom; ?>
+                </div>
+            </div>
+
+            <br>
+            <?php if($sliders->count() > 0): ?>
+            <div class="feature-block-list">
+                <div class="margin-top">
+                    <h3 class="title-editor no-border-radius title-feature-indent">
+                        <?php echo p__('xdelivery', 'Manage Slider'); ?>
+                        <button type="button"
+                            class="toggle_design color-blue pull-right bt-header-right btn feature-toggle-items">
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                    </h3>
+                    <div class="container-fluid first-row-feature feature-manage-items">
+                        <table class="table content-white-bkg sb-pager">
+                            <thead>
+                                <tr class="border-blue">
+                                    <th class="sortable" style="width:10%;"><?php echo p__('xdelivery', 'S.NO'); ?></th>
+                                    <th class="sortable" style="width:50%;"><?php echo p__('xdelivery', 'Name'); ?></th>
+                                    <th style="width:20%;"> <?php echo p__('xdelivery', 'Status'); ?></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($sliders as $key => $slider): ?>
+                                <tr id="slider_manage_element_<?php echo $slider->getId(); ?>"
+                                    class="slider-manage-element sb-pager">
+                                    <td><?php echo $key+1; ?></td>
+                                    <td><?php echo $slider->getSliderName(); ?></td>
+                                    <td><?php echo p__('xdelivery', ucfirst($slider->getStatus())); ?></td>
+                                    <td class="edit-action open-edit text-right"
+                                        data-id="slider_<?php echo $slider->getId(); ?>"
+                                        data-form-url="<?php echo __path("/xdelivery/slider/loadform", array("slider_id" => $slider->getId(), "value_id" => $value_id)); ?>">
+                                        <i class="fa fa-pencil"></i>
+                                    </td>
+
+                                    <td class="delete-action">
+                                        <?php
+                                                    $deleteSliderFrom->setAttrib("data-rowid", "slider_manage_element_".$slider->getId());
+                                                    $deleteSliderFrom->getElement("id")->setValue($slider->getId());
+                                                   echo $deleteSliderFrom;
+                                                ?>
+                                    </td>
+                                </tr>
+                                <tr class="edit-form" data-id="slider_<?php echo $slider->getId(); ?>"
+                                    style="display: none;">
+                                    <td colspan="4">
+                                        <p class="close-edit" data-id="store_<?php echo $slider->getId(); ?>">
+                                            <i class="fa fa-times"></i><?php p__('xdelivery', "Close") ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
+
+        <!-- Layout taxes tab -->
+        <div role="tabpanel" class="tab-pane" id="taxes">
+            <!-- Services block -->
+            <div class="feature-block-add margin-top">
+                <h3 class="title-editor no-border-radius title-feature-indent">
+                    <?php echo p__('xdelivery', 'Taxes'); ?>
+                    <button type="button"
+                        class="feature-toggle-add toggle_design color-blue pull-right bt-header-right btn">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </h3>
+            </div>
+
+            <div class="feature-block-create margin-top">
+                <h3 class="title-editor no-border-radius title-feature-indent">
+                    <?php echo p__('xdelivery', 'Create a New Tax'); ?>
+                </h3>
+                <div class="container-fluid first-row-feature content-feature feature-manage-items margin-top">
+                    <?php echo $taxesFrom; ?>
+                </div>
+            </div>
+
+            <br>
+            <?php if(COUNT($taxes) > 0): ?>
+            <div class="feature-block-list">
+                <div class="margin-top">
+                    <h3 class="title-editor no-border-radius title-feature-indent">
+                        <?php echo p__('xdelivery', 'Manage Taxes'); ?>
+                        <button type="button"
+                            class="toggle_design color-blue pull-right bt-header-right btn feature-toggle-items">
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                    </h3>
+                    <div class="container-fluid first-row-feature feature-manage-items">
+                        <table class="table content-white-bkg sb-pager">
+                            <thead>
+                                <tr class="border-blue">
+                                    <th class="sortable" style="width:10%;"><?php echo p__('xdelivery', 'S.NO'); ?></th>
+                                    <th class="sortable" style="width:50%;"><?php echo p__('xdelivery', 'Name'); ?></th>
+                                    <th style="width:20%;"><?php echo p__('xdelivery', 'Rate'); ?></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($taxes as $key => $value): ?>
+                                <tr id="store_manage_element_<?php echo $value['id']; ?>"
+                                    class="store-manage-element sb-pager">
+                                    <td><?php echo $key+1; ?></td>
+                                    <td><?php echo $value['name']; ?></td>
+                                    <td><?php echo $value['tax_rate']; ?>%</td>
+                                    <td class="edit-action open-edit text-right"
+                                        data-id="taxes_<?php echo $value['id']; ?>"
+                                        data-form-url="<?php echo __path("/xdelivery/settings/loadtaxform", array("id" => $value['id'], "value_id" => $value_id)); ?>">
+                                        <i class="fa fa-pencil"></i>
+                                    </td>
+
+                                    <td class="delete-action">
+                                        <?php
+                                                    $taxesDeleteFrom->setAttrib("data-rowid", "store_manage_element_".$value['id']);
+                                                    $taxesDeleteFrom->getElement("id")->setValue($value['id']);
+                                                   echo $taxesDeleteFrom;
+                                                ?>
+                                    </td>
+                                </tr>
+                                <tr class="edit-form" data-id="taxes_<?php echo $value['id']; ?>"
+                                    style="display: none;">
+                                    <td colspan="5">
+                                        <p class="close-edit" data-id="taxes_<?php echo $value['id']; ?>">
+                                            <i class="fa fa-times"></i><?php echo p__('xdelivery', "Close") ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
+
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+$('#notification_order_status').on('change', function() {
+    editNotification();
+});
+
+function resetNotification() {
+    $('#app_push_notification').hide();
+    $('#app_email_notification').hide();
+    $('#app_sms_notification').hide();
+    $('#app_whatsender_notification').hide();
+
+    $('#admin_app_push_notification').hide();
+    $('#admin_app_email_notification').hide();
+    $('#admin_app_sms_notification').hide();
+    $('#admin_app_whatsender_notification').hide();
+
+    $('#block_customer_notification').show();
+    $('#block_admin_notification').hide();
+
+    $('#notification_is_customer').prop('checked', true);
+    $('#notification_is_admin').prop('checked', false);
+    $('#notification_customer_is_push').prop('checked', false);
+    $('#notification_customer_is_email').prop('checked', false);
+    $('#notification_customer_is_sms').prop('checked', false);
+    $('#notification_customer_is_whatsender').prop('checked', false);
+
+    $('#notification_admin_is_push').prop('checked', false);
+    $('#notification_admin_is_email').prop('checked', false);
+    $('#notification_admin_is_sms').prop('checked', false);
+    $('#notification_admin_is_whatsender').prop('checked', false);
+
+    $('#notification_customer_push_title').val('');
+    $('#notification_customer_push_text').val('');
+    $('#notification_customer_push_custom_url').val('');
+    // image
+    $('#show_notification_customer_push_cover').hide().attr('src', '');
+    $('#notification_customer_push_cover').val('');
+    $('#remove_notification_customer_push_cover').hide();
+    // image end
+    $('#notification_customer_email_subject').val();
+    $('#notification_customer_email_body').val();
+    $('#notification_customer_sms_text').val();
+    $('#notification_customer_whatsender_text').val();
+
+    // admin
+    $('#notification_admin_push_title').val('');
+    $('#notification_admin_push_text').val('');
+    $('#notification_admin_push_custom_url').val('');
+    // image
+    $('#show_notification_admin_push_cover').hide().attr('src', '');
+    $('#notification_admin_push_cover').val('');
+    $('#remove_notification_admin_push_cover').hide();
+    // image end
+    $('#notification_admin_email_subject').val();
+    $('#notification_admin_email_body').val();
+    $('#notification_admin_sms_text').val();
+    $('#notification_admin_whatsender_text').val();
+}
+
+function editNotification() {
+    resetNotification();
+    url = '<?php echo $this->getUrl('xdelivery/notification/edit-notification'); ?>/notification_order_status/' + $(
+            '#notification_order_status').val() +
+        "/value_id/<?php echo $value_id;?>";
+    reload(this, url, true, function(data) {
+        console.log(data);
+        if (data.notification.notification_is_customer == '1') {
+            $('#block_customer_notification').show();
+            $('#notification_is_customer').prop('checked', true);
+        } else {
+            $('#block_customer_notification').hide();
+            $('#notification_is_customer').prop('checked', false);
+        }
+        if (data.notification.notification_is_admin == '1') {
+            $('#block_admin_notification').slideDown();
+            $('#notification_is_admin').prop('checked', true);
+        } else {
+            $('#block_admin_notification').hide();
+            $('#notification_is_admin').prop('checked', false);
+        }
+        // customer
+        if (data.notification.notification_customer_is_push == '1') {
+            $('#app_push_notification').slideDown();
+            $('#notification_customer_is_push').prop('checked', true);
+        } else {
+            $('#app_push_notification').hide();
+            $('#notification_customer_is_push').prop('checked', false);
+        }
+        if (data.notification.notification_customer_is_email == '1') {
+            $('#app_email_notification').slideDown();
+            $('#notification_customer_is_email').prop('checked', true);
+        } else {
+            $('#app_email_notification').hide();
+            $('#notification_customer_is_email').prop('checked', false);
+        }
+        if (data.notification.notification_customer_is_sms == '1') {
+            $('#app_sms_notification').slideDown();
+            $('#notification_customer_is_sms').prop('checked', true);
+        } else {
+            $('#app_sms_notification').hide();
+            $('#notification_customer_is_sms').prop('checked', false);
+        }
+        if (data.notification.notification_customer_is_whatsender == '1') {
+            $('#app_whatsender_notification').slideDown();
+            $('#notification_customer_is_whatsender').prop('checked', true);
+        } else {
+            $('#app_whatsender_notification').hide();
+            $('#notification_customer_is_whatsender').prop('checked', false);
+        }
+
+        $('#notification_customer_push_title').val(data.notification.notification_customer_push_title);
+        $('#notification_customer_push_text').val(data.notification.notification_customer_push_text);
+        $('#notification_customer_push_custom_url').val(data.notification
+            .notification_customer_push_custom_url);
+
+        $('#notification_customer_email_subject').val(data.notification.notification_customer_email_subject);
+        $('#notification_customer_email_body').val(data.notification.notification_customer_email_body);
+
+        $('#notification_customer_sms_text').val(data.notification.notification_customer_sms_text);
+        $('#notification_customer_whatsender_text').val(data.notification
+            .notification_customer_whatsender_text);
+        if (data.notification.notification_customer_push_cover == null || data.notification
+            .notification_customer_push_cover == "") {
+            $('#show_notification_customer_push_cover').hide().attr('src', '');
+            $('#notification_customer_push_cover').val('');
+            $('#remove_notification_customer_push_cover').hide();
+        } else {
+            image_url = '<?php echo $base_url;?>/images/application/' + '<?php echo $app_id;?>' +
+                '/features/xdelivery/notification_images/' + data.notification.notification_customer_push_cover;
+            $('#show_notification_customer_push_cover').hide().attr('src', image_url).slideDown();
+            $('#notification_customer_push_cover').val(data.notification.notification_customer_push_cover);
+            $('#remove_notification_customer_push_cover').show();
+        }
+
+        // admin
+        if (data.notification.notification_admin_is_push == '1') {
+            $('#admin_app_push_notification').slideDown();
+            $('#notification_admin_is_push').prop('checked', true);
+        } else {
+            $('#admin_app_push_notification').hide();
+            $('#notification_admin_is_push').prop('checked', false);
+        }
+        if (data.notification.notification_admin_is_email == '1') {
+            $('#admin_app_email_notification').slideDown();
+            $('#notification_admin_is_email').prop('checked', true);
+        } else {
+            $('#admin_app_email_notification').hide();
+            $('#notification_admin_is_email').prop('checked', false);
+        }
+        if (data.notification.notification_admin_is_sms == '1') {
+            $('#admin_app_sms_notification').slideDown();
+            $('#notification_admin_is_sms').prop('checked', true);
+        } else {
+            $('#admin_app_sms_notification').hide();
+            $('#notification_admin_is_sms').prop('checked', false);
+        }
+        if (data.notification.notification_admin_is_whatsender == '1') {
+            $('#admin_app_whatsender_notification').slideDown();
+            $('#notification_admin_is_whatsender').prop('checked', true);
+        } else {
+            $('#admin_app_whatsender_notification').hide();
+            $('#notification_admin_is_whatsender').prop('checked', false);
+        }
+
+        if (data.notification.notification_admin_push_cover == null || data.notification
+            .notification_admin_push_cover == "") {
+            $('#show_notification_admin_push_cover').hide().attr('src', '');
+            $('#notification_admin_push_cover').val('');
+            $('#remove_notification_admin_push_cover').hide();
+        } else {
+            image_url = '<?php echo $base_url;?>/images/application/' + '<?php echo $app_id;?>' +
+                '/features/xdelivery/notification_images/' + data.notification.notification_admin_push_cover;
+            $('#show_notification_admin_push_cover').hide().attr('src', image_url).slideDown();
+            $('#notification_admin_push_cover').val(data.notification.notification_admin_push_cover);
+            $('#remove_notification_admin_push_cover').show();
+        }
+        $('#notification_admin_push_title').val(data.notification.notification_admin_push_title);
+        $('#notification_admin_push_text').val(data.notification.notification_admin_push_text);
+        $('#notification_admin_push_custom_url').val(data.notification.notification_admin_push_custom_url);
+
+        $('#notification_admin_email_subject').val(data.notification.notification_admin_email_subject);
+        $('#notification_admin_email_body').val(data.notification.notification_admin_email_body);
+
+        $('#notification_admin_sms_text').val(data.notification.notification_admin_sms_text);
+        $('#notification_admin_whatsender_text').val(data.notification.notification_admin_whatsender_text);
+
+    });
+}
+// submition forms
+page.setCallback('didappear', function() {
+    $('#notification_form')
+        .submit(function() {
+            reload(this, this.action, true, function(data) {
+                page.reload();
+            });
+            return false;
+        });
+});
+page.setCallback('willdisappear', function() {
+    $('#notification_form').unbind('submit');
+});
+var img_uploader = new Uploader();
+$('#tmp_notification_customer_push_cover').fileupload({
+    dataType: 'json',
+    add: function(e, data) {
+        data.submit();
+        img_uploader.showProgressbar();
+    },
+    progressall: function(e, data) {
+        img_uploader.moveProgressbar(data);
+    },
+    done: function(e, data) {
+        if (data.result.error) {
+            img_uploader.showError(data.result.message);
+        }
+        if (data.result.success) {
+            img_uploader.hide();
+            var params = new Array();
+            params["url"] = '<?php echo $this->getUrl('template/crop/crop'); ?>';
+            params["file"] = data.result.files;
+            params["output_w"] = 530;
+            params["output_h"] = 272;
+            params["output_url"] =
+                '<?php echo str_replace('/', '$', $this->getUrl('xdelivery/application/crop')) ?>';
+            params["uploader"] = 'img_uploader';
+            img_uploader.crop(params);
+            img_uploader.callback = function(file) {
+
+                var image = iframe.content.find(
+                    '#category_show_notification_picture_file_<?php echo $this->getOptionValue()->getId(); ?>'
+                );
+                $('#show_notification_customer_push_cover').hide().attr('src',
+                        '<?php echo Core_Model_Directory::getTmpDirectory() ?>/' + file)
+                    .slideDown();
+                $('#remove_notification_customer_push_cover').show();
+                $('#notification_customer_push_cover').val(file);
+            }
+        }
+    }
+});
+$('#upload_notification_customer_push_cover_btn').click(function() {
+    $('#tmp_notification_customer_push_cover').trigger('click');
+});
+$('#remove_notification_customer_push_cover').click(function() {
+    if (confirm(
+            "<?php echo p__("xdelivery","Are you sure you want to remove the picture?"); ?>")) {
+        $('#show_notification_customer_push_cover').hide().attr('src', '');
+        $('#notification_customer_push_cover').val('');
+        $(this).hide();
+    }
+    return false;
+});
+img_uploader = new Uploader();
+$('#tmp_notification_admin_push_cover').fileupload({
+    dataType: 'json',
+    add: function(e, data) {
+        data.submit();
+        img_uploader.showProgressbar();
+    },
+    progressall: function(e, data) {
+        img_uploader.moveProgressbar(data);
+    },
+    done: function(e, data) {
+        if (data.result.error) {
+            img_uploader.showError(data.result.message);
+        }
+        if (data.result.success) {
+            img_uploader.hide();
+            var params = new Array();
+            params["url"] = '<?php echo $this->getUrl('template/crop/crop'); ?>';
+            params["file"] = data.result.files;
+            params["output_w"] = 530;
+            params["output_h"] = 272;
+            params["output_url"] =
+                '<?php echo str_replace('/', '$', $this->getUrl('xdelivery/application/crop')) ?>';
+            params["uploader"] = 'img_uploader';
+            img_uploader.crop(params);
+            img_uploader.callback = function(file) {
+
+                var image = iframe.content.find(
+                    '#category_show_notification_picture_file_<?php echo $this->getOptionValue()->getId(); ?>'
+                );
+                $('#show_notification_admin_push_cover').hide().attr('src',
+                        '<?php echo Core_Model_Directory::getTmpDirectory() ?>/' + file)
+                    .slideDown();
+                $('#remove_notification_admin_push_cover').show();
+                $('#notification_admin_push_cover').val(file);
+            }
+        }
+    }
+});
+$('#upload_notification_admin_push_cover_btn').click(function() {
+    $('#tmp_notification_admin_push_cover').trigger('click');
+});
+$('#remove_notification_admin_push_cover').click(function() {
+    if (confirm(
+            "<?php echo p__("xdelivery","Are you sure you want to remove the picture?"); ?>")) {
+        $('#show_notification_admin_push_cover').hide().attr('src', '');
+        $('#notification_admin_push_cover').val('');
+        $(this).hide();
+    }
+    return false;
+});
+$(document).ready(function() {
+    $('.ckeditor').ckeditor(ckeditor_config.default);
+    // Bind click event handler to the checkbox
+    $('#notification_is_customer').on('click', function() {
+        // Check if the checkbox is selected
+        if ($(this).is(':checked')) {
+            // Checkbox is selected
+            $('#block_customer_notification').slideDown();
+            console.log("Checkbox is selected");
+        } else {
+            // Checkbox is not selected
+            console.log("Checkbox is not selected");
+            $('#block_customer_notification').hide();
+        }
+    });
+    $('#notification_is_admin').on('click', function() {
+        // Check if the checkbox is selected
+        if ($(this).is(':checked')) {
+            // Checkbox is selected
+            $('#block_admin_notification').slideDown();
+            console.log("Checkbox is selected");
+        } else {
+            // Checkbox is not selected
+            console.log("Checkbox is not selected");
+            $('#block_admin_notification').hide();
+        }
+    });
+
+    bindForms("#loadContent");
+
+    function appType() {
+        if ($("#app_service_type").val() == 'other') {
+            $("#home_screen option[value='store']").hide();
+            $("#home_screen option[value='product']").show();
+            $("#home_screen option[value='category']").show();
+            $("#home_screen").children("option[value='category']").prop('selected', true);
+        } else {
+            $("#home_screen option[value='store']").show();
+            $("#home_screen option[value='product']").hide();
+            $("#home_screen option[value='category']").hide();
+            $("#home_screen").children("option[value='store']").prop('selected', true);
+        }
+    }
+
+    setTimeout(function() {
+        appType();
+    }, 300);
+
+    $(document).on("change", '#app_service_type', function() {
+        appType();
+    });
+
+    setTimeout(function() {
+        if ($('.select_payment_paypal').val() == 'live') {
+            formlivecondition();
+        } else {
+            formsandboxcondition();
+        }
+    }, 3000);
+
+    function formlivecondition() {
+        $('#sandboxusername').parent().parent().hide();
+        $('#sandboxpassword').parent().parent().hide();
+        $('#sandboxsignature').parent().parent().hide();
+        $('#username').parent().parent().show();
+        $('#password').parent().parent().show();
+        $('#signature').parent().parent().show();
+    }
+
+    function formsandboxcondition() {
+        $('#sandboxusername').parent().parent().show();
+        $('#sandboxpassword').parent().parent().show();
+        $('#sandboxsignature').parent().parent().show();
+        $('#username').parent().parent().hide();
+        $('#password').parent().parent().hide();
+        $('#signature').parent().parent().hide();
+    }
+
+    $(document).on("change", '.select_payment_paypal', function() {
+        if (this.value == 'live') {
+            formlivecondition();
+        } else {
+            formsandboxcondition();
+        }
+    });
+});
+//D: App Admins Datatable
+var dt_object = {
+    responsive: true,
+    language: {
+
+        "decimal": "",
+
+        "emptyTable": "<?php echo p__('xdelivery',"No data available in table") ?>",
+
+        "info": "<?php echo p__('xdelivery',"Showing _START_ to _END_ of _TOTAL_ entries") ?>",
+
+        "infoEmpty": "<?php echo p__('xdelivery',"Showing 0 to 0 of 0 entries") ?>",
+
+        "infoFiltered": "<?php echo p__('xdelivery',"(filtered from _MAX_ total entries)") ?>",
+
+        "infoPostFix": "",
+
+        "thousands": ",",
+
+        "lengthMenu": "<?php echo p__('xdelivery',"Show _MENU_ entries") ?>",
+
+        "loadingRecords": "<?php echo p__('xdelivery',"Loading...") ?>",
+
+        "processing": "<?php echo p__('xdelivery',"Processing...") ?>",
+
+        "search": "<?php echo p__('xdelivery',"Search:") ?>",
+
+        "zeroRecords": "<?php echo p__('xdelivery',"No matching records found") ?>",
+
+        "paginate": {
+
+            "first": "<?php echo p__('xdelivery',"First") ?>",
+
+            "last": "<?php echo p__('xdelivery',"Last") ?>",
+
+            "next": "<?php echo p__('xdelivery',"Next") ?>",
+
+            "previous": "<?php echo p__('xdelivery',"Previous") ?>"
+
+        },
+
+        "aria": {
+
+            "sortAscending": "<?php echo p__('xdelivery',": activate to sort column ascending") ?>",
+
+            "sortDescending": "<?php echo p__('xdelivery',": activate to sort column descending") ?>"
+
+        },
+
+    },
+
+    bLengthChange: false,
+
+    bFilter: true,
+
+    sPaginationType: "full_numbers",
+
+    fnDrawCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+
+        $.each(nRow.aoData, function(i, el) {
+
+            var tr = $(el.nTr);
+
+            tr.unbind('click');
+
+        }.bind(this));
+
+        $('.paginate_button').addClass('btn color-blue');
+
+        $('span a.paginate_button').addClass('btn btn-grey');
+
+        $('.link_order_detail').prettyPhoto({
+
+            show_title: false,
+
+            social_tools: '',
+
+            deeplinking: false,
+
+            keyboard_shortcuts: false,
+
+            gallery_markup: '',
+
+            theme: 'pp_none'
+
+        });
+
+    },
+
+};
+dt_object.ajax =
+    '<?php echo $this->getUrl('xdelivery/admins/adminlist?'. 'app_id=' . $app_id.'&value_id='.$value_id); ?>';
+$('#table_appowners').DataTable(dt_object);
+//D: App Admins Datatable
+function adminStatus(status, customer_id) {
+    console.log("MEthod called");
+    swal({
+        title: '<?php echo p__('xdelivery','Confirmation', "'"); ?>',
+        text: '<?php echo p__('xdelivery','Are you sure you want to reset user Status?', "'"); ?>',
+        showCancelButton: true,
+        confirmButtonColor: '#0099C7',
+        confirmButtonText: '<?php echo p__('xdelivery','Yes, Reset!', "'"); ?>',
+        cancelButtonText: '<?php echo p__('xdelivery','No, go back', "'"); ?>',
+        buttons: true
+    }, function(value) {
+        if (value) {
+            var url =
+                '<?php echo $this->getUrl('xdelivery/admins/adminstatus'); ?>/app_id/<?php echo $app_id; ?>/value_id/<?php echo $value_id; ?>/status/' +
+                status + '/customer_id/' + customer_id;
+            reload(this, url, true, function(datas) {
+                if (datas.success) {
+                    page.reload();
+                }
+            });
+        } else {
+            console.log("Nothing");
+        }
+    });
+}
+// D: App Admin Store
+
+function adminStore(old_store_id, store_id, customer_id) {
+
+    if (customer_id && old_store_id != store_id) {
+        swal({
+            title: '<?php echo p__('xdelivery','Confirmation', "'"); ?>',
+            text: '<?php echo p__('xdelivery','Are you sure you want to change Admin Store?', "'"); ?>',
+            showCancelButton: true,
+            confirmButtonColor: '#0099C7',
+            confirmButtonText: '<?php echo p__('xdelivery','Yes, Reset!', "'"); ?>',
+            cancelButtonText: '<?php echo p__('xdelivery','No, go back', "'"); ?>',
+            buttons: true
+        }, function(value) {
+            if (value) {
+                reload(this, '<?php echo $this->getUrl('xdelivery/admins/adminstore'); ?>/store_id/' +
+                    store_id + '/customer_id/' + customer_id, true,
+                    function(datas) {
+                        if (datas.success) {
+                            page.reload();
+                        }
+                    });
+            } else {
+                console.log("Nothing");
+            }
+        });
+    }
+
+}
+
+function toggleContainer(containerId) {
+    $('#' + containerId).toggle();
+}
+</script>
+
+<!-- Map Start  -->
+<?php 
+ $googlemaps_key =  $this->getApplication()->getGooglemapsKey();
+ ?>
+<script type="text/javascript">
+function initMap() {
+    var autocomplete = new google.maps.places.Autocomplete($("#store_location")[0], {});
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var place = autocomplete.getPlace();
+        var near_place = autocomplete.getPlace();
+        document.getElementById('address_lat').value = near_place.geometry.location.lat();
+        document.getElementById('address_lng').value = near_place.geometry.location.lng();
+    });
+}
+</script>
+<script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?sensor=false&key=<?php echo $googlemaps_key;?>&libraries=places&callback=initMap">
+</script>
+<!-- Map end  -->

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+
+    <xdelivery_new_order>
+        <addLayout name="base_email" />
+        <views>
+            <content_email class="core_view_email_default" template="xdelivery/new_order.phtml" />
+        </views>
+    </xdelivery_new_order>
+
+     
+</layout>

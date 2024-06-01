@@ -1,0 +1,600 @@
+<?php include(dirname(__DIR__)."/left-menu.phtml"); ?>
+<?php $order = $this->getOrder();
+$transactions = $this->getTxn(); 
+$value_id = (new Xdelivery_Model_Xdelivery())->getCurrentValueId();
+$status = (new Xdelivery_Model_Orders)->getStatus();
+$settingModel = (new Xdelivery_Model_Settings())->find(['value_id' => $value_id ]);
+$settings = $settingModel->getData();
+$is_vat = ($order['sub_amount_with_vat'] == 0 || $order['sub_amount_with_vat'] == null) ? false : true;
+$currency = $this->getApplication()->getCurrency();
+if ($settings['discount_tax_calculation'] == 1) {                     
+    $order['discounted_amount'] = ($is_vat) ? $order['sub_amount'] - $order['discount_amount']+$order['total_tax'] : $order['sub_amount'] - $order['discount_amount'] ;
+}else {                    
+   $order['discounted_amount'] = ($is_vat) ? $order['sub_amount'] - $order['discount_amount'] + $order['total_tax'] : $order['sub_amount'] - $order['discount_amount'] + $order['total_tax'] ;
+}
+?>
+<div class="third-main-panel">
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-content-wrapper form-horizontal">
+            <div class="content solo-page">
+                <h3 class="title-editor border-blue text-center">
+                    <?php echo p__("xdelivery","ORDER DETAILS #%s", $order['order_id']); ?>
+                     <a class="pull-right btn color-blue" href="/xdelivery/orders/list">
+                          <?php echo p__("xdelivery","Back"); ?>
+                    </a>
+               </h3>
+                  <div id="customer_forms" class="first-row-feature content-color container-fluid">
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5 class="title-editor border-blue text-center">
+                                <?php echo p__("xdelivery","CUSTOMER DETAILS"); ?></h5>
+                            <table class="table">
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Customer ID"); ?></th>
+                                    <td>#<?php echo $order['customer_id']; ?></td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Name"); ?></th>
+                                    <td><?php echo $order['customer_firstname'].' '.$order['customer_lastname']; ?></td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Email"); ?></th>
+                                    <td><?php echo $order['customer_email']; ?></td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Phone"); ?></th>
+                                    <td><?php echo $order['customer_phone']; ?></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <h5 class="title-editor border-blue text-center">
+                            <?php echo p__("xdelivery","ORDER DETAILS"); ?></h5>
+                            <table class="table">
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Order Number"); ?></th>
+                                    <td>
+                                        <?php echo $order['order_number']; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Delivery Time"); ?></th>
+                                    <td><?php echo $order['delivery_time']; ?></td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Delivery Date"); ?></th>
+                                    <td><?php echo $order['delivery_date']; ?></td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Delivery Type"); ?></th>
+                                    <td><?php echo ucfirst($order['delivery_method']); ?></td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Delivery Cost"); ?></th>
+                                    <td><?php echo $this->getApplication()->getCurrency().' '.$order['delivery_cost']; ?></td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Gratuity Amount"); ?></th>
+                                    <td><?php echo $this->getApplication()->getCurrency().' '.$order['tips_amount']; ?></td>
+                                </tr>
+                                
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Current Status"); ?></th>
+                                    <td><?php echo $status[$order['order_status']]; ?></td>
+                                </tr>
+                               
+
+                            <?php  if($order['order_status'] != 'canceled' && $order['order_status'] != 'refunded' && $order['order_status'] != 'failed'){ ?>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Status Change"); ?></th>
+                                    <td>
+                                        <select class="form-control required input-flat order-status">
+                                        <?php foreach ($status as $key => $value): ?>
+                                        <option value="<?php echo $key; ?>" <?php echo trim($key) == trim($order['order_status']) ? 'selected':''; ?>><?php echo p__("xdelivery", $value); ?></option>
+                                    <?php endforeach; ?>
+                                    </select>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+
+                            <?php  if($order['is_return_request'] == 1){ ?>
+                              <tr>
+                                    <th><?php echo p__("xdelivery","Return Request"); ?></th>
+                                    <td>
+                                        <a class="pull-left btn return_reject">
+                                              <?php echo p__("xdelivery","Reject"); ?>
+                                        </a>
+                                        <a class="pull-right btn color-blue return_accept">
+                                              <?php echo p__("xdelivery","Accept"); ?>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            <?php } ?>
+
+                             <?php  if($order['is_return_request'] > 1){ ?>
+                              <tr>
+                                    <th><?php echo p__("xdelivery","Return Status"); ?></th>
+                                    <td>
+                                       <?php echo $order['is_return_request'] == 2 ? p__("xdelivery","Accepted") : p__("xdelivery","Rejected"); ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+
+
+                            </table>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h5 class="title-editor border-blue text-center">
+                                <?php echo p__("xdelivery","PAYMENT DETAILS"); ?></h5>
+                            <table class="table">
+                                 <tr>
+                                    <th><?php echo p__("xdelivery","Items Qty"); ?></th>
+                                    <td><?php echo $order['total_qty']; ?></td>
+                                </tr>
+                                <?php  if ($settings['discount_tax_calculation'] == 1) { ?>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Items Total"); ?></th>
+                                    <td>
+                                        <?php 
+                                            echo $is_vat ? $currency.' '.$order['sub_amount_with_vat'] : $currency.' '.$order['sub_amount'];
+                                        ?>
+                                     </td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Discount"); ?></th>
+                                    <td>
+                                        <?php if($order['discount_amount'] > 0) 
+                                            { echo $this->getApplication()->getCurrency().' '.$order['discount_amount']; ?> 
+                                                (<?php  echo p__("xdelivery","%s apply", $order['discount_code']);?> ) 
+                                            <?php }else{
+                                            echo $this->getApplication()->getCurrency().' 0';
+                                        } ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Discounted Amount"); ?></th>
+                                    <td>
+                                        <?php if($order['discount_amount'] > 0) 
+                                            { echo $this->getApplication()->getCurrency().' '.$order['discounted_amount']; ?>                                                 
+                                            <?php }else{
+                                            echo $this->getApplication()->getCurrency().' 0';
+                                        } ?>
+                                    </td>
+                                </tr>
+                                <?php if (!$is_vat) { ?>
+                                    <tr>
+                                        <th><?php echo p__("xdelivery","Tax"); ?></th>
+                                        <td><?php echo $this->getApplication()->getCurrency().' '.$order['total_tax']; ?></td>
+                                    </tr>    
+                                <?php } ?>
+                              
+                                <?php } ?>
+                                <?php  if ($settings['discount_tax_calculation'] == 2) { ?>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Items Total"); ?></th>
+                                    <td>
+                                        <?php 
+                                            echo $is_vat ? $currency.' '.$order['sub_amount_with_vat'] : $currency.' '.$order['sub_amount'];
+                                        ?>
+                                     </td>
+                                </tr>
+                                <?php if (!$is_vat) { ?>
+                                    <tr>
+                                        <th><?php echo p__("xdelivery","Tax"); ?></th>
+                                        <td><?php echo $this->getApplication()->getCurrency().' '.$order['total_tax']; ?></td>
+                                    </tr>    
+                                <?php } ?>
+                                 <tr>
+                                    <th><?php echo p__("xdelivery","Discount"); ?></th>
+                                    <td><?php if($order['discount_amount'] > 0) 
+                                      { echo $this->getApplication()->getCurrency().' '.$order['discount_amount']; ?> 
+                                      (<?php  echo p__("xdelivery","%s apply", $order['discount_code']);?> ) 
+                                      
+                                  <?php }else{
+
+                                    echo $this->getApplication()->getCurrency().' 0';
+                                  } ?>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <th><?php echo p__("xdelivery","Discounted Amount"); ?></th>
+                                    <td><?php if($order['discount_amount'] > 0) 
+                                      { echo $currency.' '.$order['discounted_amount']; ?>                                       
+                                      
+                                  <?php }else{
+
+                                    echo $this->getApplication()->getCurrency().' 0';
+                                  } ?>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Order Total"); ?></th>
+                                    <td><?php echo $this->getApplication()->getCurrency().' '.$order['total_amount']; ?></td>
+                                </tr>
+                               <tr>
+                                    <th><?php echo p__("xdelivery","Payment Mode"); ?></th>
+                                    <td><?php echo $order['label_name']; ?></td>
+                                </tr>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Payment Status"); ?></th>
+                                    <td><?php echo ucfirst($order['payment_status']); ?></td>
+                                </tr>
+                            <?php  if($order['order_status'] != 'canceled' && $order['order_status'] != 'refunded' && $order['order_status'] != 'failed'){ ?>
+                                <tr>
+                                    <th><?php echo p__("xdelivery","Status Change"); ?></th>
+                                    <td>
+                                        <select class="form-control required input-flat order-transactions">
+                                       <option value="pending" <?php echo trim('pending') == trim($order['payment_status']) ? 'selected':''; ?>><?php echo p__("xdelivery","Pending"); ?></option>
+                                       <option value="success" <?php echo trim('success') == trim($order['payment_status']) ? 'selected':''; ?>><?php echo p__("xdelivery","Success"); ?></option> 
+                                       <option value="failed" <?php echo trim('failed') == trim($order['payment_status']) ? 'selected':''; ?>><?php echo p__("xdelivery","Failed"); ?></option>
+                                    </select>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+
+                            </table>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+                            <div class="col-md-12">
+                                <h5 class="title-editor border-blue text-center">
+                                    <?php echo p__("xdelivery","Note"); ?></h5>
+                                     <?php echo $order['notes']; ?> 
+                            </div>
+                        </div>
+                        <br>
+
+                    <?php if($order['delivery_method'] == 'delivery') : ?>
+                         <div class="row">
+                            <div class="col-md-12">
+                                <h5 class="title-editor border-blue text-center">
+                                    <?php echo p__("xdelivery","Delivery Address"); ?></h5>
+                                     <?php echo $order['customer_firstname'].', '.$order['customer_lastname']; ?><br>
+                                      <?php echo $order['customer_phone']; ?><br>
+                                       <?php echo $order['customer_street'].$order['customer_city'].', '.', '.$order['customer_postcode']; ?>
+                                       <?php
+                                       echo $customer_info = (array) json_decode($order['customer_info']);
+                                        ?>
+                                        <?php echo "Company Address :" .$customer_info['company_address'] ?><br>
+                                        <?php echo "PEC :" .$customer_info['pec'] ?><br>
+                                        <?php echo "SDI :" .$customer_info['sdi'] ?><br>
+                                        <?php echo "cod_fiscale :" .$customer_info['cod_fiscale'] ?><br>
+                            </div>
+                        </div>
+                         <br>
+                    <?php endif; ?>
+                      <div class="row">
+                        <div class="col-md-12">
+                             <h5 class="title-editor border-blue text-center">
+                                <?php echo p__("xdelivery","Items"); ?>
+                            </h5>
+                            <table id="dynamic-orders"
+                                   class="table content-white-bkg sb-pager">
+                                <thead>
+                                    <tr class="border-grey">
+                                        <th style="width: 5%;"><?php echo  p__("xdelivery", "S.No"); ?></th>
+                                        <th style="width: 50%;"><?php echo  p__("xdelivery", "Items"); ?></th>
+                                        <th style="width: 15%;"><?php echo  p__("xdelivery", "Qty"); ?></th>
+                                        <th style="width: 15%;"><?php echo  p__("xdelivery", "Amount"); ?></th>
+                                        <th style="width: 20%;"><?php echo  p__("xdelivery", "Total"); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($order['items'] as $key => $value) { ?>
+                                    <tr>
+                                        <td><?php echo $key+1; ?></td>
+                                        <td>
+                                            <b><?php echo $value['name'] ?></b> 
+                                              <?php if(!empty($value['sku'])) { ?>
+                                                (<?php echo  p__("xdelivery", "SKU"); ?> : <?php echo $value['sku'] ?>) <?php } ?>
+                                             <br>
+                                            <?php foreach ($value['choices'] as $opkey => $op) {
+                                                echo $op->name.'('. $op->price.'),';
+                                            } ?>
+                                            <br>
+                                            <?php foreach ($value['varients'] as $vatkey => $vat) {
+                                                echo '<b>'.$vat['attribute_name'].':</b> '. $vat['value_name'].', ';
+                                            } ?>
+                                            </td>
+                                        <td><?php echo $value['qty'] ?>
+                                        </td>
+                                        <td><?php echo $this->getApplication()->getCurrency().' '.$value['price_incl_tax'] ?> + <?php echo $value['choice_price'] ?>
+                                        </td>
+                                        <td><?php echo $this->getApplication()->getCurrency().' '.$value['total_incl_tax'] ?>
+                                        </td>
+                                    </tr>
+                                   <?php } ?>
+                                    <tr></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                        <br>
+                         <div class="row">
+                            <div class="col-md-12">
+                                <h5 class="title-editor border-blue text-center">
+                                    <?php echo p__("xdelivery","Store Address"); ?></h5>
+                                    <?php echo $order['store_name'].'<br>'.$order['store_phone'].'<br>'.$order['store_email'].'<br>'.$order['store_address']; ?>
+                            </div>
+                        </div>
+                        <br>
+                               <div class="row">
+                        <div class="col-md-12">
+                             <h5 class="title-editor border-blue text-center">
+                                <?php echo p__("xdelivery","Transactions"); ?>
+                            </h5>
+                            <table id="dynamic-orders"
+                                   class="table content-white-bkg sb-pager">
+                                <thead>
+                                    <tr class="border-grey">
+                                        <th style="width: 5%;"><?php echo  p__("xdelivery", "S.No"); ?></th>
+                                        <th style="width: 15%;"><?php echo  p__("xdelivery", "Transaction Id"); ?></th>
+                                        <th style="width: 15%;"><?php echo  p__("xdelivery", "Amount"); ?></th>
+                                        <th style="width: 15%;"><?php echo  p__("xdelivery", "Status"); ?></th>
+                                         <th style="width: 20%;"><?php echo  p__("xdelivery", "Mode"); ?></th>
+                                        <th style="width: 30%;"><?php echo  p__("xdelivery", "Date"); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($transactions as $key => $value) { ?>
+                                    <tr>
+                                        <td><?php echo $key+1; ?></td>
+                                        <td>
+                                            <b>#<?php echo $value['id'] ?></b>
+                                         </td>
+                                        <td><?php echo $this->getApplication()->getCurrency().' '.$value['amount'] ?>
+                                        </td>
+                                        <td><?php echo $value['status'] ?>  </td>
+                                        <td><?php echo $value['payment_method'] ?>  </td>
+                                        <td><?php echo $value['created_at'] ?>
+                                        </td>
+                                    </tr>
+                                   <?php } ?>
+                                 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                  
+
+                </div> 
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+        <div class="page-content-wrapper form-horizontal">
+            <div class="content solo-page">
+                <h3 class="title-editor border-blue text-center">
+                    <?php echo p__("xdelivery","Additional Infomation"); ?>
+               </h3>
+                  <div id="customer_forms" class="first-row-feature content-color container-fluid">
+                    <div id="order_form_new">
+
+                        <form id="orderAdminForm" action="<?php echo $this->getUrl('xdelivery/orders/additionalsave'); ?>" method="post" class="form-horizontal">
+                               <input type="hidden" name="order_id" value="<?php echo $order['order_id'] ?>">
+                             <div class="form-group">
+                                <div class="col-md-6">
+                                    
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            <label for="tracking_number_url"><?php echo p__("xdelivery", 'Tracking type'); ?><span>*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <label for="tracking_type" class="radio-inline">
+                                                <input type="radio" id="tracking_type" name="tracking_type" value="1" class="color-blue radio sb-tour" <?php echo $order['tracking_type'] == 1 ? 'checked' :''; ?> />
+
+                                               <?php echo p__("xdelivery", 'Number'); ?>
+                                            </label>
+                                            <label for="tracking_type" class="radio-inline">
+                                                <input type="radio" id="tracking_type" name="tracking_type" value="2" class="color-blue radio sb-tour" <?php echo $order['tracking_type'] == 2 ? 'checked' :''; ?> />
+
+                                               <?php echo p__("xdelivery", 'Url'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                     <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label for="tracking_number_url"><?php echo p__("xdelivery", 'Tracking Number/URL'); ?><span>*</span></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <input type="text" value="<?php echo $order['tracking_number_url']; ?>" class="input-flat" name="tracking_number_url" id="tracking_number_url" />
+                                        </div>
+                                    </div>
+ 
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <label for="admin_remark"><?php echo p__('xdelivery', 'Remark') ?></label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <textarea cols="12" rows="6" class="required input-flat" name="admin_remark" id="admin_remark">
+                                                <?php echo $order['admin_remark']; ?>
+                                            </textarea>
+                                        </div>
+                                    </div>
+
+                               </div>
+                            </div>
+                     
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-2 col-xs-12">
+                                    <button id="sb-tour-save_user" type="submit" class="color-blue btn pull-right sb-tour"><?php echo p__("xdelivery", "Save"); ?></button>
+                                </div>
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+ 
+ <script type="text/javascript">
+    $(document).off("change", ".order-status");
+    $(document).on("change", ".order-status", function (e) {
+        e.preventDefault();
+        var status = $(this).val();
+        let statusHref = '/xdelivery/orders/status-order-update/id/<?php echo $order['order_id'] ?>/status/'+status;
+        swal({
+            title: "<?php echo P__("xdelivery", "Confirmation") ?>",
+            text: "<?php echo P__("xdelivery", "Are you sure you want to update order status for this Order?") ?>",
+            showCancelButton: true,
+            confirmButtonColor: '#0099C7',
+            confirmButtonText: "<?php echo P__("xdelivery", "Yes, Proceed!")?>",
+            cancelButtonText: "<?php echo P__("xdelivery", "No, go back") ?>",
+            buttons: true
+        }, function(value) {
+            if (!value) {
+                return false;
+            }
+
+            formget(statusHref,
+                {},
+                function (data) {
+                    feature_form_success(data.message);
+                   // Reload only on success and when done!
+                    setTimeout(function () {
+                        location.reload();
+                    }, 300)
+                },
+                function (data) {
+                    feature_form_error(JSON.parse(data.responseText).message);
+                },
+                false);
+        });
+    });
+
+
+    $(document).off("change", ".order-transactions");
+    $(document).on("change", ".order-transactions", function (e) {
+        e.preventDefault();
+        var status = $(this).val();
+        let statusHref = '/xdelivery/orders/status-transaction-update/id/<?php echo $order['order_id'] ?>/status/'+status;
+        swal({
+            title: "<?php echo P__("xdelivery", "Confirmation") ?>",
+            text: "<?php echo P__("xdelivery", "Are you sure you want to update transaction Status for this Order?") ?>",
+            showCancelButton: true,
+            confirmButtonColor: '#0099C7',
+            confirmButtonText: '<?php echo P__("xdelivery", "Yes, Proceed!")?>',
+            cancelButtonText: '<?php echo P__("xdelivery", "No, go back") ?>',
+            buttons: true
+        }, function(value) {
+            if (!value) {
+                return false;
+            }
+
+            formget(statusHref,
+                {},
+                function (data) {
+                    feature_form_success(data.message);
+                   // Reload only on success and when done!
+                    setTimeout(function () {
+                        location.reload();
+                    }, 300)
+                },
+                function (data) {
+                    feature_form_error(JSON.parse(data.responseText).message);
+                },
+                false);
+        });
+    });
+
+
+    $(document).off("click", ".return_reject");
+    $(document).on("click", ".return_reject", function (e) {
+        e.preventDefault();
+        var status = $(this).val();
+        let statusHref = '/xdelivery/orders/return-order-update/id/<?php echo $order['order_id'] ?>/status/reject';
+        swal({
+            title: "<?php echo P__("xdelivery", "Confirmation") ?>",
+            text: "<?php echo P__("xdelivery", "Are you sure you want to Reject return Request?") ?>",
+            showCancelButton: true,
+            confirmButtonColor: '#0099C7',
+            confirmButtonText: "<?php echo P__("xdelivery", "Yes, Proceed!")?>",
+            cancelButtonText: "<?php echo P__("xdelivery", "No, go back") ?>",
+            buttons: true
+        }, function(value) {
+            if (!value) {
+                return false;
+            }
+
+            formget(statusHref,
+                {},
+                function (data) {
+                    feature_form_success(data.message);
+                   // Reload only on success and when done!
+                    setTimeout(function () {
+                        location.reload();
+                    }, 300)
+                },
+                function (data) {
+                    feature_form_error(JSON.parse(data.responseText).message);
+                },
+                false);
+        });
+    });
+
+    $(document).off("click", ".return_accept");
+    $(document).on("click", ".return_accept", function (e) {
+        e.preventDefault();
+        var status = $(this).val();
+        let statusHref = '/xdelivery/orders/return-order-update/id/<?php echo $order['order_id'] ?>/status/accept';
+        swal({
+            title: "<?php echo P__("xdelivery", "Confirmation") ?>",
+            text: "<?php echo P__("xdelivery", "Are you sure you want to Accept return Request?") ?>",
+            showCancelButton: true,
+            confirmButtonColor: '#0099C7',
+            confirmButtonText: "<?php echo P__("xdelivery", "Yes, Proceed!")?>",
+            cancelButtonText: "<?php echo P__("xdelivery", "No, go back") ?>",
+            buttons: true
+        }, function(value) {
+            if (!value) {
+                return false;
+            }
+
+            formget(statusHref,
+                {},
+                function (data) {
+                    feature_form_success(data.message);
+                   // Reload only on success and when done!
+                    setTimeout(function () {
+                        location.reload();
+                    }, 300)
+                },
+                function (data) {
+                    feature_form_error(JSON.parse(data.responseText).message);
+                },
+                false);
+        });
+    });
+
+
+    setTimeout(function() {
+        $('#admin_remark').ckeditor(ckeditor_config.default);
+    }, 100);   
+
+    $('#orderAdminForm').submit(function() {
+        if($(this).valid()) {
+            reload(this, this.action, true, function(data) {
+                if(data.success) {
+                    window.location.reload();
+                }
+            });
+        }
+        return false;
+    });
+
+ </script>
