@@ -44,11 +44,10 @@ class Xdelivery_Mobile_CartController extends Application_Controller_Mobile_Defa
         $total_tax_amount = (double) 0;
         $total_vat_tax_amount = (double) 0;
         $in_out_of_stock = (integer) 0;
-        $current_date = (new Siberian_Date())->toString("yyyy-MM-dd");
-        // dd($products);
+        $current_date = (new Siberian_Date())->toString("yyyy-MM-dd");        
         foreach ($products as $product) {
-
             $data = $product->getData();
+            $total_item+=(integer) $data['qty'];
             $optionsAray = [];
             $option_amount = 0;
             $option_vat_amount = 0;
@@ -138,7 +137,6 @@ class Xdelivery_Mobile_CartController extends Application_Controller_Mobile_Defa
                 $data['tax_amount'] = $data['cart_qty']*$tax_amount;
                 $total_tax_amount = (double) $total_tax_amount + $data['tax_amount']; 
             }
-            $total_item++;
             /*End Total*/
 
             if(!$data['in_stock'] || ($data['is_active'] != 1)) {
@@ -174,7 +172,7 @@ class Xdelivery_Mobile_CartController extends Application_Controller_Mobile_Defa
             'sub_amount' => (double) number_format($total_amount, 2, '.', ''),
             'sub_amount_with_vat' => (double) number_format($sub_amount_with_vat, 2, '.', ''),
             'total_amount' => (double) number_format($final_amount, 2, '.', ''),
-            'total_item' => (integer) $total_item,
+            'total_item' => $total_item,
             'delivery_cost' => (double) number_format($delivery_cost, 2, '.', ''),
             'currency' => Core_Model_Language::getCurrencySymbol(),
             'in_out_of_stock' => $in_out_of_stock,

@@ -4,8 +4,8 @@
    header("Location: /xdelivery/products/list"); 
  }
 $value_id = (new Xdelivery_Model_Xdelivery())->getCurrentValueId();
-$taxes = (new Xdelivery_Model_Tax())->findAll(['value_id' => $value_id , 'status != ?' => 'deleted'])->toArray();
-
+// $taxes = (new Xdelivery_Model_Tax())->findAll(['value_id' => $value_id , 'status != ?' => 'deleted'])->toArray();
+$taxes = (new Xdelivery_Model_Tax())->findAll($value_id);
 $productattrObj = $this->getProductAttributes();
  
 $product_attributes = [];
