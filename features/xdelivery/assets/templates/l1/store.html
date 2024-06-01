@@ -1,0 +1,51 @@
+<ion-view sb-page-background
+          class="xdelivery xdelivery-store">
+     <ion-nav-title>{{payout.store.store_name}}</ion-nav-title>
+
+      <ion-nav-buttons side="secondary">
+        <a class="button button-clear header-item" ui-sref="xdelivery-search({value_id: value_id})">
+          <i class="icon ion-search"></i>
+        </a>  
+
+        <a class="button button-clear header-item" ui-sref="xdelivery-cart({value_id: value_id})" ng-if="settings.enable_addtocart">
+         <i class="icon ion-ios-cart">
+            <span ng-if="payout.cart_count > 0" class="badge badge-balanced badge-balanced-custom" style="
+             position: absolute; right: -10px;">{{payout.cart_count}}</span>
+         </i>
+        </a>  
+ 
+  </ion-nav-buttons>
+      
+    <ion-content class="has-header">
+ 
+      <div class="loader" ng-show="is_loading">
+         <ion-spinner class="spinner-custom"></ion-spinner>
+      </div> 
+
+      <div class="list xdelivery-store-list">
+
+        <div class="item item-avatar" ng-if="!is_loading">
+          <img ng-src="{{ storeImage(payout.store.image) }}">
+          <h2 class="store-name">{{payout.store.store_name}}</h2>
+          <p class="store_sub_title" ng-if="store.store_sub_title != ''"> {{payout.store.store_sub_title}}</p>
+          <p><i class="icon ion-location"></i> {{payout.store.store_address}}</p>
+        </div>
+   
+      </div>
+
+      <div class="list" ng-if="!is_loading">
+            <ng-include ng-if="settings.category_design == 'grid' && !is_loading" src="'./features/xdelivery/assets/templates/l1/include/category_grid.html'"></ng-include>
+
+            <ng-include ng-if="settings.category_design == 'list' && !is_loading"  src="'./features/xdelivery/assets/templates/l1/include/category_list.html'"></ng-include>
+      </div>
+
+    </ion-content>
+
+    <style type="text/css">
+      .store_sub_title {
+        white-space: none;
+      }
+
+    </style>
+
+  </ion-view>

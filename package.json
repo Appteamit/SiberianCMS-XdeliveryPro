@@ -1,0 +1,14 @@
+{
+  "name": "Xdelivery",
+  "description": "Xdelivery - Online shopping Store!",
+  "type": "module",
+  "version": "3.4.1",
+  "dependencies": {
+    "system": {
+      "type": "SAE",
+      "version": "4.18.23"
+    }
+  }
+}
+
+

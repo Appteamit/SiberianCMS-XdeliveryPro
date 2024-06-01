@@ -1,0 +1,8 @@
+<div class="list" ng-class="{'card' : settings.list_design}">
+     <a ui-sref="store-home({value_id: value_id, store_id: store.store_id})" class="item item-custom item-thumbnail-left remove-border" ng-repeat="store in payout.stores">
+		<img class="store-image-grid" ng-src="{{ storeImage(store.image) }}">
+		<h2 class="store-name">{{store.store_name}}</h2>
+		<p ng-if="store.store_sub_title != ''"> {{store.store_sub_title}}</p>
+		<p><i class="icon ion-location"></i> {{store.store_address}}</p>		
+	</a>
+</div>

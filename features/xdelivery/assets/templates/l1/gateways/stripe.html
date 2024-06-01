@@ -1,0 +1,55 @@
+<div class="list stripecard">
+   <label class="item item-custom item-input item-stacked-label">
+		<span class="input-label">{{ ::"Card Number" | translate:"ewallet" }}</span>
+		<input type="number" name="number" ng-model="formData.number" placeholder="4242424242424242" ng-pattern="/^[0-9]+$/" ng-minlength="15" ng-maxlength="16" required>
+	    <span class="error" ng-show="stripeform.$submitted && stripeform.number.$error.required ">
+		  {{ ::"Credit card required" | translate:"ewallet" }}
+		</span>
+		<span class="error" ng-show="(stripeform.$submitted || stripeform.number.$dirty) && stripeform.number.$error.pattern">{{ ::"Credit card must consist of only numbers" | translate:"ewallet" }}
+		</span>
+	    <span class="error" ng-show="(stripeform.$submitted || stripeform.number.$dirty) && (stripeform.number.$error.minlength || stripeform.number.$error.maxlength)"> 
+		   {{ ::"Credit card must be 15-19 digits" | translate:"ewallet" }}
+		</span>
+   </label>
+
+	<label class="item item-custom item-input item-select">
+	    <div class="input-label">
+	      {{ ::"Month" | translate:"ewallet" }}
+	    </div>
+	    <select name="exp_month" ng-model="formData.exp_month" required>
+	      <option value="">{{ ::"Select month" | translate:"ewallet" }}</option>
+	      <option ng-repeat="n in range( 1, 12)">{{n}}</option>
+	    </select>
+		  <span class="error select-error" ng-show="stripeform.$submitted && stripeform.exp_month.$error.required ">
+		    {{ ::"Expiration month required" | translate:"ewallet" }}
+		  </span>			  
+	</label>
+
+	<label class="item item-custom item-input item-select">
+	    <div class="input-label">
+	      {{ ::"Year" | translate:"ewallet" }}
+	    </div>
+	    <select name="exp_year" ng-model="formData.exp_year" required> 
+	    <option value="">{{ ::"Select year" | translate:"ewallet" }}</option>
+	    <option ng-repeat="y in years">{{y.value}}</option>     
+	    </select>
+	   <span class="error select-error" ng-show="stripeform.$submitted && stripeform.exp_year.$error.required ">
+		  {{ ::"Expiration year required" | translate:"ewallet" }}
+		</span>	
+	</label>
+
+    <label class="item item-custom item-input item-stacked-label">
+	    <span class="input-label" >{{ ::"CVC" | translate:"ewallet" }}</span>
+	    <input type="number" name="cvc" ng-model="formData.cvc" placeholder="123"ng-pattern="/^[0-9]+$/" ng-minlength="3" ng-maxlength="4" required>
+	   <span class="error" ng-show="stripeform.$submitted && stripeform.cvc.$error.required ">
+		 	{{ ::"CVC required" | translate:"ewallet" }}
+		</span>
+		<span class="error" ng-show="(stripeform.$submitted || stripeform.cvc.$dirty) && stripeform.cvc.$error.pattern"> 
+			 {{ ::"Credit card CVC must consist of only numbers" | translate:"ewallet" }}
+		</span>
+		<span class="error" ng-show="(stripeform.$submitted || stripeform.cvc.$dirty) && (stripeform.cvc.$error.minlength || stripeform.cvc.$error.maxlength)"> 
+		  {{ ::"CVC must be 3-4 digits" | translate:"ewallet" }}
+		</span>
+	</label>
+
+ </div>
