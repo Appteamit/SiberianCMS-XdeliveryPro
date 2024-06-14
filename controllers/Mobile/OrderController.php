@@ -34,7 +34,7 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
                         $data = $order->getData();
                         $order_status = $data['order_status'];  
             
-  
+                        $data['order_date']=  date($settings['date_format']. ' '. $settings['time_format'], strtotime($data['created_at']));
                         $data['order_status'] = $status[$data['order_status']];
                         $data['order_status']  = ucfirst(p__('xdelivery', $data['order_status']));
                         $data['currency'] = $currency;
@@ -350,7 +350,16 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
                     }    
                         
                     if(!empty($address)){
-                        $orderModel->setCustomerStreet($address['address'].', '.$address['locality']);
+
+                        $customer_street=$address['address'];
+                        if(!empty($address['address_two'])){
+                            $customer_street .= ', '.$address['address_two'];
+                        }
+                        if(!empty($address['locality'])){
+                            $customer_street .= ', '.$address['locality'];
+                        }
+                        $city = (!empty($address['city'])) ? ', '.$address['city'] : '' ;
+                        $orderModel->setCustomerStreet($customer_street);
                         $orderModel->setCustomerPostcode($address['pincode']);
                         $orderModel->setCustomerCity($address['city']);
                     }
@@ -1020,14 +1029,36 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
             return $time;
     }
 
+    public function updateorderpaymentstatusAction(){
+        if ($param = $this->getRequest()->getBodyParams()) {            
+                try {
+                    $order_id = $param['order_id'];
+                    $status = $param['payment_status'];
+                    (new Xdelivery_Model_OrderTransactions())->find(['order_id' => $order_id])
+                    ->setStatus(trim($status))                    
+                    ->save();                    
+                    // Check if the status is correctly updated
+                    $payload = [
+                        'success' => true,
+                        'message' => p__('xdelivery', 'Update Status successfully'),
+                    ];                    
+
+                    } catch (\Exception $e) {
+                    $payload = [
+                        'error' => true,
+                        'message' => $e->getMessage(),
+                    ];
+                }
+
+                $this->_sendJson($payload);
+            }
+    }
   /**
      * update Payment Status order
      *
      */
     public function updatePaymentStatusAction() {
-        try {
-            
-            // dd($this->getRequest()->getBodyParams());
+        try {                    
             if($param = $this->getRequest()->getBodyParams()) {
                 $value_id = $this->getRequest()->getParam('value_id');
                 $customerId = $this->_getCustomerId(true);
@@ -2227,5 +2258,29 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
     //       return $response;
     //   }
     // }
+    public function saveadditionalinfoAction(){
+        if ($params = $this->getRequest()->getBodyParams()) {          
+                try {                               
+                    $model = (new Xdelivery_Model_Orders())
+                    ->find(['id' => $params['order_id']])                    
+                    ->setAdminRemark($params['admin_remark'])
+                    ->setTrackingType($params['tracking_type'])
+                    ->setTrackingNumberUrl($params['tracking_number_url']);
+                    $model->save();  
+                $payload = [
+                        'success' => true,
+                        'message' => p__('xdelivery', 'Info successfully saved'),                                         
+                    ];
+
+                    } catch (\Exception $e) {
+                    $payload = [
+                        'error' => true,
+                        'message' => $e->getMessage()                                            
+                    ];
+                }
+
+                $this->_sendJson($payload);
+            }
+    }
 
 }

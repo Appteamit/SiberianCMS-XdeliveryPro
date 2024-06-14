@@ -65,7 +65,7 @@ $optionValues = (new Xdelivery_Model_ExtraOptionValue())
                                        <td> 
                                            <div class="form-group">
                                                 <div class="col-sm-12">
-                                                    <input type="text" value="" class="required input-flat value_name name_element_1" name="name[]" placeholder="Enter a Name" />
+                                                    <input type="text" value="" class="required input-flat value_name name_element_1" name="name[]" placeholder="Enter Nickname" />
                                                 </div>
                                             </div>
                                         </td>
@@ -137,7 +137,7 @@ $(function () {
     });
 
     function GetDynamicTextBox(totalRowCount) {       
-        return '<td><i class="fa fa-arrows" aria-hidden="true"></i></td><td><div class="form-group"><div class="col-sm-12"><input type="text" value="" class="required input-flat value_name name_element_'+totalRowCount+'" name="name[]" placeholder="Enter a Name"  /></div></div>'+ '</td><td><div class="form-group"><div class="col-sm-12"><input type="text" value="0" class="required input-flat value_price price_element_'+totalRowCount+'" name="price[]" placeholder="Enter a Price" /></div></div>'+ '</td><td><button type="button" class="btn btn-danger remove" data-id="element_'+totalRowCount+'" ><i class="fa fa-remove"></i></button></td>'
+        return '<td><i class="fa fa-arrows" aria-hidden="true"></i></td><td><div class="form-group"><div class="col-sm-12"><input type="text" value="" class="required input-flat value_name name_element_'+totalRowCount+'" name="name[]" placeholder="Enter Nickname"  /></div></div>'+ '</td><td><div class="form-group"><div class="col-sm-12"><input type="text" value="0" class="required input-flat value_price price_element_'+totalRowCount+'" name="price[]" placeholder="Enter a Price" /></div></div>'+ '</td><td><button type="button" class="btn btn-danger remove" data-id="element_'+totalRowCount+'" ><i class="fa fa-remove"></i></button></td>'
     }
 
     var $tabs = $('#dynamic-attributes-values');

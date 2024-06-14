@@ -19,7 +19,7 @@
 		          	{{ ::"Name" | translate:"xdelivery" }}
 		            <span>*</span>
 		        </span>
-		        <input name="customer_name" type="text" placeholder="{{ forTranslate('Enter a Name') }}" ng-model="address_post.customer_name" ng-init="address_post.customer_name === ''" ng-value="">
+		        <input name="customer_name" type="text" placeholder="{{ forTranslate('Enter Nickname') }}" ng-model="address_post.customer_name" ng-init="address_post.customer_name === ''" ng-value="">
 		    </label>
 
 		     <label class="item item-input item-custom item-floating-label">
@@ -32,13 +32,21 @@
 	    
 		   <label class="item item-input item-custom item-floating-label">
 		        <span class="input-label">
-		          	{{ ::"Address" | translate:"xdelivery" }}({{ ::"House No" | translate:"xdelivery" }}, {{ ::"Building" | translate:"xdelivery" }}, {{ ::"Street" | translate:"xdelivery" }}, {{ ::"Area" | translate:"xdelivery" }})
+		          	{{ ::"Address" | translate:"xdelivery" }} ({{ ::"House No" | translate:"xdelivery" }}, {{ ::"Building" | translate:"xdelivery" }}, {{ ::"Street" | translate:"xdelivery" }}, {{ ::"Area" | translate:"xdelivery" }})
 		            <span>*</span>
 		        </span>
 		        <input name="address" type="text" placeholder="{{ forTranslate('Enter a address') }}" ng-model="address_post.address" ng-init="address_post.address === ''" ng-value="">
 		    </label>
 
-		    <label class="item item-input item-custom item-floating-label">
+		   <label class="item item-input item-custom item-floating-label" ng-if="settings.is_enable_address_two">
+		        <span class="input-label">
+		          	{{ ::"Address 2" | translate:"xdelivery" }} ({{ ::"House No" | translate:"xdelivery" }}, {{ ::"Building" | translate:"xdelivery" }}, {{ ::"Street" | translate:"xdelivery" }}, {{ ::"Area" | translate:"xdelivery" }})
+		            <span>*</span>
+		        </span>
+		        <input name="address_two" type="text" placeholder="{{ forTranslate('Enter a address 2') }}" ng-model="address_post.address_two" ng-init="address_post.address === ''" ng-value="">
+		    </label>
+
+		    <label class="item item-input item-custom item-floating-label" ng-if="settings.is_enable_locality">
 		        <span class="input-label">
 		          	{{ ::"Locality" | translate:"xdelivery" }}/{{ ::"Town" | translate:"xdelivery" }}
 		            <span>*</span>
@@ -48,7 +56,7 @@
                        id="pac-input" ng-model="address_post.locality">
 		     </label>
 
-		    <label class="item item-input item-custom item-floating-label">
+		    <label class="item item-input item-custom item-floating-label" ng-if="settings.is_enable_city">
 		        <span class="input-label">
 		          	{{ ::"City" | translate:"xdelivery" }}/{{ ::"District" | translate:"xdelivery" }}
 		            <span>*</span>

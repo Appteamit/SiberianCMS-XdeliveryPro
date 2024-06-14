@@ -55,36 +55,36 @@ class Xdelivery_Mobile_AccountController extends Application_Controller_Mobile_D
                     }
                     /*End Stock Manage*/
                     $data['selling_price'] = $data['price'];
-                    $data['active_special_price'] = 0;
+                    $data['active_special_price'] = false;
                     if(!empty($data['special_price_start']) && !empty($data['special_price_end'])){
                          if (($current_date >= $data['special_price_start']) && ($current_date <= $data['special_price_end'])){
-                            $data['active_special_price'] = 1;
+                            $data['active_special_price'] = true;
                         }
                     }
      
                     if(empty($data['special_price_start']) && empty($data['special_price_end']) && !empty($data['special_price'])) {
-                        $data['active_special_price'] = 1;
+                        $data['active_special_price'] = true;
                     }                    
                     
-                    if($data['active_special_price'] == 1){
+                    if($data['active_special_price']){
                          $data['selling_price'] = $data['special_price'];
                     }
 
-                    $data['offer_persent'] = (integer)(( $data['selling_price'] * 100 ) / $data['price']);
+                    $data['offer_persent'] = number_format(($data['selling_price'] * 100) / $data['price'], 2);
 
                     if($data['offer_persent'] > 0){
-                        $data['offer_persent'] = 100 - $data['offer_persent'];
+                        $data['offer_persent'] = number_format(100 - $data['offer_persent'], 2);
                     }
                     
-                    $data['special_price'] = Core_Model_Language::getCurrencySymbol().''.$data['special_price'];
+                    $data['special_price_with_currency'] = Core_Model_Language::getCurrencySymbol().''.$data['special_price'];
 
-                    $data['price'] = Core_Model_Language::getCurrencySymbol().''.$data['price'];
+                    $data['price_with_currency'] = Core_Model_Language::getCurrencySymbol().''.$data['price'];
 
                     if($data['product_type'] == 'variable'){
                     if(empty($data['max_amount'])){
-                            $data['price'] = "-";
+                            $data['price_with_currency'] = "-";
                         }else{
-                           $data['price'] = Core_Model_Language::getCurrencySymbol().''.$data['min_amount'].' - '.Core_Model_Language::getCurrencySymbol().''.$data['max_amount'];
+                           $data['price_with_currency'] = Core_Model_Language::getCurrencySymbol().''.$data['min_amount'].' - '.Core_Model_Language::getCurrencySymbol().''.$data['max_amount'];
                         }             
                     }
                 
@@ -158,6 +158,7 @@ class Xdelivery_Mobile_AccountController extends Application_Controller_Mobile_D
                     ->setPhoneNumber($param["phone_number"])
                     ->setPincode($param["pincode"])
                     ->setAddress($param["address"])
+                    ->setAddressTwo($param["address_two"])
                     ->setLocality($param["locality"])
                     ->setCity($param["city"])
                     ->setState($param["state"])

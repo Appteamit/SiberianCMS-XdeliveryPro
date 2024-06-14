@@ -28,10 +28,12 @@ angular.module('starter')
         }
 
 	    $scope.loadContent = function () {
+            console.log("Load content");
             $scope.is_loading = true;
             $scope.carts = Xdelivery.carts;
-          
+            
             if($scope.carts.delivery == 'pickup'){
+                console.log("Pickup");
                $scope.carts.customer = Customer.customer;
                if($scope.settings.enable_to_pickup){
                     if($scope.settings.enable_date_to_pickup){
@@ -42,7 +44,9 @@ angular.module('starter')
                     }            
                }               
             }else{
+                console.log("Delivery");
                 if($scope.settings.enable_to_deliver){
+                    console.log("Delivery 1");
                     if($scope.settings.enable_date_to_deliver){
                         $scope.is_allow_select_date = true;
                     }
@@ -113,21 +117,26 @@ angular.module('starter')
 
 
          $scope.getLocation = function() {
-
+            console.log("Get location");
             if (Location.isEnabled) {
+                console.log("Location enabled");
                 Location
                     .getLocation({timeout: 10000}, true)
                     .then(function (position) {
+                        console.log("Location enabled", position.coords.latitude, position.coords.longitude);
                         $scope.postParams.latitude = position.coords.latitude;
                         $scope.postParams.longitude = position.coords.longitude;
                         $scope.loadContent();
                     }, function () {
+                        console.log("Location not enabled");
                         $scope.postParams.latitude = '';
                         $scope.postParams.longitude = '';
+                        $scope.loadContent();
                         $scope.requestLocation();
                     });
 
             } else {
+                console.log("Location not enabled");
                 $scope.postParams.latitude = '';
                 $scope.postParams.longitude = '';
                 $scope.requestLocation();
@@ -146,6 +155,7 @@ angular.module('starter')
         }
         
         $scope.$on("$ionicView.beforeEnter", function(event, data) {  
+            console.log("Request location");
            $scope.getLocation();
         });
 
@@ -215,6 +225,7 @@ angular.module('starter')
 
 
        $scope.$on('modal.hidden', function() {
+        console.log("Modal hidden");
              $scope.loadContent();
         });
 

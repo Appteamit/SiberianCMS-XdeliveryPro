@@ -169,6 +169,13 @@ class Xdelivery_Form_Settings extends Siberian_Form_Abstract
         $this->addSimpleText('twillio_auth_token', p__('xdelivery', 'Auth Token'))->setRequired(false);
         $this->addSimpleText('twillio_sim_id', p__('xdelivery', 'Phone Sim Id'))->setRequired(false);
 
+        //Address
+        $h9 = p__("xdelivery", "Address Settings");
+        $helpText9 = '<div class="col-md-12"><div  class="alert alert-info">'.  $h9 .'</div></div>';
+        $this->addSimpleHtml("helpText9", $helpText9);
+        $this->addSimpleCheckbox('is_enable_address_two', p__('xdelivery', 'Enable Address 2'));        
+        $this->addSimpleCheckbox('is_enable_locality', p__('xdelivery', 'Enable Locality'));
+        $this->addSimpleCheckbox('is_enable_city', p__('xdelivery', 'Enable City'));
    }
     
     public function setElementValueById($id, $value, $required = false) {

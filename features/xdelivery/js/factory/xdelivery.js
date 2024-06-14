@@ -63,11 +63,11 @@ angular
                 refresh: true
             });
         };
-        factory.updatePaymentStatus1 = function (payment_status, order_id, value_id) {
-            console.log(payment_status, order_id, value_id);
-            return $pwaRequest.post('Xdelivery/mobile_view/updatepaymentstatus', {
+        factory.updateOrderPaymentStatus = function (payment_status, order_id) {
+            console.log(payment_status, order_id);
+            return $pwaRequest.post('Xdelivery/mobile_order/updateorderpaymentstatus', {
                 data: {
-                   value_id: value_id,
+                   value_id: factory.value_id,
                    payment_status: payment_status,
                    order_id: order_id,
                 },
@@ -82,6 +82,13 @@ angular
                    status: order_status,
                    id: order_id,
                 },
+                cache: false,
+                refresh: true
+            });
+        };
+        factory.saveAdditionalInfo = function (additional_info) {
+            return $pwaRequest.post('Xdelivery/mobile_order/saveadditionalinfo', {
+                data: additional_info,
                 cache: false,
                 refresh: true
             });

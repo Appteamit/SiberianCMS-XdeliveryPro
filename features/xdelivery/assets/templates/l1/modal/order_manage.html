@@ -7,9 +7,15 @@
             <button class="button button-clear"
                     ng-click="closeModalOrderDetails()">
                     <i ng-class="backButtonIcon()"></i>
+            </button>            
+        </div>
+        <h1 class="title">{{ ::"Manage Order" | translate:"xdelivery" }}</h1>       
+        <divn class="buttons">
+            <button class="button button-clear"
+            ng-click="findOrderById(order_info)">
+            <i class="icon ion-refresh"></i>
             </button>
         </div>
-        <h1 class="title">{{ ::"Manage Order" | translate:"xdelivery" }}</h1>
     </ion-header-bar>
    
    <ion-content class="has-header">
@@ -61,7 +67,8 @@
                 border-radius: 3px !important;
                 border: 1px solid rgb(169, 169, 169);"
                 class="input-text"
-                ng-change="updatePaymentStatus()"                      
+                ng-change="updateOrderPaymentStatus(order_info)"                      
+                ng-disabled="order_info.order_status == 'Canceled' || order_info.order_status == 'Refunded' || order_info.order_status == 'Failed'"
                 ng-model="manage_order_status.update_payment_status"
                 >             
                     <option
@@ -102,19 +109,19 @@
 
 
             <div class="item item-custom">
-                {{ ::"Booking Status" | translate:"xdelivery" }}
+                {{ ::"Order Status" | translate:"xdelivery" }}
                 <span class="pull-right">{{order_info.order_status}}</span>
             </div>
             <div class="item item-custom">
-                {{ ::"Booking Date" | translate:"xdelivery" }}
-                <span class="pull-right">{{convertDate(order_info.created_at)}}</span>
+                {{ ::"Order Date" | translate:"xdelivery" }}
+                <span class="pull-right">{{order_info.order_date}}</span>
             </div>
             <div class="item item-custom">
                 {{ ::"Phone Number" | translate:"xdelivery" }}
                 <span class="pull-right">{{order_info.customer_phone}}</span>
             </div>
 
-            <div class="item item-custom" ng-if="order_info.tracking_type == 1">
+            <!-- <div class="item item-custom" ng-if="order_info.tracking_type == 1">
                 {{ ::"Tracking Order" | translate:"xdelivery" }}
                 <span class="pull-right">{{order_info.tracking_number_url}}</span>
             </div>
@@ -122,7 +129,7 @@
             <div class="item item-custom item-icon-right" ng-click="openURL(order_info.tracking_number_url)" ng-if="order_info.tracking_type == 2">
                  {{ ::"Track Order Status" | translate:"xdelivery" }}
                 <i class="icon ion-link"></i>
-            </div>
+            </div> -->
 
             <div class="item item-custom item-body" ng-if="order_info.delivery_method != 'pickup'">
                 {{ ::"Deliver To" | translate:"xdelivery" }}
@@ -130,7 +137,7 @@
             </div>
            
             <div class="item item-divider item-divider-custom"> 
-                {{ ::"Order Summery" | translate:"xdelivery" }} 
+                {{ ::"Order Summary" | translate:"xdelivery" }} 
             </div>
             <div class="item item-custom">
                 {{ ::"Payment Mode" | translate:"xdelivery" }}
@@ -211,7 +218,7 @@
                 {{ ::"Items" | translate:"xdelivery" }} 
             </div>
 
-             <div class="item item-custom" ng-repeat="(key, value) in order_info.items">
+            <div class="item item-custom" ng-repeat="(key, value) in order_info.items">
                <h2>{{ value.name}}</h2>
                <p>{{ value.qty}} * {{ value.price_with_currency}}<span ng-if="value.choice_price > 0"> +   
                   {{value.choice_price_with_currency}}</span>
@@ -228,31 +235,42 @@
                    </span>
                </p>
             </div>
-
-            <div class="item item-divider item-divider-custom" ng-if="order_info.notes!=''"> 
-                {{ ::"Notes" | translate:"xdelivery" }} 
+            <!-- Customer Notes -->
+            <div class="item item-divider item-divider-custom" ng-if="order_info.notes!='' && order_info.notes!=null"> 
+                {{ ::"Customer Notes" | translate:"xdelivery" }} 
             </div>
-            <div class="item item-custom item-body" ng-if="order_info.notes!=''">
+            <div class="item item-custom item-body" ng-if="order_info.notes!='' && order_info.notes!=null">
               <p>{{order_info.notes}}</p>
-            </div>            
+            </div>                        
        </div> 
-
-        <div class="list" ng-show="!isLoading" ng-if="order_info.admin_remark != ''">
-            <div class="item item-custom item-body">
-                <p ng-bind-html="order_info.admin_remark | trusted_html" sb-a-click></p>
+       <!-- Additiona Info -->
+       <ion-list ng-show="!isLoading">            
+            <div class="item item-divider item-divider-custom"> 
+                {{ ::"Additional Information" | translate:"xdelivery" }} 
             </div>
-        </div>
-
-      <!-- <div class="list" ng-show="!isLoading">
-        <div class="row">
-            <div class="col col-50">
-                <button ng-click="acceptDetails(value.order_id)" class="ifon-left ion-sb-list1 button button-block button-balanced">{{ ::"Accept Order" | translate:"xdelivery" }}</button>
-            </div>                         
-            <div class="col col-50">
-                <button ng-click="cancelOrder(value.order_id)" class="ifon-left ion-ios-printer-outline button button-block button-assertive">{{ ::"Reject Order" | translate:"xdelivery" }}</button>
-            </div>
-        </div>
-      </div> -->
-
+            <label class="item item-input item-custom item-floating-label" style="width: 50%;float: left;">                
+                <ion-radio class="item item-custom" ng-model="additional_info.tracking_type" value="1">
+                    {{ ::"Track By Number" | translate:"xdelivery" }}
+                </ion-radio>                
+            </label>
+            <label class="item item-input item-custom item-floating-label" style="width: 50%;">                                
+                <ion-radio class="item item-custom" ng-model="additional_info.tracking_type" value="2">
+                    {{ ::"Track By URL" | translate:"xdelivery" }}
+                </ion-radio>
+            </label>
+            <label class="item item-input item-custom">
+                <span class="input-label">
+                    {{ ::"Tracking Number/Url" | translate:"xdelivery" }}                    
+                </span>
+                <input type="text" ng-model="additional_info.tracking_number_url" placeholder="" value="">
+            </label>
+            <label class="item item-input item-custom">
+                <span class="input-label">
+                    {{ ::"Admin Remarks" | translate:"xdelivery" }}                    
+                </span>
+                <textarea ng-model="additional_info.admin_remark" placeholder="{{ forTranslate('Enter a Note') }}"></textarea>
+            </label>                 
+           <button type="button" class="button button-full button-positive-custom remove-border" ng-click="saveAdditionalInfo()">{{ ::"Save Additional Info" | translate:"xdelivery" }}</button>
+       </ion-list>
     </ion-content>
 </ion-modal-view>

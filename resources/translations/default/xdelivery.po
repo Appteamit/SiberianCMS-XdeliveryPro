@@ -592,6 +592,11 @@ msgctxt "xdelivery"
 msgid "Payment Mode"
 msgstr "Payment Mode"
 
+# GMT 1600836470.1216
+msgctxt "xdelivery"
+msgid "Mode"
+msgstr "Mode"
+
 # GMT 1600836470.1217
 msgctxt "xdelivery"
 msgid "Payment Status"
@@ -1364,6 +1369,18 @@ msgctxt "xdelivery"
 msgid "Orders"
 msgstr "Orders"
 
+# GMT 1600836470.1342
+#, mobile
+msgctxt "xdelivery"
+msgid "Manage"
+msgstr "Manage"
+
+# GMT 1600836470.1342
+#, mobile
+msgctxt "xdelivery"
+msgid "Print"
+msgstr "Print"
+
 # GMT 1600836470.1343
 #, mobile
 msgctxt "xdelivery"
@@ -1574,6 +1591,48 @@ msgctxt "xdelivery"
 msgid "Placed On"
 msgstr "Placed On"
 
+# GMT 1600836470.1377
+#, mobile
+msgctxt "xdelivery"
+msgid "Order At"
+msgstr "Order At"
+
+# GMT 1600836470.1377
+#, mobile
+msgctxt "xdelivery"
+msgid "Chnage Order Status"
+msgstr "Chnage Order Status"
+
+# GMT 1600836470.1377
+#, mobile
+msgctxt "xdelivery"
+msgid "Chnage Payment Status"
+msgstr "Chnage Payment Status"
+
+# GMT 1600836470.1377
+#, mobile
+msgctxt "xdelivery"
+msgid "Track By Number"
+msgstr "Track By Number"
+
+# GMT 1600836470.1377
+#, mobile
+msgctxt "xdelivery"
+msgid "Track By URL"
+msgstr "Track By URL"
+
+# GMT 1600836470.1377
+#, mobile
+msgctxt "xdelivery"
+msgid "Admin Remarks"
+msgstr "Admin Remarks"
+
+# GMT 1600836470.1377
+#, mobile
+msgctxt "xdelivery"
+msgid "Save Additional Info"
+msgstr "Save Additional Info"
+
 # GMT 1600836470.1378
 #, mobile
 msgctxt "xdelivery"
@@ -1655,8 +1714,8 @@ msgstr "Order Number"
 # GMT 1600836470.1392
 #, mobile
 msgctxt "xdelivery"
-msgid "Order Summery"
-msgstr "Order Summery"
+msgid "Order Summary"
+msgstr "Order Summary"
 
 # GMT 1600836470.1393
 #, mobile
@@ -1751,8 +1810,8 @@ msgstr "Deliver To"
 # GMT 1600836470.1408
 #, mobile
 msgctxt "xdelivery"
-msgid "Order Summery"
-msgstr "Order Summery"
+msgid "Order Summary"
+msgstr "Order Summary"
 
 # GMT 1600836470.1409
 #, mobile
@@ -2723,6 +2782,12 @@ msgctxt "xdelivery"
 msgid "Enter a Name"
 msgstr "Enter a Name"
 
+# GMT 1600836470.1584
+#, mobile
+msgctxt "xdelivery"
+msgid "Enter Nickname"
+msgstr "Enter Nickname"
+
 # GMT 1600836470.1586
 #, mobile
 msgctxt "xdelivery"
@@ -2819,6 +2884,24 @@ msgctxt "xdelivery"
 msgid "Enter a Company Name"
 msgstr "Enter a Company Name"
 
+# GMT 1600836470.1601
+#, mobile
+msgctxt "xdelivery"
+msgid "Customer Notes"
+msgstr "Customer Notes"
+
+# GMT 1600836470.1601
+#, mobile
+msgctxt "xdelivery"
+msgid "Order Notes"
+msgstr "Order Notes"
+
+# GMT 1600836470.1601
+#, mobile
+msgctxt "xdelivery"
+msgid "Manage Order"
+msgstr "Manage Order"
+
 # GMT 1600836470.1602
 #, mobile
 msgctxt "xdelivery"
@@ -2854,6 +2937,24 @@ msgstr "Cod Fiscale"
 msgctxt "xdelivery"
 msgid "Welcome"
 msgstr "Welcome"
+
+# GMT 1600836470.1606
+#, mobile
+msgctxt "xdelivery"
+msgid "Order Date"
+msgstr "Order Date"
+
+# GMT 1600836470.1606
+#, mobile
+msgctxt "xdelivery"
+msgid "Sound Alert"
+msgstr "Sound Alert"
+
+# GMT 1600836470.1606
+#, mobile
+msgctxt "xdelivery"
+msgid "Auto Loading"
+msgstr "Auto Loading"
 
 # GMT 1600836470.1607
 #, mobile

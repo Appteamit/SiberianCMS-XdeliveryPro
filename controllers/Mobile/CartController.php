@@ -1030,10 +1030,20 @@ class Xdelivery_Mobile_CartController extends Application_Controller_Mobile_Defa
 
                 $settingModel = (new Xdelivery_Model_Settings())->find(['value_id' => $value_id]);
                 $settings = $settingModel->getData();
-
+                $address_template = $address['address'];
+                if ($settings['is_enable_address_two']) {
+                    $address_template.= ', '.$address['address_two'];
+                }
+                if ($settings['is_enable_locality']) {
+                    $address_template.= ', '.$address['locality'];
+                }
+                if ($settings['is_enable_city']) {
+                    $address_template.= ', '.$address['city'];
+                }
+                $address_template.= ', '.$address['pincode'];                
                 $payload = [
                     'success' => true,
-                    'address' => $address['address'].', '.$address['locality'].', '.$address['city'].', '.$address['pincode'],
+                    'address' => $address_template,
                     'delivery_date' => !empty($param['delivery_date']) ?date($settings['date_format'], $param['delivery_date']) : '',
                      'delivery_time' => !empty($param['delivery_time']) ? date($settings['time_format'], $param['delivery_time']) : '',
                      'customer' => $address['customer_name'].', '.$address['phone_number'],

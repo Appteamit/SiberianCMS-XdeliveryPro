@@ -446,6 +446,7 @@ angular.module('starter')
                     is_default: 0,
                     address_type: 'home',
                     address : '',
+                    address_two : '',
                     pincode: '',
                     city:'',
                     company_address:'',

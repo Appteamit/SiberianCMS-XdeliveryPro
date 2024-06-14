@@ -305,6 +305,21 @@ $schemas['xdelivery_settings'] = [
         'default' => "0",
         'is_null' => true,
     ],
+    'is_enable_address_two' => [
+        'type' => 'tinyint(11)',
+        'default' => "0",
+        'is_null' => true,
+    ],
+    'is_enable_locality' => [
+        'type' => 'tinyint(11)',
+        'default' => "0",
+        'is_null' => true,
+    ],
+    'is_enable_city' => [
+        'type' => 'tinyint(11)',
+        'default' => "0",
+        'is_null' => true,
+    ],
     'twillio_auth_token' => [
         'type' => 'varchar(100)',
         'is_null' => true,

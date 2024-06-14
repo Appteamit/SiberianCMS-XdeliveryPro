@@ -1,234 +1,235 @@
 <ion-view sb-page-background class="xdelivery" ng-class="{'xdelivery-home': user_type=='client', 'xdelivery-orders': user_type=='admin'}">
-   <!-- Customer View -->
-   <ion-nav-title>{{page_title}}{{is_admin}}</ion-nav-title>
-    
-    <ion-nav-buttons side="secondary">
-        <a ng-if="!is_admin && settings.enable_qrscan && !is_loading && settings.home_screen != 'store'" class="button button-clear header-item" ng-click="productScanCamera()">
-            <i class="icon ion-qr-scanner"></i> 
-        </a> 
-        
-        <a class="button button-clear header-item" ui-sref="xdelivery-cart({value_id: value_id})" ng-if="!is_admin && settings.enable_addtocart">
-            <i class="icon ion-ios-cart">
-                <span ng-if="payout.cart_count > 0" class="badge badge-balanced badge-balanced-custom" style="
-                position: absolute; right: -10px;">{{payout.cart_count}}</span>
-            </i>
-        </a> 
-        <a class="button button-clear header-item" ui-sref="xdelivery-account({value_id: value_id})" ng-if="!is_admin && settings.enable_addtocart">
-            <i class="icon ion-person"></i>
-        </a>
-
-        <a class="button button-clear header-item" ui-sref="xdelivery-wishlist({value_id: value_id})" ng-if="!is_admin && settings.enable_save_later && !settings.enable_addtocart">
-            <i class="icon ion-android-favorite-outline"></i>
-        </a> 
-
-    </ion-nav-buttons>
-    <ion-header-bar class="bar-subheader bar-custom bar bar-header" ng-if="!is_admin && !is_loading && settings.home_screen != 'store'">
-        <div class="list list-inset home-serach-list">
-            <a class="item item-input item-button-right" ui-sref="xdelivery-search({value_id: value_id})">
-                <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" placeholder='{{forTranslate("Search a products")}}' />
-            </a>
-        </div>
-    </ion-header-bar>
-    <ion-header-bar style="height: 64px !important;" class="bar-subheader bar-custom bar bar-header" ng-if="is_admin && !is_loading">
-        <div class="item item-body home-sub-header-body admin-sub-header" >
-          <h2
-            class="home-sub-header-text"
-            style="color:white !important"
-          >
-          {{ ::"Welcome" | translate:"xdelivery" }} {{admin_name}}
-          </h2>         
-        </div>
-    </ion-header-bar>
-    
-    <ion-content class="has-header  has-subheader" ng-class="{'has-subheader' : settings.home_screen != 'store'}">
-        <div class="loader" ng-show="is_loading">
-            <ion-spinner class="spinner-custom"></ion-spinner>
-        </div> 
-        <div ng-if="!is_admin && !is_loading">
-            <div class="list">
-                <!-- Slidr -->
-                <div class="item item-custom xdelivery-slider remove-border" ng-if="payout.sliders.length > 0">
-                    <ion-slide-box id="xdelivery_slider" ng-if="payout.sliders.length > 0"
-                        auto-play="true"
-                        slide-interval="3000"
-                        show-pager="true"
-                        does-continue="true"
-                        class="xdelivery-slider-box">
-                        <ion-slide ng-repeat="slider in payout.sliders">
-                            <img class="xdelivery-feature-img" ng-src="{{ SliderImage(slider.image) }}" />
-                        </ion-slide>
-                    </ion-slide-box> 
-                </div>
-                <!-- Embed view as per settings -->
-                <ng-include src="'./features/xdelivery/assets/templates/l1/include/category_grid.html'" 
-                    ng-if="settings.home_screen === 'category' && settings.category_design === 'grid'"></ng-include>
-                <ng-include src="'./features/xdelivery/assets/templates/l1/include/category_list.html'"
-                    ng-if="settings.home_screen === 'category' && settings.category_design === 'list'"></ng-include>
-                <ng-include src="'./features/xdelivery/assets/templates/l1/include/store_list.html'"
-                    ng-if="settings.home_screen === 'store'"></ng-include>
-            </div>
-        </div>        
-        <!-- Admin -->
-        <div ng-if="is_admin && !is_loading">
-            <div class="order-filter card">
-                <!-- Settings -->
-                <div class="row">
-                    <div class="col">
-                      <li class="item item-toggle" style="color: black;padding-left: 0;padding-right: 0;">    
-                        Sound Alert
-                          <label class="toggle toggle-dark">
-                            <input ng-change="toggleAlertSound()" ng-model="alertsound" type="checkbox">
-                            <div class="track">
-                              <div class="handle"></div>
-                            </div>
-                          </label>
-                       </li>
-                    </div>
-                    <div class="col">
-                      <li class="item item-toggle" style="color: black;padding-left: 0;padding-right: 0;">    
-                          Auto Loading                    
-                          <label class="toggle toggle-assertive">
-                            <input ng-change="toggleAutoload()" ng-model="autoloader" type="checkbox">
-                            <div class="track">
-                              <div class="handle"></div>
-                            </div>
-                          </label>
-                       </li>
-                    </div>
-                    <!-- <div class="col">
-                      
-                    </div> -->
-                  </div>
-                  <!-- Search filter -->
-                  <div class="row">
-                    <div class="col-80">
+    <!-- Customer View -->
+    <ion-nav-title>{{page_title}}</ion-nav-title>
+     
+     <ion-nav-buttons side="secondary">
+         <a ng-if="!is_admin && settings.enable_qrscan && !is_loading && settings.home_screen != 'store'" class="button button-clear header-item" ng-click="productScanCamera()">
+             <i class="icon ion-qr-scanner"></i> 
+         </a> 
+         
+         <a class="button button-clear header-item" ui-sref="xdelivery-cart({value_id: value_id})" ng-if="!is_admin && settings.enable_addtocart">
+             <i class="icon ion-ios-cart">
+                 <span ng-if="payout.cart_count > 0" class="badge badge-balanced badge-balanced-custom" style="
+                 position: absolute; right: -10px;">{{payout.cart_count}}</span>
+             </i>
+         </a> 
+         <a class="button button-clear header-item" ui-sref="xdelivery-account({value_id: value_id})" ng-if="!is_admin && settings.enable_addtocart">
+             <i class="icon ion-person"></i>
+         </a>
+ 
+         <a class="button button-clear header-item" ui-sref="xdelivery-wishlist({value_id: value_id})" ng-if="!is_admin && settings.enable_save_later && !settings.enable_addtocart">
+             <i class="icon ion-android-favorite-outline"></i>
+         </a> 
+ 
+     </ion-nav-buttons>
+     <ion-header-bar class="bar-subheader bar-custom bar bar-header" ng-if="!is_admin && !is_loading && settings.home_screen != 'store'">
+         <div class="list list-inset home-serach-list">
+             <a class="item item-input item-button-right" ui-sref="xdelivery-search({value_id: value_id})">
+                 <i class="icon ion-search placeholder-icon"></i>
+                 <input type="text" placeholder='{{forTranslate("Search a products")}}' />
+             </a>
+         </div>
+     </ion-header-bar>
+     <ion-header-bar style="height: 64px !important;" class="bar-subheader bar-custom bar bar-header" ng-if="is_admin && !is_loading">
+         <div class="item item-body home-sub-header-body admin-sub-header" >
+           <h2
+             class="home-sub-header-text"
+             style="color:white !important"
+           >
+           {{ ::"Welcome" | translate:"xdelivery" }} {{admin_name}}
+           </h2>         
+         </div>
+     </ion-header-bar>
+     
+     <ion-content class="has-header  has-subheader" ng-class="{'has-subheader' : settings.home_screen != 'store'}">
+         <div class="loader" ng-show="is_loading">
+             <ion-spinner class="spinner-custom"></ion-spinner>
+         </div> 
+         <div ng-if="!is_admin && !is_loading">
+             <div class="list">
+                 <!-- Slidr -->
+                 <div class="item item-custom xdelivery-slider remove-border" style="padding: 0;" ng-if="payout.sliders.length > 0">
+                     <ion-slide-box id="xdelivery_slider" ng-if="payout.sliders.length > 0"
+                         auto-play="true"
+                         slide-interval="3000"
+                         show-pager="true"
+                         does-continue="true"
+                         class="xdelivery-slider-box">
+                         <ion-slide ng-repeat="slider in payout.sliders">
+                             <img style="width: 100%;height: auto;" class="xdelivery-feature-img" ng-src="{{ SliderImage(slider.image) }}" />
+                         </ion-slide>
+                     </ion-slide-box> 
+                 </div>
+                 <!-- Embed view as per settings -->
+                 <ng-include src="'./features/xdelivery/assets/templates/l1/include/category_grid.html'" 
+                     ng-if="settings.home_screen === 'category' && settings.category_design === 'grid'"></ng-include>
+                 <ng-include src="'./features/xdelivery/assets/templates/l1/include/category_list.html'"
+                     ng-if="settings.home_screen === 'category' && settings.category_design === 'list'"></ng-include>
+                 <ng-include src="'./features/xdelivery/assets/templates/l1/include/store_list.html'"
+                     ng-if="settings.home_screen === 'store'"></ng-include>
+             </div>
+         </div>        
+         <!-- Admin -->
+         <div ng-if="is_admin && !is_loading">
+             <div class="order-filter card">
+                 <!-- Settings -->
+                 <div class="row">
+                     <div class="col">
+                       <li class="item item-toggle" style="color: black;padding-left: 0;padding-right: 0;">    
+                         Sound Alert
+                           <label class="toggle toggle-dark">
+                             <input ng-change="toggleAlertSound()" ng-model="alertsound" type="checkbox">
+                             <div class="track">
+                               <div class="handle"></div>
+                             </div>
+                           </label>
+                        </li>
+                     </div>
+                     <div class="col">
+                       <li class="item item-toggle" style="color: black;padding-left: 0;padding-right: 0;">    
+                           Auto Loading                    
+                           <label class="toggle toggle-assertive">
+                             <input ng-change="toggleAutoload()" ng-model="autoloader" type="checkbox">
+                             <div class="track">
+                               <div class="handle"></div>
+                             </div>
+                           </label>
+                        </li>
+                     </div>
+                     <!-- <div class="col">
+                       
+                     </div> -->
+                   </div>
+                   <!-- Search filter -->
+                   <div class="row">
+                     <div class="col-80">
+                    
+                       <label class="item item-input" style="border: 1px solid rgb(169, 169, 169);padding-top: 0;padding-bottom: 0;">
+                           <i style="font-size: medium;" class="icon ion-search placeholder-icon"></i>
+                           <input
+                           style="
+                             width: 100%;                          
+                             font-size: medium;
+                             border-radius: 3px !important;
+                           "
+                           type="text"
+                           class="input-text"
+                           ng-model="ordersearch"
+                           placeholder="{{ ::'Search Order' | translate:'xdelivery' }}"
+                         />
+                         </label>
+                     </div>
+                     <div class="col-20" style="text-align: center;">
+                         <button ng-click="adminOrderQueue()" style="font-size: 30px;" class="ifon-left ion-refresh button button-small button-dark"></button>
+                     </div>
+                   </div>
                    
-                      <label class="item item-input" style="border: 1px solid rgb(169, 169, 169);padding-top: 0;padding-bottom: 0;">
-                          <i style="font-size: medium;" class="icon ion-search placeholder-icon"></i>
-                          <input
-                          style="
-                            width: 100%;                          
-                            font-size: medium;
-                            border-radius: 3px !important;
-                          "
-                          type="text"
-                          class="input-text"
-                          ng-model="ordersearch"
-                          placeholder="{{ ::'Search Order' | translate:'xdelivery' }}"
-                        />
-                        </label>
-                    </div>
-                    <div class="col-20" style="text-align: center;">
-                        <button ng-click="adminOrderQueue()" style="font-size: 30px;" class="ifon-left ion-refresh button button-small button-dark"></button>
-                    </div>
-                  </div>
-                  
-                <!-- Past Days Filter -->
-                <div class="">
-                  <div class="col">
-                    <select
-                    style="width: 100%;
-                    padding: 6px;
-                    font-size: medium;
-                    border-radius: 3px !important;
-                    border: 1px solid rgb(169, 169, 169);"
-                    class="input-text"
-                    ng-change="adminOrderQueue()"
-                    ng-model="order_filter.days_range_filter"
-                    >                    
-                        <option
-                            ng-repeat="rep_filter in order_queue_filter"
-                            value="{{rep_filter.filter_id}}"
-                        >
-                        {{rep_filter.date_range}}
-                        </option>
-                    </select>
-                  </div>
-                </div>
-                <!-- Order Status Filter -->
-                <div class="">
-                  <div class="col">
-                    <select
-                    style="width: 100%;
-                    padding: 6px;
-                    font-size: medium;
-                    border-radius: 3px !important;
-                    border: 1px solid rgb(169, 169, 169);"
-                    class="input-text"
-                    ng-change="adminOrderQueue()"                      
-                    ng-model="order_filter.order_status_filter"
-
-                    >             
-                        <option
-                            ng-repeat="status in order_status"
-                            value="{{status.filter_id}}"
-                        >
-                        {{status.status_title}}
-                        </option>
-                    </select>
-                  </div>
-                </div>
-              
-              </div>
-                <div class="card" ng-if="!is_loading && payout.orders.length > 0" ng-repeat="(key, value) in payout.orders | filter:ordersearch" >
-                    <div class="item item-divider item-divider-custom">
-                        {{ ::"Order" | translate:"xdelivery" }}# {{value.order_number}}
-                        <span class="pull-right">
-                            {{value.order_status}}
-                            <span ng-if="value.is_return_request != 0">
-                                ({{ value.is_return_request_message }})
-                            </span>
-                        </span>
-                    </div>
-                    <div class="item item-custom">
-                        <span ng-if="value.is_managed!=1" class="pull-right badge badge-assertive">{{ ::"New" | translate:"xdelivery" }}</span>
-                        <div class="row">
-                            <div class="col-40">
-                            {{ ::"Items" | translate:"xdelivery" }}</div>
-                            <div class="col-60">: {{value.total_qty}}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-40">
-                            {{ ::"Customer" | translate:"xdelivery" }}</div>
-                            <div class="col-60">: {{value.customer_firstname}} {{value.customer_lastname}}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-40">
-                            {{ ::"Amount" | translate:"xdelivery" }}</div>
-                            <div class="col-60">: 
-                            {{value.total_amount_with_currency}}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-40">
-                            {{ ::"Placed On" | translate:"xdelivery" }}</div>
-                            <div class="col-60">: {{value.created_at}}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-40">
-                            {{ ::"Delivery Type" | translate:"xdelivery" }}</div>
-                            <div class="col-60">: {{value.delivery_method}}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col col-50">
-                                <button ng-click="orderDetails(value)" class="ifon-left ion-sb-list1 button button-block button-balanced">{{ ::" Manage" | translate:"xdelivery" }}</button>
-                            </div>                         
-                            <div class="col col-50">
-                                <button ng-click="printReceipet(value)" class="ifon-left ion-ios-printer-outline button button-block button-positive" ng-disabled="!printerAvailable">{{ ::" Print" | translate:"xdelivery" }}</button>
-                            </div>
-                        </div>
-        
-                    </div>
-                </div>
-        
-                <ion-list class="card"
-                            ng-if="!is_loading && payout.orders.length == 0">
-                    <ion-item class="item-custom">
-                        <P class="text-center">
-                        {{ ::"No order yet" | translate:"xdelivery" }}!</P> 
-                    </ion-item>
-                </ion-list>
-        </div>
-    </ion-content>
-   
-</ion-view>
+                 <!-- Past Days Filter -->
+                 <div class="">
+                   <div class="col">
+                     <select
+                     style="width: 100%;
+                     padding: 6px;
+                     font-size: medium;
+                     border-radius: 3px !important;
+                     border: 1px solid rgb(169, 169, 169);"
+                     class="input-text"
+                     ng-change="adminOrderQueue()"
+                     ng-model="order_filter.days_range_filter"
+                     >                    
+                         <option
+                             ng-repeat="rep_filter in order_queue_filter"
+                             value="{{rep_filter.filter_id}}"
+                         >
+                         {{rep_filter.date_range}}
+                         </option>
+                     </select>
+                   </div>
+                 </div>
+                 <!-- Order Status Filter -->
+                 <div class="">
+                   <div class="col">
+                     <select
+                     style="width: 100%;
+                     padding: 6px;
+                     font-size: medium;
+                     border-radius: 3px !important;
+                     border: 1px solid rgb(169, 169, 169);"
+                     class="input-text"
+                     ng-change="adminOrderQueue()"                      
+                     ng-model="order_filter.order_status_filter"
+ 
+                     >             
+                         <option
+                             ng-repeat="status in order_status"
+                             value="{{status.filter_id}}"
+                         >
+                         {{status.status_title}}
+                         </option>
+                     </select>
+                   </div>
+                 </div>
+               
+               </div>
+                 <div class="card" ng-if="!is_loading && payout.orders.length > 0" ng-repeat="(key, value) in payout.orders | filter:ordersearch" >
+                     <div class="item item-divider item-divider-custom">
+                         {{ ::"Order" | translate:"xdelivery" }}# {{value.order_number}}
+                         <span class="pull-right">
+                             {{value.order_status}}
+                             <span ng-if="value.is_return_request != 0">
+                                 ({{ value.is_return_request_message }})
+                             </span>
+                         </span>
+                     </div>
+                     <div class="item item-custom">
+                         <span ng-if="value.is_managed!=1" class="pull-right badge badge-assertive">{{ ::"New" | translate:"xdelivery" }}</span>
+                         <div class="row">
+                             <div class="col-40">
+                             {{ ::"Items" | translate:"xdelivery" }}</div>
+                             <div class="col-60">: {{value.total_qty}}</div>
+                         </div>
+                         <div class="row">
+                             <div class="col-40">
+                             {{ ::"Customer" | translate:"xdelivery" }}</div>
+                             <div class="col-60">: {{value.customer_firstname}} {{value.customer_lastname}}</div>
+                         </div>
+                         <div class="row">
+                             <div class="col-40">
+                             {{ ::"Amount" | translate:"xdelivery" }}</div>
+                             <div class="col-60">: 
+                             {{value.total_amount_with_currency}}</div>
+                         </div>
+                         <div class="row">
+                             <div class="col-40">
+                             {{ ::"Order Date" | translate:"xdelivery" }}</div>
+                             <div class="col-60">: {{value.order_date}}</div>
+                         </div>
+                         <div class="row">
+                             <div class="col-40">
+                             {{ ::"Delivery Type" | translate:"xdelivery" }}</div>
+                             <div class="col-60">: {{value.delivery_method}}</div>
+                         </div>
+                         <div class="row">
+                             <div class="col col-50">
+                                 <button ng-click="orderDetails(value)" class="ifon-left ion-sb-list1 button button-block button-balanced">{{ ::" Manage" | translate:"xdelivery" }}</button>
+                             </div>                         
+                             <div class="col col-50">
+                                 <button ng-click="printReceipet(value)" class="ifon-left ion-ios-printer-outline button button-block button-positive" ng-disabled="!printerAvailable">{{ ::" Print" | translate:"xdelivery" }}</button>
+                             </div>
+                         </div>
+         
+                     </div>
+                 </div>
+         
+                 <ion-list class="card"
+                             ng-if="!is_loading && payout.orders.length == 0">
+                     <ion-item class="item-custom">
+                         <P class="text-center">
+                         {{ ::"No order yet" | translate:"xdelivery" }}!</P> 
+                     </ion-item>
+                 </ion-list>
+         </div>
+     </ion-content>
+    
+ </ion-view>
+ 

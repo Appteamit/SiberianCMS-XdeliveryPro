@@ -71,7 +71,13 @@
                       ng-show="(key == 0 || ((key > 0) && is_display_all_address))"
                       class="item-custom radio-custom"
                       ng-if="payout.address.length && !is_loading" ng-repeat="(key, address) in payout.address"> 
-                       {{key+1}}. {{address.customer_name}}, {{address.phone_number}},<br>   {{address.address}}, <br>{{address.locality}}, {{address.city}}, <br>{{address.pincode}}
+                       <span> {{address.customer_name}},</span>
+                      <span>{{address.phone_number}},<span>
+                      <span><br>   {{address.address}},</span>
+                      <span ng-if="settings.is_enable_address_two"><br>   {{address.address_two}},</span>
+                      <span ng-if="settings.is_enable_locality"><br>{{address.locality}},</span>
+                      <span ng-if="settings.is_enable_city">{{address.city}},</span>
+                        <br>{{address.pincode}}
           </ion-radio>
         
           <p ng-if="payout.address.length > 1" class="text-right" ng-click="showHideAddress()">

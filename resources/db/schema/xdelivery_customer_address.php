@@ -55,6 +55,12 @@ $schemas['xdelivery_customer_address'] = [
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
     ],
+    'address_two' => [
+        'type' => 'text',
+        'is_null' => false,
+        'charset' => 'utf8',
+        'collation' => 'utf8_unicode_ci',
+    ],
     'locality' => [
         'type' => 'varchar(255)',
         'is_null' => false,

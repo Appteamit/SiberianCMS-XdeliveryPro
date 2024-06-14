@@ -6,8 +6,9 @@ angular.module('starter')
         $scope.value_id = Xdelivery.value_id = $stateParams.value_id;
         $scope.is_loading = false;
         $scope.payout = {};
-        $scope.settings = {};
+        $scope.settings = {};                
         $scope.order_filter = {days_range_filter:'3',order_status_filter:'all'};
+        $scope.additional_info = {value_id:$scope.value_id,order_id:0,tracking_type:0,tracking_number_url:null,admin_remark:null};
 
      angular.extend(this, $controller('XdeliveryProductCommanController', {
             Dialog: Dialog,
@@ -186,7 +187,7 @@ $scope.userType = function () {
   
 
     var stop = $interval(function() {
-        if ($scope.autoloader) {
+        if ($scope.autoloader && $scope.is_admin) {
             $scope.is_loading = true;
             Loader.show();
             $scope.adminOrderQueue();
@@ -200,7 +201,8 @@ $scope.userType = function () {
             $scope.audio = new Audio("https://sae.appteam.it" + "/app/local/modules/Xdelivery/resources/sounds/default_sound.mp3");     
             $scope.audio.play();
         }     
-    };
+    };    
+
     /**
      * details
      */
@@ -265,7 +267,7 @@ $scope.userType = function () {
                                 sunmiInnerPrinter.setAlignment(0,function (success) {
                                     sunmiInnerPrinter.printString("Order"+"#"+$scope.order_info.order_number+ "\n",function (success) {
                                         sunmiInnerPrinter.printString("Order Status"+":"+$scope.order_info.order_status +"\n",function (success) { 
-                                            sunmiInnerPrinter.printString("Order At"+":" +$scope.order_info.order_date+ "\n",function (success) {
+                                            sunmiInnerPrinter.printString("Order Date"+":" +$scope.order_info.order_date+ "\n",function (success) {
                                                 sunmiInnerPrinter.printString("--------------------------------" + "\n",function (success) {
                                                     // Client or Customer Info  
                                                     if ($scope.settings.enable_print_customer_details==1) {
@@ -452,46 +454,71 @@ $scope.userType = function () {
             scope: $scope,
             animation: 'slide-in-right-left'        
         }).then(function(modal) {
-
-           Xdelivery
-            .findOrderById(order.order_id)
-            .then(function (data) {
-              $scope.order_info = data.order;
-              $scope.settings = Xdelivery.settings;
-              if($scope.order_info.delivery_method == 'pickup'){ 
-                 if($scope.settings.enable_to_pickup){
-                      if($scope.settings.enable_date_to_pickup){
-                          $scope.is_allow_select_date = true;
-                      }
-                      if($scope.settings.enable_time_to_pickup){
-                          $scope.is_allow_select_time = true;
-                      }            
-                 }               
-              }else{
-                  if($scope.settings.enable_to_deliver){
-                      if($scope.settings.enable_date_to_deliver){
-                          $scope.is_allow_select_date = true;
-                      }
-                      if($scope.settings.enable_time_to_deliver){
-                          $scope.is_allow_select_time = true;
-                      }             
-                 }
-              }
-              $scope.manage_order_status={update_order_status:data.order_status,update_payment_status:data.payment_status,order_id:order.order_id};
-            }, function (error) {
-                $scope.isLoading = false;
-                Dialog.alert($translate.instant("Error", "xdelivery"), error.message, $translate.instant("OK", "xdelivery") , -1);
-            })
-            .then(function () { // Finally!
-                $scope.isLoading = false;
-                 Loader.hide(); 
-            });
-           
+          $scope.findOrderById(order);
           $scope.modalOrderDetails = modal;
           $scope.modalOrderDetails.show();
         });
     };
 
+    $scope.findOrderById = function (order){
+        console.log("Find Order By Id");
+        Loader.show();
+        $scope.isLoading = true;
+        Xdelivery
+        .findOrderById(order.order_id)
+        .then(function (data) {
+          $scope.order_info = data.order;          
+          $scope.settings = Xdelivery.settings;
+          if($scope.order_info.delivery_method == 'pickup'){ 
+             if($scope.settings.enable_to_pickup){
+                  if($scope.settings.enable_date_to_pickup){
+                      $scope.is_allow_select_date = true;
+                  }
+                  if($scope.settings.enable_time_to_pickup){
+                      $scope.is_allow_select_time = true;
+                  }            
+             }               
+          }else{
+              if($scope.settings.enable_to_deliver){
+                  if($scope.settings.enable_date_to_deliver){
+                      $scope.is_allow_select_date = true;
+                  }
+                  if($scope.settings.enable_time_to_deliver){
+                      $scope.is_allow_select_time = true;
+                  }             
+             }
+          }
+          $scope.manage_order_status={update_order_status:data.order_status,update_payment_status:data.payment_status,order_id:order.order_id};
+        //   Additional info
+        $scope.additional_info.order_id = $scope.order_info.order_id;
+        $scope.additional_info.tracking_type = $scope.order_info.tracking_type;
+        $scope.additional_info.tracking_number_url = $scope.order_info.tracking_number_url;
+        $scope.additional_info.admin_remark = $scope.order_info.admin_remark;
+        }, function (error) {
+            $scope.isLoading = false;
+            Dialog.alert($translate.instant("Error", "xdelivery"), error.message, $translate.instant("OK", "xdelivery") , -1);
+        })
+        .then(function () { // Finally!
+            $scope.isLoading = false;
+             Loader.hide(); 
+        });
+    }
+    $scope.saveAdditionalInfo = function (){         
+         $scope.is_loading = true;
+         Loader.show();
+         Xdelivery.saveAdditionalInfo($scope.additional_info)
+         .success(function (data) {
+             Dialog.alert('Success',data.message,'Ok');             
+         })
+         .error(function () {
+             $scope.is_loading = false;
+             Loader.hide();
+         })
+         .finally(function () {
+             $scope.is_loading = false;
+             Loader.hide();
+         });
+    }
     /**
      * close details modal 
      */
@@ -538,7 +565,7 @@ $scope.userType = function () {
          
          
     }
-    $scope.updatePaymentStatus = function (){
+    $scope.updateOrderPaymentStatus = function (order){
          console.log("Update Order Status");
          console.log($scope.manage_order_status);
                  // confirmPopup
@@ -551,15 +578,14 @@ $scope.userType = function () {
                 $scope.is_loading = true;
                 Loader.show();
                 // confirmPopup end
-                Xdelivery.updatePaymentStatus($scope.manage_order_status)
+                Xdelivery.updateOrderPaymentStatus($scope.manage_order_status.update_payment_status,$scope.manage_order_status.order_id)
                 .success(function (data) {
                     Dialog.alert(
                         'Success',
                         data.message,
                         'Ok'
                     );
-                    console.log("Order Sttus Updated");
-                    console.log(data);
+                    $scope.findOrderById(order);
                 })
                 .error(function () {
                     $scope.is_loading = false;

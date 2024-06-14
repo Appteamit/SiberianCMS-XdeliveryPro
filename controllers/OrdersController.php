@@ -757,15 +757,14 @@ class Xdelivery_OrdersController extends Application_Controller_Default
             $status = $this->getRequest()->getParam('status');
                 try {
  
-                   $modal = (new Xdelivery_Model_OrderTransactions())
-                        ->find(['id' => $order_id]);
-                    $modal->setStatus($status);
-                    $modal->save();
-                       
+                    (new Xdelivery_Model_OrderTransactions())->find(['order_id' => $order_id])
+                    ->setStatus(trim($status))                    
+                    ->save();                    
+                    // Check if the status is correctly updated
                     $payload = [
                         'success' => true,
                         'message' => p__('xdelivery', 'Update Status successfully'),
-                    ];
+                    ];                    
 
                     } catch (\Exception $e) {
                     $payload = [

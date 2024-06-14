@@ -7,10 +7,18 @@ $settingModel = (new Xdelivery_Model_Settings())->find(['value_id' => $value_id 
 $settings = $settingModel->getData();
 $is_vat = ($order['sub_amount_with_vat'] == 0 || $order['sub_amount_with_vat'] == null) ? false : true;
 $currency = $this->getApplication()->getCurrency();
+$order['sub_amount']=Xdelivery_Model_Utility::displayPrice($order['sub_amount'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
+$order['total_amount']=Xdelivery_Model_Utility::displayPrice($order['total_amount'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
+$order['delivery_cost']=Xdelivery_Model_Utility::displayPrice($order['delivery_cost'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
+$order['tips_amount']=Xdelivery_Model_Utility::displayPrice($order['tips_amount'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
+$order['discount_amount']=Xdelivery_Model_Utility::displayPrice($order['discount_amount'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
+$order['total_tax']=Xdelivery_Model_Utility::displayPrice($order['total_tax'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
 if ($settings['discount_tax_calculation'] == 1) {                     
     $order['discounted_amount'] = ($is_vat) ? $order['sub_amount'] - $order['discount_amount']+$order['total_tax'] : $order['sub_amount'] - $order['discount_amount'] ;
+    $order['discounted_amount']=Xdelivery_Model_Utility::displayPrice($order['discounted_amount'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
 }else {                    
    $order['discounted_amount'] = ($is_vat) ? $order['sub_amount'] - $order['discount_amount'] + $order['total_tax'] : $order['sub_amount'] - $order['discount_amount'] + $order['total_tax'] ;
+   $order['discounted_amount']=Xdelivery_Model_Utility::displayPrice($order['discounted_amount'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
 }
 ?>
 <div class="third-main-panel">
@@ -73,11 +81,11 @@ if ($settings['discount_tax_calculation'] == 1) {
                                 </tr>
                                 <tr>
                                     <th><?php echo p__("xdelivery","Delivery Cost"); ?></th>
-                                    <td><?php echo $this->getApplication()->getCurrency().' '.$order['delivery_cost']; ?></td>
+                                    <td><?php echo $order['delivery_cost']; ?></td>
                                 </tr>
                                 <tr>
                                     <th><?php echo p__("xdelivery","Gratuity Amount"); ?></th>
-                                    <td><?php echo $this->getApplication()->getCurrency().' '.$order['tips_amount']; ?></td>
+                                    <td><?php echo $order['tips_amount']; ?></td>
                                 </tr>
                                 
                                 <tr>
@@ -148,7 +156,7 @@ if ($settings['discount_tax_calculation'] == 1) {
                                     <th><?php echo p__("xdelivery","Discount"); ?></th>
                                     <td>
                                         <?php if($order['discount_amount'] > 0) 
-                                            { echo $this->getApplication()->getCurrency().' '.$order['discount_amount']; ?> 
+                                            { echo $order['discount_amount']; ?> 
                                                 (<?php  echo p__("xdelivery","%s apply", $order['discount_code']);?> ) 
                                             <?php }else{
                                             echo $this->getApplication()->getCurrency().' 0';
@@ -159,7 +167,7 @@ if ($settings['discount_tax_calculation'] == 1) {
                                     <th><?php echo p__("xdelivery","Discounted Amount"); ?></th>
                                     <td>
                                         <?php if($order['discount_amount'] > 0) 
-                                            { echo $this->getApplication()->getCurrency().' '.$order['discounted_amount']; ?>                                                 
+                                            { echo $order['discounted_amount']; ?>                                                 
                                             <?php }else{
                                             echo $this->getApplication()->getCurrency().' 0';
                                         } ?>
@@ -168,7 +176,7 @@ if ($settings['discount_tax_calculation'] == 1) {
                                 <?php if (!$is_vat) { ?>
                                     <tr>
                                         <th><?php echo p__("xdelivery","Tax"); ?></th>
-                                        <td><?php echo $this->getApplication()->getCurrency().' '.$order['total_tax']; ?></td>
+                                        <td><?php $order['total_tax']; ?></td>
                                     </tr>    
                                 <?php } ?>
                               
@@ -185,13 +193,13 @@ if ($settings['discount_tax_calculation'] == 1) {
                                 <?php if (!$is_vat) { ?>
                                     <tr>
                                         <th><?php echo p__("xdelivery","Tax"); ?></th>
-                                        <td><?php echo $this->getApplication()->getCurrency().' '.$order['total_tax']; ?></td>
+                                        <td><?php echo $order['total_tax']; ?></td>
                                     </tr>    
                                 <?php } ?>
                                  <tr>
                                     <th><?php echo p__("xdelivery","Discount"); ?></th>
                                     <td><?php if($order['discount_amount'] > 0) 
-                                      { echo $this->getApplication()->getCurrency().' '.$order['discount_amount']; ?> 
+                                      { echo $order['discount_amount']; ?> 
                                       (<?php  echo p__("xdelivery","%s apply", $order['discount_code']);?> ) 
                                       
                                   <?php }else{
@@ -214,7 +222,7 @@ if ($settings['discount_tax_calculation'] == 1) {
                                 <?php } ?>
                                 <tr>
                                     <th><?php echo p__("xdelivery","Order Total"); ?></th>
-                                    <td><?php echo $this->getApplication()->getCurrency().' '.$order['total_amount']; ?></td>
+                                    <td><?php echo $order['total_amount']; ?></td>
                                 </tr>
                                <tr>
                                     <th><?php echo p__("xdelivery","Payment Mode"); ?></th>
@@ -305,9 +313,15 @@ if ($settings['discount_tax_calculation'] == 1) {
                                             </td>
                                         <td><?php echo $value['qty'] ?>
                                         </td>
-                                        <td><?php echo $this->getApplication()->getCurrency().' '.$value['price_incl_tax'] ?> + <?php echo $value['choice_price'] ?>
+                                        <td>                                            
+                                            <?php
+                                             echo Xdelivery_Model_Utility::displayPrice($value['price_incl_tax'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']).'+'
+                                             .Xdelivery_Model_Utility::displayPrice($value['choice_price'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
+                                             ?>
                                         </td>
-                                        <td><?php echo $this->getApplication()->getCurrency().' '.$value['total_incl_tax'] ?>
+                                        <td><?php                                         
+                                        echo Xdelivery_Model_Utility::displayPrice($value['total_incl_tax'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
+                                        ?>
                                         </td>
                                     </tr>
                                    <?php } ?>
@@ -349,8 +363,8 @@ if ($settings['discount_tax_calculation'] == 1) {
                                         <td><?php echo $key+1; ?></td>
                                         <td>
                                             <b>#<?php echo $value['id'] ?></b>
-                                         </td>
-                                        <td><?php echo $this->getApplication()->getCurrency().' '.$value['amount'] ?>
+                                         </td>                                        
+                                        <td><?php echo Xdelivery_Model_Utility::displayPrice($value['amount'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']) ?>
                                         </td>
                                         <td><?php echo $value['status'] ?>  </td>
                                         <td><?php echo $value['payment_method'] ?>  </td>
@@ -418,9 +432,7 @@ if ($settings['discount_tax_calculation'] == 1) {
                                             <label for="admin_remark"><?php echo p__('xdelivery', 'Remark') ?></label>
                                         </div>
                                         <div class="col-sm-8">
-                                            <textarea cols="12" rows="6" class="required input-flat" name="admin_remark" id="admin_remark">
-                                                <?php echo $order['admin_remark']; ?>
-                                            </textarea>
+                                            <textarea cols="12" rows="6" class="required input-flat" name="admin_remark" id="admin_remark"><?php echo $order['admin_remark']; ?></textarea>
                                         </div>
                                     </div>
 
@@ -582,9 +594,9 @@ if ($settings['discount_tax_calculation'] == 1) {
     });
 
 
-    setTimeout(function() {
-        $('#admin_remark').ckeditor(ckeditor_config.default);
-    }, 100);   
+    // setTimeout(function() {
+    //     $('#admin_remark').ckeditor(ckeditor_config.default);
+    // }, 100);   
 
     $('#orderAdminForm').submit(function() {
         if($(this).valid()) {
