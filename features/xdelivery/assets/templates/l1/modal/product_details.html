@@ -201,12 +201,14 @@
             </div>
            
              <!-- Description -->
-            <div class="item item-divider item-divider-custom remove-border" ng-if="product_details.description!=''">
-                {{ ::"Description" | translate:"xdelivery" }}
-            </div>
-            <div class="item item-body item-custom remove-border"  ng-if="product_details.description!=''">
-                <p  ng-bind-html="product_details.description | trusted_html" sb-a-click></p>
-            </div>
+            <!-- Description -->
+<div class="item item-divider item-divider-custom remove-border" ng-if="product_details.description != ''">
+    {{ ::"Description" | translate:"xdelivery" }}
+</div>
+<div class="item item-body item-custom remove-border" ng-if="product_details.description != ''">    
+    <p compile-template ng-bind-html="product_details.description" ></p>   
+</div>
+
 
 
                <!-- Description -->
@@ -218,7 +220,7 @@
                 <h2>{{product_details.brand_name}}</h2>                 
             </div>
              <div class="item item-custom item-body remove-border" ng-if="product_details.brand_id > 0">
-               <p sb-html="product_details.brand_desc"></p>                  
+               <p sb-html="product_details.brand_desc"></p>                                 
             </div>
 
 
@@ -230,5 +232,5 @@
             font-size: 16px;
             font-weight: 600;
         }
-    </style>
+    </style> 
 </ion-modal-view>

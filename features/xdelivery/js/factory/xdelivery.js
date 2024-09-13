@@ -422,6 +422,15 @@ angular
                 refresh: true
             });
         };  
+        factory.findAllOrderByCustomerId = function () {
+            return $pwaRequest.post('xdelivery/mobile_order/find-all-order-by-customer-id', {
+                urlParams: {
+                    value_id: factory.value_id,                    
+                },                              
+                cache: false,
+                refresh: true
+            });
+        };  
         factory.userType = function () {
             return $pwaRequest.post('xdelivery/mobile_view/user-type', {
                 urlParams: {

@@ -37,5 +37,8 @@ class Xdelivery_Model_OrderTransactions extends Core_Model_Default
     {
         return $this->getTable()->countAllForApp($valuesId, $params);
     }
-
+    public function getOrderPaymentMethodName($order_id){
+        return $this->getTable()->getOrderPaymentMethodName($order_id);
+    }
+    
 }

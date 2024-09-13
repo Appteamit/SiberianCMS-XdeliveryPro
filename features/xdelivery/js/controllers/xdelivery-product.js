@@ -2,12 +2,13 @@
  * Xdelivery Home version 1 controllers
  */
 angular.module('starter')
-    .controller('XdeliveryProductController', function (Dialog, Loader, $timeout, $controller, $ionicModal, Customer, $rootScope, SB, $scope, $state, $stateParams, $translate, Xdelivery) {
+    .controller('XdeliveryProductController', function (Dialog, Loader, $timeout, $controller, $ionicModal, Customer, $rootScope, SB, $scope, $state, $stateParams,$sce, $translate, Xdelivery) {
        angular.extend(this, $controller('XdeliveryProductCommanController', {
             $ionicModal: $ionicModal,
             Dialog: Dialog,
             $rootScope: $rootScope,
             $scope: $scope,
+            $sce:$sce,
             $stateParams: $stateParams
         }));
 
@@ -144,7 +145,7 @@ angular.module('starter')
                 });
         }
  
-}).controller('XdeliveryProductCommanController', function (Dialog, Loader, Customer, $ionicModal, $filter, $timeout, $rootScope, SB, $scope, $state, $stateParams, $translate, Xdelivery, $ionicPopup) {
+}).controller('XdeliveryProductCommanController', function (Dialog,$window, Loader, Customer, $ionicModal,$sce, $filter, $timeout, $rootScope, SB, $scope, $state, $stateParams, $translate, Xdelivery, $ionicPopup) {
         $scope.value_id = Xdelivery.value_id = $stateParams.value_id;
         $scope.is_loading = false;
         $scope.payout = {};
@@ -163,6 +164,8 @@ angular.module('starter')
                     }
                     $scope.product_details.fixed_image = $scope.product_details.image;
                     $scope.payout.cart_count = $scope.product_details.cart_count;
+                    $scope.product_details.description=$sce.trustAsHtml($scope.product_details.description);
+                
                     Loader.hide();
                     $scope.is_loading = false; 
                 }, 300);
@@ -199,8 +202,24 @@ angular.module('starter')
        /**
          * close details modal 
          */
-        $scope.closeModalProductDetails = function (){
+        $scope.closeModalProductDetails = function ($event){
+            console.log("Method called update");
             $scope.modalProductDetails.remove();
+            // Extract attributes directly from the event target
+            console.log($event);
+        var target = $event.currentTarget;
+        console.log(target);
+        var state = target.getAttribute('data-state');
+        var offline = target.getAttribute('data-offline');
+        var params = target.getAttribute('data-params');
+
+        console.log("Closing modal and moving to state:", state);
+        console.log("Closing modal and moving to params:", params);
+
+        // Close modal logic here (if needed)
+        
+        // Send message to parent frame
+        $window.parent.postMessage(`state-go=state:${state},offline:${offline},${params}`, '*');
         }
 
         /**

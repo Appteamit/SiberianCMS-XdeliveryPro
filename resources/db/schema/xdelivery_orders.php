@@ -221,6 +221,68 @@ $schemas['xdelivery_orders'] = [
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
     ],
+    'order_fetched_count' => [
+
+        'type' => 'int(11) unsigned',
+
+        'default' => '0'
+
+    ],
+    'order_fetch_time' => [
+
+        'type' => 'datetime',
+        'is_null' => true,
+
+    ],
+
+    'order_response_time' => [
+
+        'type' => 'datetime',
+        'is_null' => true,
+
+    ],
+    'order_status' => [
+
+        'type' => 'tinyint(5)',
+
+        'default' => '3'
+
+    ],
+    'order_receipt_code' => [
+
+        'type' => 'text',
+
+        'is_null' => true,
+
+        'charset' => 'utf8',
+
+        'collation' => 'utf8_unicode_ci'
+
+	],
+
+	'order_code_range' => [
+
+        'type' => 'tinytext',
+
+        'is_null' => true,
+
+        'charset' => 'utf8',
+
+        'collation' => 'utf8_unicode_ci'
+
+	],
+	'submitted_number' => [
+
+        'type' => 'varchar(10)',
+
+        'is_null' => true,
+
+        'charset' => 'utf8',
+
+        'collation' => 'utf8_unicode_ci'
+
+	],
+	
     'created_at' => [
         'type' => 'datetime',
     ],

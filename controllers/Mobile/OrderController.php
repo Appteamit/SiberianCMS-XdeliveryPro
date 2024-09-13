@@ -112,6 +112,105 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
 
         $this->_sendJson($payload);
     }
+    public function findAllOrderByCustomerIdAction() {              
+         try {
+            // print_r($this->getRequest()->getParam('value_id'));exit;
+               if($value_id = $this->getRequest()->getParam('value_id')){
+                    $customerId = $this->_getCustomerId(true);
+                    $status = (new Xdelivery_Model_Orders)->getStatus();
+                    $settingModel = (new Xdelivery_Model_Settings())->find(['value_id' => $value_id ]);                    
+                    $settings = $settingModel->getData();
+                    $currency = Core_Model_Language::getCurrencySymbol();
+                    $params = $this->getRequest()->getParams();
+                    $customerId = $this->_getCustomerId(true);
+
+                    $orders = (new Xdelivery_Model_Orders())
+                            ->findAllOrderByCustomerId($customerId);
+                    // $orders = (new Xdelivery_Model_Orders())->findAllOrder($params);
+                    // print_r($orders);exit;
+                    $ordersJson = [];
+                    foreach ($orders as $order) {
+                        $data = $order->getData();
+                        $order_status = $data['order_status'];  
+            
+                        $data['order_date']=  date($settings['date_format']. ' '. $settings['time_format'], strtotime($data['created_at']));
+                        $data['order_status'] = $status[$data['order_status']];
+                        $data['order_status']  = ucfirst(p__('xdelivery', $data['order_status']));
+                        $data['currency'] = $currency;
+                        $data['delivery_method'] = $data['delivery_method'] == 'delivery' ? p__('xdelivery', 'Home  Delivery') : p__('xdelivery', 'Pick-up');
+                        $data['payment_status'] = $data['payment_status'] == 'success' ? p__('xdelivery', 'Paid') : p__('xdelivery', 'Unpaid');
+
+                        $data['sub_amount_with_currency'] = Xdelivery_Model_Utility::displayPrice($data['sub_amount'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
+                        $data['total_tax_with_currency'] = Xdelivery_Model_Utility::displayPrice($data['total_tax'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
+                        $data['delivery_cost_with_currency'] = Xdelivery_Model_Utility::displayPrice($data['delivery_cost'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
+                        $data['discount_amount_with_currency'] = Xdelivery_Model_Utility::displayPrice($data['discount_amount'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
+                        $data['tips_amount_with_currency'] = Xdelivery_Model_Utility::displayPrice($data['tips_amount'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
+                        $data['total_amount_with_currency'] = Xdelivery_Model_Utility::displayPrice($data['total_amount'], $currency, $settings['number_of_decimals'], $settings['decimal_separator'], $settings['thousand_separator'], $settings['currency_position']);
+                        $data['is_return_request'] = (integer) $data['is_return_request'];
+
+                        if($data['is_return_request'] && $order_status != 'refunded'){
+                            if($data['is_return_request'] == 1){
+                                $data['is_return_request_message'] =  p__('xdelivery', 'Return request');
+                            }
+                            if($data['is_return_request'] == 2){
+                                $data['is_return_request_message'] =  p__('xdelivery', 'Return processing');
+                            }
+                            if($data['is_return_request'] == 3){
+                                $data['is_return_request_message'] =  p__('xdelivery', 'Return Rejected');
+                            }
+                        }else{
+                            $data['is_return_request']  = 0 ;   
+                        }
+
+                        $ordersJson[] = $data;
+
+                    }
+                // Admin order queue filter lables
+                $order_queue_filter[]=['filter_id'=>'3','date_range'=>__("Past 3 Days")];              
+                $order_queue_filter[]=['filter_id'=>'7','date_range'=>__("Past 7 Days")];                            
+                $order_queue_filter[]=['filter_id'=>'15','date_range'=>__("Past 15 Days")];              
+                $order_queue_filter[]=['filter_id'=>'30','date_range'=>__("Past 30 Days")];              
+                $order_queue_filter[]=['filter_id'=>'60','date_range'=>__("Past 60 Days")];     
+                $order_queue_filter[]=['filter_id'=>'90','date_range'=>__("Past 90 Days")];     
+                $order_queue_filter[]=['filter_id'=>'0','date_range'=>__("All Time")];  
+
+                $order_payment_status[]=['payment_status_id'=>'pending','status_title'=>__("Pending")];              
+                $order_payment_status[]=['payment_status_id'=>'success','status_title'=>__("Success")];                            
+                $order_payment_status[]=['payment_status_id'=>'failed','status_title'=>__("Failed")];      
+                                        
+                $status = (new Xdelivery_Model_Orders)->getStatus();
+                foreach ($status as $key => $value) {
+                    $order_status_filter[]=['filter_id'=>$key,'status_title'=>$value];
+                }
+                $order_status_filter[]=['filter_id'=>'all','status_title'=>'All'];
+                $order_max_id=35;
+                $payload = [
+                    'success' => true,
+                    'orders' => $ordersJson,
+                    'settings' => $settings,
+                    'order_queue_filter' => $order_queue_filter,
+                    'order_payment_status' => $order_payment_status,
+                    'order_status' => $order_status_filter,
+                    'params' => $params,
+                    'order_max_id' => $order_max_id,
+                    ];
+                
+                }else{
+                    $payload = [
+                        'error' => true,
+                        'message' => p__('xdelivery', 'Values required')
+                    ];  
+                }
+
+            } catch (\Exception $e) {
+            $payload = [
+                "error" => true,
+                "message" => $e->getMessage()
+            ];
+        }
+
+        $this->_sendJson($payload);
+    }
 
 
     public function _payStripe($secret_key, $charge_array){
@@ -260,8 +359,8 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
      *
      */
     public function saveAction() {
-        try {
-
+        try {            
+            
             if($param = $this->getRequest()->getBodyParams()){
                 $customerId = $this->_getCustomerId(true);
                 $value_id = $this->getRequest()->getParam('value_id');
@@ -308,7 +407,7 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
                         } 
                     } 
                 }                
-         
+                
                 $orderModel = (new Xdelivery_Model_Orders())
                         ->setValueId($value_id)
                         ->setOrderNumber(time())
@@ -348,7 +447,7 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
                         }                     
 
                     }    
-                        
+                    
                     if(!empty($address)){
 
                         $customer_street=$address['address'];
@@ -481,7 +580,7 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
                            ->save();
 
                 }
-
+                
                 $settingModel = (new Xdelivery_Model_Settings())->find(['value_id' => $value_id ]);
                 $settings = $settingModel->getData();
 
@@ -542,23 +641,9 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
                 }
                 
                 $this->_sendCustomerOrderEmail($mailParams);
-
-                // if(!empty($settings['whatsender_key']) && !empty($param['customer']['phone_number'])){
-                //     //Whatsapp sent                   
-                   
-                //     if(!empty($mailParams['message'])){
-                //         $message = str_replace("email","message", $message);
-                //          $message = p__('xdelivery',  $message , $this->getApplication()->getName());
-
-                //         $wParams = ['phone' => $param['customer']['phone_number'], 'message' =>  addslashes($message), 'sender' => $settings['whatsender_sender']];
-                       
-                //         $whatsapp_status = (new Xdelivery_Model_Whatsender)->sent($settings['whatsender_key'], $wParams);
-                //     }
-
-                //     $wParams = ['phone' => $param['customer']['phone_number'], 'message' => addslashes($mailParams['subject']), 'sender' => $settings['whatsender_sender']];
-                   
-                //     $whatsapp_status = (new Xdelivery_Model_Whatsender)->sent($settings['whatsender_key'], $wParams);
-                // }
+                
+                
+               
                 
 
                 if(!in_array($paymentMethod->getMethodType(), $onlineGateways)){
@@ -588,7 +673,7 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
                 'notification_order_status'=> $order['order_status'],                            
                 'value_id' => $value_id
             ])->getData();  
-            $admins_list = (new Xdelivery_Model_Admins())->findAll(['store_id' => $order['store_id']])->toArray();   
+            $admins_list = (new Xdelivery_Model_Admins())->findAll(['value_id' => $value_id])->toArray();   
             $tagLabels = [
                 "@@order_no@@",
                 "@@order_date@@",
@@ -635,9 +720,33 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
             $notification_logger['value_id']=$order['value_id'];          
             $notification_logger['order_id']=$order['order_id'];   
             // dd($settings, $order, $customer, $tagLabels, $tagValues, $template);
+            // Send mail to admin
+            if ($template['notification_is_admin'] && $template['notification_admin_is_email']) { //Email to Admin
+                $emailBody=$template['notification_admin_email_body'];                  
+                foreach ($admins_list as $key => $value) {
+                    $admin = (new Customer_Model_Customer())->find(['customer_id' => $value['customer_id']]);                         
+                    $tagValues['admin_name'] = $admin->getFirstname().' '.$admin->getLasttname();
+                    $tagValues['admin_email'] = $admin->getEmail();
+                    $tagValues['admin_phone'] = $admin->getMobile();
+                    
+                    $emailBody = str_replace($tagLabels, $tagValues, $emailBody);
+                    $mailPrams['customer_email'] = $admin->getEmail();//For Admin
+                    $mailPrams['store_name'] = $order['store_name'];
+                    $mailPrams['store_email'] = $order['store_email'];
+                    $mailPrams['subject'] = $template['notification_admin_email_subject'];
+                    $mailPrams['message'] = $emailBody;                  
+                    $this->_sendEmail($mailPrams); 
+                                        
+                    $notification_logger['type']="email";
+                    $notification_logger['status']='success';
+                    $notification_logger['user_id']=$admin->getCustomerId();;
+                    $notification_logger['additional_info']=$tagValues['message'];
+                    (New Xdelivery_Model_Notificationlogs)->setData($notification_logger)->save();
+                }                   
+            }
             /*
                 Whatsender
-            */  
+            */              
             if ($settings['is_enable_whatsender']) {   
                 $pattern = '/^\+[0-9]{11}$/';// The pattern checks for a string starting with + and followed by 11 digits                     
                 $customer_phone = $order['customer_phone'];
@@ -783,6 +892,7 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
                     'whatsapp_status' => $whatsapp_status,
                     'stripeData' => $stripeData,
                     'is_stripe' => $is_stripe,
+                    'admins_list' => $admins_list,
                     'payment_status' => $payment_status
                     ];
             
@@ -797,7 +907,7 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
             $payload = [
                 "error" => true,
                 "message" => $e->getMessage(),
-                "e" => $e
+                "e" => $e,                
             ];
         }
 

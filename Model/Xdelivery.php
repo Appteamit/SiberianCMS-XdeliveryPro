@@ -28,7 +28,10 @@ class Xdelivery_Model_Xdelivery extends Core_Model_Default
             [
                 "state" => "xdelivery-home",
                 "offline" => false,
-                "params" => []             
+                
+                'params' => [
+                    'value_id' => $valueId,
+                ],          
             ],
         ];
 

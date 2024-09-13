@@ -10,9 +10,10 @@ angular.module('starter')
         $scope.settings = Xdelivery.settings;
 
         $scope.loadContent = function () {
+            console.log("This is the right point");
             $scope.is_loading = true;
             Xdelivery
-            .findAllOrders()
+            .findAllOrderByCustomerId()
             .then(function (data) {
                 $scope.payout = data;
             }, function (error) {

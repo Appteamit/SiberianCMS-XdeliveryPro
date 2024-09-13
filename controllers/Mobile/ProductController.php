@@ -533,8 +533,8 @@ class Xdelivery_Mobile_ProductController extends Application_Controller_Mobile_D
                 $customerId = $this->_getCustomerId(false);
                 $cart_count = (new Xdelivery_Model_Carts())
                     ->findByDeviceAndUserId($param['value_id'], $customerId, $param['device_uid']);
-                $product['cart_count'] = (int)count($cart_count->toArray());
-
+                $product['cart_count'] = (int)count($cart_count->toArray());                
+                $product['description'] = str_replace('data-offline="false"', 'data-offline="false" href="#" ng-click="closeModalProductDetails($event)"', $product['description']);                                
                 $payload = [
                     'success' => true,
                     'product' => $product,

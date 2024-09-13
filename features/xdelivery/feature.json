@@ -131,6 +131,7 @@
     "js/controllers/xdelivery-orders.js",
     "js/controllers/xdelivery-ewallet.js",
     "js/controllers/xdelivery-store.js",
+    "js/directives/compileTemplate.js",
     "js/factory/xdelivery.js",
     "scss/xdelivery.scss"
   ],

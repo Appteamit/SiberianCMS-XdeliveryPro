@@ -57,7 +57,6 @@ class Xdelivery_BrandController extends Application_Controller_Default
             $payload = [
                 'success' => true,
                 'message' => p__('xdelivery', 'Successfully deleted'),
-                'datas' => $datas
             ];
        
         } catch (\Exception $e) {
@@ -103,7 +102,6 @@ class Xdelivery_BrandController extends Application_Controller_Default
               $payload = [
                     'success' => true,
                     'message' => p__('xdelivery', 'Successfully save'),
-                    'datas' => $datas
                 ];
 
             } catch (\Exception $e) {

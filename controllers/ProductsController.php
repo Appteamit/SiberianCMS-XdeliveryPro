@@ -806,7 +806,6 @@ class Xdelivery_ProductsController extends Application_Controller_Default
                             ->setNewTo($row[19])
                             ->setValueId($value_id)
                             ->setIsActive(($row[20]=='Yes'?1:0))
-                            
                             ->setProductSlug($row[0])
                             ->setInStock(1)
                             ->save();

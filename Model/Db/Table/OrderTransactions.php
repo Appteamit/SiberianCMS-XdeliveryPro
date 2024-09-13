@@ -92,5 +92,16 @@ class Xdelivery_Model_Db_Table_OrderTransactions extends Core_Model_Db_Table {
         return $this->_db->fetchCol($select);
     }
 
+    public function getOrderPaymentMethodName($order_id){
+      $select = "SELECT xdelivery_payment_method.label_name FROM `xdelivery_order_transactions` 
+      join xdelivery_payment_method on xdelivery_order_transactions.payment_method_id = xdelivery_payment_method.id
+      WHERE  xdelivery_order_transactions.order_id=$order_id;";
+      $data =  $this->_db->fetchAll($select);
+      if($data){
+        return $data[0]['label_name'];
+      }
+      return '';
+    }
+
 
 }

@@ -106,5 +106,9 @@ $schemas['xdelivery_order_items'] = [
     'tax_amount' => [
         'type' => 'double',
         'default' => 0,
-    ]
+    ],
+    'product_status' => [
+        'type' => 'tinyint(11)',
+        'default' => "1",
+    ],
 ];

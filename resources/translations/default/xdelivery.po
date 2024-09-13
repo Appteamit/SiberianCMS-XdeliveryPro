@@ -2031,6 +2031,10 @@ msgstr "Maximum Qty Per Product"
 msgctxt "xdelivery"
 msgid "Thank you for placing your order with %s. This email is to confirm your order has been placed successfully, and is ready for pickup."
 msgstr "Thank you for placing your order with %s. This email is to confirm your order has been placed successfully, and is ready for pickup."
+# GMT 1600836470.1447
+msgctxt "xdelivery"
+msgid "Enable only pickup"
+msgstr "Enable only pickup"
 
 # GMT 1600836470.1448
 msgctxt "xdelivery"
@@ -3956,4 +3960,358 @@ msgstr "Print customer details on order slip"
 msgctxt "xdelivery"
 msgid ""
 msgstr ""
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "download"
+msgstr "download"
+
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "An error occurred during process. Please try again later."
+msgstr "An error occurred during process. Please try again later."
+
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Printer has been deleted successfully."
+msgstr "Printer has been deleted successfully."
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "An error occurred while deleting the push. Please try again later."
+msgstr "An error occurred while deleting the push. Please try again later."
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "An error occurred while saving. Please try again later."
+msgstr "An error occurred while saving. Please try again later."
+
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Printer name cannot be empty."
+msgstr "Printer name cannot be empty."
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Start fetching orders from cannot be empty."
+msgstr "Start fetching orders from cannot be empty."
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Unique key id cannot be empty."
+msgstr "Unique key id cannot be empty."
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Password cannot be empty."
+msgstr "Password cannot be empty."
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Please select a shop."
+msgstr "Please select a shop."
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Please select INI file."
+msgstr "Please select INI file."
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Please select a currency."
+msgstr "Please select a currency."
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Printer key already exists."
+msgstr "Printer key already exists."
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Printer successfully saved."
+msgstr "Printer successfully saved."
+
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Printers Management"
+msgstr "Printers Management"
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "You need to create stores in order to add printers."
+msgstr "You need to create stores in order to add printers."
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Printers are added already for all the stores."
+msgstr "Printers are added already for all the stores."
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Start Fetching Orders From"
+msgstr "Start Fetching Orders From"
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Printer Name"
+msgstr "Printer Name"
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Unique 5 digits keys"
+msgstr "Unique 5 digits keys"
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Unique 8 digits value"
+msgstr "Unique 8 digits value"
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Select Store"
+msgstr "Select Store"
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Select INI File"
+msgstr "Select INI File"
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Version 3.0"
+msgstr "Version 3.0"
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Version 2.0"
+msgstr "Version 2.0"
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Version 1.0"
+msgstr "Version 1.0"
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "DEPRECATED"
+msgstr "DEPRECATED"
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Add Printer"
+msgstr "Add Printer"
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "You must restart your printer whenever you change the values of the parameters or add a new INI settings file."
+msgstr "You must restart your printer whenever you change the values of the parameters or add a new INI settings file."
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Printers"
+msgstr "Printers"
+
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Printer Id"
+msgstr "Printer Id"
+
+
+
+
+
+Printer Name
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Printer Name"
+msgstr "Printer Name"
+
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Unique key"
+msgstr "Unique key"
+
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Password"
+msgstr "Password"
+
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "INI File"
+msgstr "INI File"
+
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Store Id"
+msgstr "Store Id"
+
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Currency"
+msgstr "Currency"
+
+
+
+
+
+
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "Action"
+msgstr "Action"
+
+
+
+
 

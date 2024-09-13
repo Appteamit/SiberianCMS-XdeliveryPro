@@ -37,7 +37,7 @@ $value_id = (new Xdelivery_Model_Xdelivery())->getCurrentValueId();;
                                                                 class="csv_file required">                                                            
                                                             <div class="save pull-right">
                                                                 <button class="button btn bt_save btn color-blue"                                                    
-                                                                    style="margin-right: 15px; margin-top: 1px;" type="button">
+                                                                    style="margin-right: 15px; margin-top: 1px;" type="submit">
                                                                     <?php echo  p__("xdelivery",'Import CSV'); ?>&nbsp;<i class="fa fa-upload"></i>
                                                                 </button>
                                                             </div>
@@ -92,8 +92,8 @@ $value_id = (new Xdelivery_Model_Xdelivery())->getCurrentValueId();;
 
 <script type="text/javascript">
 $('#importSetupForm').submit(function(e) {
-    $("#mask").show();
     e.preventDefault();
+    $("#mask").show();
     if ($('#csv_file').val() == '') {
         $("#mask").hide();
         return;
@@ -112,7 +112,7 @@ $('#importSetupForm').submit(function(e) {
         console.log("My Reposnse");
         res = JSON.parse(response);
         console.log(res);
-        alert(res.message);
+        
         if (res.success == true) {
             location.reload();
         } else {
