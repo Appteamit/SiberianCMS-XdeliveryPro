@@ -1,2 +1,2 @@
 # SiberianCMS-Xdelivery
-# 3.5.3
+# 3.6.10
