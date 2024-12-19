@@ -2031,10 +2031,6 @@ msgstr "Maximum Qty Per Product"
 msgctxt "xdelivery"
 msgid "Thank you for placing your order with %s. This email is to confirm your order has been placed successfully, and is ready for pickup."
 msgstr "Thank you for placing your order with %s. This email is to confirm your order has been placed successfully, and is ready for pickup."
-# GMT 1600836470.1447
-msgctxt "xdelivery"
-msgid "Enable only pickup"
-msgstr "Enable only pickup"
 
 # GMT 1600836470.1448
 msgctxt "xdelivery"
@@ -4060,6 +4056,10 @@ msgstr "Please select a shop."
 msgctxt "xdelivery"
 msgid "Please select INI file."
 msgstr "Please select INI file."
+# GMT 1600836470.1781
+msgctxt "xdelivery"
+msgid "XML File"
+msgstr "XML File"
 
 
 

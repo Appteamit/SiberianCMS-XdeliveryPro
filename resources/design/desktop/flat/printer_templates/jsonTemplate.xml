@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<GOODCOM_ORDER>
+  <Elements keyword="" value="" type="4" orderType="0" orderId="0" rightAlign="0" display="1" main="1" ver="1.0.1">
+    <Element keyword="create_time" value="15:00 16-08-2022" type="1" orderType="0" orderId="0" rightAlign="1" display="1" main="0" prefix="\rCreated:" />
+    <Element keyword="delivery_type" value="Delivery" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r\3" />
+    <Element keyword="id" value="10006" type="1" orderType="0" orderId="1" rightAlign="1" display="1" main="0" prefix="\r/-\3Order No:" />
+    <Element keyword="products" value="" type="3" orderType="0" orderId="1" rightAlign="1" display="1" main="0" prefix="\r/-">
+      <Element keyword="" value="" type="4" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r">
+        <Element keyword="item_title" value="Title" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r" suffix="\r" />
+        <Element keyword="item_quantity" value="1" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r\2" />
+        <Element keyword="item_name" value="Chicken" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix=" X " />
+        <Element keyword="item_price" value="1.00" type="1" orderType="0" orderId="0" rightAlign="1" display="1" main="0" />
+        <Element keyword="item_opt" value="" type="3" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r">
+          <Element keyword="" value="" type="4" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r" suffix="\r">
+            <Element keyword="opt_name" value="+option" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r  " />
+            <Element keyword="opt_quantity" value="" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix=" X " />
+            <Element keyword="opt_price" value="1.00" type="1" orderType="0" orderId="0" rightAlign="1" display="1" main="0" />
+          </Element>
+        </Element>
+      </Element>
+    </Element>
+    <Element keyword="" value="" type="4" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r/-" />
+    <Element keyword="discount" value="0.00" type="1" orderType="0" orderId="0" rightAlign="1" display="1" main="0" prefix="\rDiscount:" />
+    <Element keyword="discount_taxes" value="0.00" type="1" orderType="0" orderId="0" rightAlign="1" display="1" main="0" prefix="\rDiscount Taxes:" />
+    <Element keyword="sub_total" value="0.00" type="1" orderType="0" orderId="0" rightAlign="1" display="1" main="0" prefix="\rSubTotal:" />
+    <Element keyword="shipping_fee" value="0.00" type="1" orderType="0" orderId="0" rightAlign="1" display="1" main="0" prefix="\rShipping:" />
+    <Element keyword="shipping_taxes" value="0.00" type="1" orderType="0" orderId="0" rightAlign="1" display="1" main="0" prefix="\rDelivery Taxes:" />
+    <Element keyword="fee" value="0.00" type="1" orderType="0" orderId="0" rightAlign="1" display="1" main="0" prefix="\rFee:" />
+    <Element keyword="" value="" type="4" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r/-" />
+    <Element keyword="total_taxes" value="0.00" type="1" orderType="0" orderId="0" rightAlign="1" display="1" main="0" prefix="\rTotal taxes:" />
+    <Element keyword="total" value="29.10" type="1" orderType="0" orderId="0" rightAlign="1" display="1" main="0" prefix="\r\3Total:" />
+    <Element keyword="payment_status" value="Order Paid" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r\3" />
+    <Element keyword="cust_name" value="Tom" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\rName:" />
+    <Element keyword="cust_addr" value="Address of the Customer" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\rAddress:" />
+    <Element keyword="cust_city" value="" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r" />
+    <Element keyword="cust_phone" value="00861234567890" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\rPhone:" />
+    <Element keyword="cust_ins" value="Instruction" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\rInstruction:" />
+    <Element keyword="" value="" type="4" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r--------------------------------" />
+    <Element keyword="request_time" value="15:30 16-08-2022" type="1" orderType="3" orderId="0" rightAlign="0" display="1" main="0" prefix="\r\3Request for:\r\3" />
+    <Element keyword="" value="" type="4" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r/-" />
+    <Element keyword="previous_order" value="10005" type="1" orderType="0" orderId="0" rightAlign="1" display="1" main="0" prefix="\rPrevious Order:" />
+    <Element keyword="verified" value="Not verified" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\r\3" />
+    <Element keyword="payment_method" value="paypal" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\rPayment method:" />
+    <Element keyword="payment_type" value="Cash" type="1" orderType="0" orderId="0" rightAlign="1" display="1" main="0" prefix="\r\3Payment Type:" />
+    <Element keyword="comment" value="comment" type="1" orderType="0" orderId="0" rightAlign="0" display="1" main="0" prefix="\rComments:" />
+  </Elements>
+</GOODCOM_ORDER>

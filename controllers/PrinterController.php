@@ -27,6 +27,7 @@ class Xdelivery_PrinterController extends Application_Controller_Default
                 if (count($printers)) {
 
                     $ini_url = $this->getRequest()->getBaseUrl() . '/xdelivery/printer/downloadini/printer_id/';
+                    $xml_template_url = $this->getRequest()->getBaseUrl() . '/app/local/modules/Xdelivery/resources/design/desktop/flat/printer_templates/jsonTemplate.xml';
 
                     foreach ($printers as $printer) {
 
@@ -40,7 +41,8 @@ class Xdelivery_PrinterController extends Application_Controller_Default
 
                             $printer->getPrinterPassword(),
 
-                            '<a class="btn btn-xs color-blue" href="' . $ini_url . $printer->getPrinterId() . '/protocol/1/type/' . $printer->getPrinterType() . '">' .p__('xdelivery', 'download') . '</a> <span class="badge badge-info">v' . $printer->getPrinterType() . '.0</span>',//'<a class="link_color" href="'.$ini_url.$printer->getPrinterId().'/protocol/1/type/'.$printer->getPrinterType().'">'.__('HTTP').'</a> | <a class="link_color" href="'.$ini_url.$printer->getPrinterId().'/protocol/2/type/'.$printer->getPrinterType().'">'.__('HTTPS').'</a><span class="badge badge-info">v'.$printer->getPrinterType().'.0</span>',
+                            '<a class="btn btn-xs color-blue" href="' . $ini_url . $printer->getPrinterId() . '/protocol/1/type/' . $printer->getPrinterType() . '">' .p__('xdelivery', 'download') . '</a>',//'<a class="link_color" href="'.$ini_url.$printer->getPrinterId().'/protocol/1/type/'.$printer->getPrinterType().'">'.__('HTTP').'</a> | <a class="link_color" href="'.$ini_url.$printer->getPrinterId().'/protocol/2/type/'.$printer->getPrinterType().'">'.__('HTTPS').'</a><span class="badge badge-info">v'.$printer->getPrinterType().'.0</span>',
+                            '<a class="btn btn-xs color-blue" href="' . $xml_template_url . '" download="jsonTemplate.xml">' . p__('xdelivery', 'download') . '</a>',
 
                             $printer->getStoreId(),
 
@@ -105,30 +107,12 @@ class Xdelivery_PrinterController extends Application_Controller_Default
 
             // $base_url = 'https://webhook.site/381f5380-6fb2-49ba-aed3-21a883f6c1c2'; //$base_url = $this->getRequest()->getBaseUrl();
 
-            $base_url = $this->getRequest()->getBaseUrl();
-            $port = 80;
-
-            $http_https = preg_replace("/^https:/i", "http:", $base_url);
-
-            if ($protocol == 2) {
-
-                $port = 443;
-
-                $http_https = preg_replace("/^http:/i", "https:", $base_url);
-
-            }
-            // $folder_name = 'testing';
-            $folder_name = 'GT5000W';
-
-            if ($type == 3) {
-
-                $folder_name = 'GT5000SW';
-
-            }
-
+            $base_url = $this->getRequest()->getBaseUrl();            
+            $port = 443;
+            $http_https = preg_replace("/^http:/i", "https:", $base_url);            
             $domain = rtrim(str_replace(array("http://", "https://", "HTTP://", "HTTPS://"), "", $this->getRequest()->getBaseUrl()), '/');
             $baseUrl = $this->getRequest()->getBaseUrl();
-            $ini_raw_data = (new Xdelivery_Model_Printers())::IniFileData($folder_name);
+            $ini_raw_data = (new Xdelivery_Model_Printers())::IniFileData();
             
             $ini_file_contents = str_replace([
 
@@ -238,9 +222,9 @@ class Xdelivery_PrinterController extends Application_Controller_Default
                 if (empty($datas['printer_title'])) {
                     $errors .=p__('xdelivery', 'Printer name cannot be empty.') . "<br/>";
                 }
-                if (empty($datas['start_fetching_orders_from'])) {
-                    $errors .=p__('xdelivery', 'Start fetching orders from cannot be empty.') . "<br/>";
-                }
+                // if (empty($datas['start_fetching_orders_from'])) {
+                //     $errors .=p__('xdelivery', 'Start fetching orders from cannot be empty.') . "<br/>";
+                // }
                 if (empty($datas['printer_username'])) {
                     $errors .=p__('xdelivery', 'Unique key id cannot be empty.') . "<br/>";
                 }
@@ -253,9 +237,9 @@ class Xdelivery_PrinterController extends Application_Controller_Default
                     $errors .=p__('xdelivery', 'Please select a shop.') . "<br/>";
                 }
 
-                if (empty($datas['printer_type'])) {
-                    $errors .=p__('xdelivery', 'Please select INI file.') . "<br/>";
-                }
+                // if (empty($datas['printer_type'])) {
+                //     $errors .=p__('xdelivery', 'Please select INI file.') . "<br/>";
+                // }
 
                 if (empty($datas['currency_code']) || empty($datas['currency_symbol'])) {
                     $errors .=p__('xdelivery', 'Please select a currency.') . "<br/>";

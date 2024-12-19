@@ -1114,11 +1114,10 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
                         <div class="form-horizontal">
                             <div class="form-group">
                                 
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <label for="start_fetching_orders_from"><?php echo p__('xdelivery', 'Start Fetching Orders From'); ?></label>
                                     <input type="date" name="start_fetching_orders_from" id="start_fetching_orders_from" value="<?php echo(date('d-m-Y')) ?>"  class="start_fetching_orders_from input-flat" />
-
-                                </div>
+                                </div> -->
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4">
@@ -1168,9 +1167,9 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
                                     </select>
 
                                 </div>
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4"> -->
 
-                                    <select id="printer_type" name="printer_type"
+                                    <!-- <select id="printer_type" name="printer_type"
                                         class="no-dk styled-select color-blue printer_type">
 
                                         <option value="0"><?php echo p__('xdelivery', 'Select INI File'); ?></option>
@@ -1183,9 +1182,9 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
                                             <?php // echo p__('xdelivery', 'DEPRECATED'); ?>
                                         </option> -->
 
-                                    </select>
+                                    </select> -->
 
-                                </div>
+                                <!-- </div> -->
                                 <div class="col-sm-4">
                                     <select id="select_currency" class="no-dk styled-select color-blue">
                                         <option value=""><?php echo p__('xdelivery', "Select Currency"); ?></option>
@@ -1237,6 +1236,8 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
                             <th><?php echo p__('xdelivery', 'Password'); ?></th>
 
                             <th><?php echo p__('xdelivery', 'INI File'); ?></th>
+                            
+                            <th><?php echo p__('xdelivery', 'XML File'); ?></th>
 
                             <th><?php echo p__('xdelivery', 'Store Id'); ?></th>
 

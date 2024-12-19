@@ -722,13 +722,15 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
             // dd($settings, $order, $customer, $tagLabels, $tagValues, $template);
             // Send mail to admin
             if ($template['notification_is_admin'] && $template['notification_admin_is_email']) { //Email to Admin
-                $emailBody=$template['notification_admin_email_body'];                  
+                $emailBody=$template['notification_admin_email_body'];  
+                $mail='';
+                $email=[];
                 foreach ($admins_list as $key => $value) {
                     $admin = (new Customer_Model_Customer())->find(['customer_id' => $value['customer_id']]);                         
                     $tagValues['admin_name'] = $admin->getFirstname().' '.$admin->getLasttname();
                     $tagValues['admin_email'] = $admin->getEmail();
                     $tagValues['admin_phone'] = $admin->getMobile();
-                    
+                    $mail.=$tagValues['admin_email'];
                     $emailBody = str_replace($tagLabels, $tagValues, $emailBody);
                     $mailPrams['customer_email'] = $admin->getEmail();//For Admin
                     $mailPrams['store_name'] = $order['store_name'];
@@ -737,12 +739,17 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
                     $mailPrams['message'] = $emailBody;                  
                     $this->_sendEmail($mailPrams); 
                                         
+                    
                     $notification_logger['type']="email";
                     $notification_logger['status']='success';
                     $notification_logger['user_id']=$admin->getCustomerId();;
                     $notification_logger['additional_info']=$tagValues['message'];
                     (New Xdelivery_Model_Notificationlogs)->setData($notification_logger)->save();
-                }                   
+                }
+                // throw new Exception("Nitficaton enables and sent".$mail, 1);
+                
+            }else{
+                // throw new Exception("Nitficaton not enabled", 1);
             }
             /*
                 Whatsender
@@ -907,7 +914,8 @@ class Xdelivery_Mobile_OrderController extends Application_Controller_Mobile_Def
             $payload = [
                 "error" => true,
                 "message" => $e->getMessage(),
-                "e" => $e,                
+                "e" => $e,
+                'admins_list' => $admins_list,
             ];
         }
 
