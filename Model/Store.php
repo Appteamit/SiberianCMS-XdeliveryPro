@@ -12,7 +12,6 @@ class Xdelivery_Model_Store extends Core_Model_Default {
      */
     protected $_db_table = Xdelivery_Model_Db_Table_Store::class;
 
-
     /**
      * @param $valuesId
      * @param array $params
@@ -24,16 +23,19 @@ class Xdelivery_Model_Store extends Core_Model_Default {
     }
 
     /**
-     * @param $valuesId     
+     * @param array $values
+     * @param null $order
+     * @param array $params
      * @return Xdelivery_Model_Store[]
      */
-    public function findAll($valuesId=[])
+    public function findAll($values = [], $order = null, $params = [])
     {
-        return $this->getTable()->findAll($valuesId);
+        // If you need special handling for valuesId, you can add it here
+        return $this->getTable()->findAll($values, $order, $params);
     }
+
     public function countAllForApp($valuesId, $params = [])
     {
         return $this->getTable()->countAllForApp($valuesId, $params = []);
     }
-   
 }

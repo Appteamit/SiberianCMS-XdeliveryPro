@@ -125,7 +125,7 @@
         	<ion-checkbox class="item item-custom remove-border" ng-model="address_post.is_default" ng-value="1">{{ ::"Make this as my default address" | translate:"xdelivery" }}</ion-checkbox>
         </div>
 
-		<button class="button button-full button-positive-custom remove-border" ng-click="addAddress(address_post)"  ng-disabled="((address_post.customer_name === '' || address_post.phone_number === '' || address_post.address === '' || address_post.city === '' || address_post.pincode === '' || (address_post.company_address == '' && settings.company_address == 2) || (address_post.sdi == '' && settings.sdi == 2) || (address_post.pec == '' && settings.pec == 2) || (address_post.cod_fiscale == '' && settings.cod_fiscale == 2) ) ? true : false)" >
+		<button class="button button-full button-positive-custom remove-border" ng-click="addAddress(address_post)" >
             {{ ::"Save" | translate:"xdelivery" }}
         </button>  
  

@@ -2,7 +2,7 @@
   "name": "Xdelivery",
   "description": "Xdelivery - Online shopping Store!",
   "type": "module",
-  "version": "3.6.11",
+  "version": "3.6.12",
   "dependencies": {
     "system": {
       "type": "SAE",
