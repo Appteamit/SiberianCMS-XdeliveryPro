@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * Schema definition for 'xdelivery_payment_method'
@@ -30,7 +31,7 @@ $schemas['xdelivery_payment_method'] = [
         'type' => 'int(11)',
         'is_null' => false,
         'default' => "0"
-    ], 
+    ],
     'method_type' => [
         'type' => 'varchar(255)',
         'is_null' => false,
@@ -54,66 +55,78 @@ $schemas['xdelivery_payment_method'] = [
         'is_null' => true,
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
-    ], 
+    ],
     'method_type' => [
         'type' => 'varchar(255)',
         'is_null' => true,
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
-    ], 
+    ],
     'payment_mode' => [
         'type' => 'varchar(50)',
         'is_null' => true,
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
-    ], 
+    ],
     'username' => [
         'type' => 'varchar(255)',
         'is_null' => true,
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
-    ], 
+    ],
     'signature' => [
         'type' => 'varchar(255)',
         'is_null' => true,
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
-    ], 
+    ],
     'password' => [
         'type' => 'varchar(255)',
         'is_null' => true,
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
-    ], 
+    ],
     'sandboxusername' => [
         'type' => 'varchar(255)',
         'is_null' => true,
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
-    ], 
+    ],
     'sandboxsignature' => [
         'type' => 'varchar(255)',
         'is_null' => true,
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
-    ], 
+    ],
     'sandboxpassword' => [
         'type' => 'varchar(255)',
         'is_null' => true,
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
-    ], 
+    ],
     'publishable_key' => [
         'type' => 'varchar(255)',
         'is_null' => true,
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
-    ], 
+    ],
     'secret_key' => [
         'type' => 'varchar(255)',
         'is_null' => true,
         'charset' => 'utf8',
         'collation' => 'utf8_unicode_ci',
+    ],
+    // is_test_mode
+    'is_test_mode' => [
+        'type' => 'int(11)',
+        'is_null' => false,
+        'default' => "0"
+    ],
+    // Processing fee in %
+    'processing_fee' => [
+        'type' => 'int(11)',
+        'is_null' => false,
+        'default' => "0"
     ],
     'created_at' => [
         'type' => 'datetime',

@@ -1,4 +1,5 @@
 <?php
+
 use Siberian\Currency;
 
 $option_value = $this->getOptionValue();
@@ -80,7 +81,15 @@ if ($stripeModel->getId()) {
     $stripeData = $stripeModel->getData();
     $stripeFrom->populate($stripeData);
 }
-
+// Nmi Payment
+$nmiFrom = new Xdelivery_Form_PaymentMethod_Nmi();
+$nmiFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
+$nmiFrom->setElementValueById('value_id', $option_value->getId());
+$nmiModel = (new Xdelivery_Model_PaymentMethod())->find(['value_id' => $option_value->getId(), 'method_type' => 'nmi']);
+if ($nmiModel->getId()) {
+    $nmiData = $nmiModel->getData();
+    $nmiFrom->populate($nmiData);
+}
 /*Payment Method Manage*/
 $paypalFrom = new Xdelivery_Form_PaymentMethod_Paypal();
 $paypalFrom->addNav("ads-save-nav", p__('xdelivery', "Save"), false);
@@ -170,19 +179,19 @@ if ($settingModel->getId()) {
 }
 
 // printer settings
-    $all_stores = (new Xdelivery_Model_Store())->findAll(['value_id' => $value_id]);
-    $printer = new Xdelivery_Model_Printers();
-    $stored_stores = $printer->findAll([
-        'app_id = ?' => $app_id,
-        'value_id = ?' => $value_id
-    ]);
+$all_stores = (new Xdelivery_Model_Store())->findAll(['value_id' => $value_id]);
+$printer = new Xdelivery_Model_Printers();
+$stored_stores = $printer->findAll([
+    'app_id = ?' => $app_id,
+    'value_id = ?' => $value_id
+]);
 
-    $stored_store_ids = [];
-    if (count($stored_stores)) {
-        foreach ($stored_stores as $stored_store) {
-            $stored_store_ids[] = $stored_store->getStoreId();
-        }
+$stored_store_ids = [];
+if (count($stored_stores)) {
+    foreach ($stored_stores as $stored_store) {
+        $stored_store_ids[] = $stored_store->getStoreId();
     }
+}
 
 
 /*APP Notifications */
@@ -358,6 +367,9 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
             </div>
             <div class="container-fluid first-row-feature content-feature feature-manage-items">
                 <?php echo $paypalFrom; ?>
+            </div>
+            <div class="container-fluid first-row-feature content-feature feature-manage-items">
+                <?php echo $nmiFrom; ?>
             </div>
 
         </div>
@@ -959,8 +971,7 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
                                             <td><?php echo $working->getClosingTime(); ?></td>
                                             <td><?php echo $working->getEnableDelivery() == 1 ? p__('xdelivery', "Active") : p__('xdelivery', "In Active"); ?>
                                             </td>
-                                            <td><?php echo $working->getEnablePickup() == 1 ? p__('xdelivery', "Active") : p__('xdelivery', "In Active");
-                                            ; ?>
+                                            <td><?php echo $working->getEnablePickup() == 1 ? p__('xdelivery', "Active") : p__('xdelivery', "In Active");; ?>
                                             </td>
                                             <td class="edit-action open-edit text-right"
                                                 data-id="working_<?php echo $working->getId(); ?>"
@@ -1113,10 +1124,10 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
                         <input type="hidden" name="currency_symbol" id="currency_symbol" />
                         <div class="form-horizontal">
                             <div class="form-group">
-                                
+
                                 <!-- <div class="col-md-4">
                                     <label for="start_fetching_orders_from"><?php echo p__('xdelivery', 'Start Fetching Orders From'); ?></label>
-                                    <input type="date" name="start_fetching_orders_from" id="start_fetching_orders_from" value="<?php echo(date('d-m-Y')) ?>"  class="start_fetching_orders_from input-flat" />
+                                    <input type="date" name="start_fetching_orders_from" id="start_fetching_orders_from" value="<?php echo (date('d-m-Y')) ?>"  class="start_fetching_orders_from input-flat" />
                                 </div> -->
                             </div>
                             <div class="form-group">
@@ -1169,7 +1180,7 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
                                 </div>
                                 <!-- <div class="col-md-4"> -->
 
-                                    <!-- <select id="printer_type" name="printer_type"
+                                <!-- <select id="printer_type" name="printer_type"
                                         class="no-dk styled-select color-blue printer_type">
 
                                         <option value="0"><?php echo p__('xdelivery', 'Select INI File'); ?></option>
@@ -1178,11 +1189,13 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
 
                                         <option value="2"><?php echo p__('xdelivery', 'Version 2.0'); ?> GT5000W</option>
 
-                                        <!-- <option value="1"><?php // echo p__('xdelivery', 'Version 1.0'); ?>
-                                            <?php // echo p__('xdelivery', 'DEPRECATED'); ?>
+                                        <!-- <option value="1"><?php // echo p__('xdelivery', 'Version 1.0'); 
+                                                                ?>
+                                            <?php // echo p__('xdelivery', 'DEPRECATED'); 
+                                            ?>
                                         </option> -->
 
-                                    </select> -->
+                                </select> -->
 
                                 <!-- </div> -->
                                 <div class="col-sm-4">
@@ -1236,7 +1249,7 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
                             <th><?php echo p__('xdelivery', 'Password'); ?></th>
 
                             <th><?php echo p__('xdelivery', 'INI File'); ?></th>
-                            
+
                             <th><?php echo p__('xdelivery', 'XML File'); ?></th>
 
                             <th><?php echo p__('xdelivery', 'Store Id'); ?></th>
@@ -1347,7 +1360,7 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
 </div>
 
 <script type="text/javascript">
-    $('#notification_order_status').on('change', function () {
+    $('#notification_order_status').on('change', function() {
         editNotification();
     });
 
@@ -1408,9 +1421,9 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
     function editNotification() {
         resetNotification();
         url = '<?php echo $this->getUrl('xdelivery/notification/edit-notification'); ?>/notification_order_status/' + $(
-            '#notification_order_status').val() +
+                '#notification_order_status').val() +
             "/value_id/<?php echo $value_id; ?>";
-        reload(this, url, true, function (data) {
+        reload(this, url, true, function(data) {
             console.log(data);
             if (data.notification.notification_is_customer == '1') {
                 $('#block_customer_notification').show();
@@ -1535,29 +1548,29 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
         });
     }
     // submition forms
-    page.setCallback('didappear', function () {
+    page.setCallback('didappear', function() {
         $('#notification_form, #printerForm')
-            .submit(function () {
-                reload(this, this.action, true, function (data) {
+            .submit(function() {
+                reload(this, this.action, true, function(data) {
                     page.reload();
                 });
                 return false;
             });
     });
-    page.setCallback('willdisappear', function () {
+    page.setCallback('willdisappear', function() {
         $('#notification_form, #printerForm').unbind('submit');
     });
     var img_uploader = new Uploader();
     $('#tmp_notification_customer_push_cover').fileupload({
         dataType: 'json',
-        add: function (e, data) {
+        add: function(e, data) {
             data.submit();
             img_uploader.showProgressbar();
         },
-        progressall: function (e, data) {
+        progressall: function(e, data) {
             img_uploader.moveProgressbar(data);
         },
-        done: function (e, data) {
+        done: function(e, data) {
             if (data.result.error) {
                 img_uploader.showError(data.result.message);
             }
@@ -1572,13 +1585,13 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
                     '<?php echo str_replace('/', '$', $this->getUrl('xdelivery/application/crop')) ?>';
                 params["uploader"] = 'img_uploader';
                 img_uploader.crop(params);
-                img_uploader.callback = function (file) {
+                img_uploader.callback = function(file) {
 
                     var image = iframe.content.find(
                         '#category_show_notification_picture_file_<?php echo $this->getOptionValue()->getId(); ?>'
                     );
                     $('#show_notification_customer_push_cover').hide().attr('src',
-                        '<?php echo Core_Model_Directory::getTmpDirectory() ?>/' + file)
+                            '<?php echo Core_Model_Directory::getTmpDirectory() ?>/' + file)
                         .slideDown();
                     $('#remove_notification_customer_push_cover').show();
                     $('#notification_customer_push_cover').val(file);
@@ -1586,12 +1599,12 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
             }
         }
     });
-    $('#upload_notification_customer_push_cover_btn').click(function () {
+    $('#upload_notification_customer_push_cover_btn').click(function() {
         $('#tmp_notification_customer_push_cover').trigger('click');
     });
-    $('#remove_notification_customer_push_cover').click(function () {
+    $('#remove_notification_customer_push_cover').click(function() {
         if (confirm(
-            "<?php echo p__("xdelivery", "Are you sure you want to remove the picture?"); ?>")) {
+                "<?php echo p__("xdelivery", "Are you sure you want to remove the picture?"); ?>")) {
             $('#show_notification_customer_push_cover').hide().attr('src', '');
             $('#notification_customer_push_cover').val('');
             $(this).hide();
@@ -1601,14 +1614,14 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
     img_uploader = new Uploader();
     $('#tmp_notification_admin_push_cover').fileupload({
         dataType: 'json',
-        add: function (e, data) {
+        add: function(e, data) {
             data.submit();
             img_uploader.showProgressbar();
         },
-        progressall: function (e, data) {
+        progressall: function(e, data) {
             img_uploader.moveProgressbar(data);
         },
-        done: function (e, data) {
+        done: function(e, data) {
             if (data.result.error) {
                 img_uploader.showError(data.result.message);
             }
@@ -1623,13 +1636,13 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
                     '<?php echo str_replace('/', '$', $this->getUrl('xdelivery/application/crop')) ?>';
                 params["uploader"] = 'img_uploader';
                 img_uploader.crop(params);
-                img_uploader.callback = function (file) {
+                img_uploader.callback = function(file) {
 
                     var image = iframe.content.find(
                         '#category_show_notification_picture_file_<?php echo $this->getOptionValue()->getId(); ?>'
                     );
                     $('#show_notification_admin_push_cover').hide().attr('src',
-                        '<?php echo Core_Model_Directory::getTmpDirectory() ?>/' + file)
+                            '<?php echo Core_Model_Directory::getTmpDirectory() ?>/' + file)
                         .slideDown();
                     $('#remove_notification_admin_push_cover').show();
                     $('#notification_admin_push_cover').val(file);
@@ -1637,22 +1650,22 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
             }
         }
     });
-    $('#upload_notification_admin_push_cover_btn').click(function () {
+    $('#upload_notification_admin_push_cover_btn').click(function() {
         $('#tmp_notification_admin_push_cover').trigger('click');
     });
-    $('#remove_notification_admin_push_cover').click(function () {
+    $('#remove_notification_admin_push_cover').click(function() {
         if (confirm(
-            "<?php echo p__("xdelivery", "Are you sure you want to remove the picture?"); ?>")) {
+                "<?php echo p__("xdelivery", "Are you sure you want to remove the picture?"); ?>")) {
             $('#show_notification_admin_push_cover').hide().attr('src', '');
             $('#notification_admin_push_cover').val('');
             $(this).hide();
         }
         return false;
     });
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('.ckeditor').ckeditor(ckeditor_config.default);
         // Bind click event handler to the checkbox
-        $('#notification_is_customer').on('click', function () {
+        $('#notification_is_customer').on('click', function() {
             // Check if the checkbox is selected
             if ($(this).is(':checked')) {
                 // Checkbox is selected
@@ -1664,7 +1677,7 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
                 $('#block_customer_notification').hide();
             }
         });
-        $('#notification_is_admin').on('click', function () {
+        $('#notification_is_admin').on('click', function() {
             // Check if the checkbox is selected
             if ($(this).is(':checked')) {
                 // Checkbox is selected
@@ -1693,15 +1706,15 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
             }
         }
 
-        setTimeout(function () {
+        setTimeout(function() {
             appType();
         }, 300);
 
-        $(document).on("change", '#app_service_type', function () {
+        $(document).on("change", '#app_service_type', function() {
             appType();
         });
 
-        setTimeout(function () {
+        setTimeout(function() {
             if ($('.select_payment_paypal').val() == 'live') {
                 formlivecondition();
             } else {
@@ -1727,7 +1740,7 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
             $('#signature').parent().parent().hide();
         }
 
-        $(document).on("change", '.select_payment_paypal', function () {
+        $(document).on("change", '.select_payment_paypal', function() {
             if (this.value == 'live') {
                 formlivecondition();
             } else {
@@ -1792,9 +1805,9 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
 
         sPaginationType: "full_numbers",
 
-        fnDrawCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+        fnDrawCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 
-            $.each(nRow.aoData, function (i, el) {
+            $.each(nRow.aoData, function(i, el) {
 
                 var tr = $(el.nTr);
 
@@ -1839,12 +1852,12 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
             confirmButtonText: '<?php echo p__('xdelivery', 'Yes, Reset!', "'"); ?>',
             cancelButtonText: '<?php echo p__('xdelivery', 'No, go back', "'"); ?>',
             buttons: true
-        }, function (value) {
+        }, function(value) {
             if (value) {
                 var url =
                     '<?php echo $this->getUrl('xdelivery/admins/adminstatus'); ?>/app_id/<?php echo $app_id; ?>/value_id/<?php echo $value_id; ?>/status/' +
                     status + '/customer_id/' + customer_id;
-                reload(this, url, true, function (datas) {
+                reload(this, url, true, function(datas) {
                     if (datas.success) {
                         page.reload();
                     }
@@ -1867,11 +1880,11 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
                 confirmButtonText: '<?php echo p__('xdelivery', 'Yes, Reset!', "'"); ?>',
                 cancelButtonText: '<?php echo p__('xdelivery', 'No, go back', "'"); ?>',
                 buttons: true
-            }, function (value) {
+            }, function(value) {
                 if (value) {
                     reload(this, '<?php echo $this->getUrl('xdelivery/admins/adminstore'); ?>/store_id/' +
                         store_id + '/customer_id/' + customer_id, true,
-                        function (datas) {
+                        function(datas) {
                             if (datas.success) {
                                 page.reload();
                             }
@@ -1887,9 +1900,9 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
     function toggleContainer(containerId) {
         $('#' + containerId).toggle();
     }
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-        $('#select_currency').change(function () {
+        $('#select_currency').change(function() {
             var value = $.trim($(this).val());
             $('#currency_code, #currency_symbol').val('');
             if (value != null && value != '' && value != false && value != 0) {
@@ -1904,7 +1917,7 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
 
         //Datatable Object
         //Datatable resize problem resolve code start
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
             // var target = $(e.target).attr("href"); // activated tab
             // alert(target);
             $($.fn.dataTable.tables(true)).css('width', '100%');
@@ -1967,9 +1980,9 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
 
             sPaginationType: "full_numbers",
 
-            fnDrawCallback: function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            fnDrawCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 
-                $.each(nRow.aoData, function (i, el) {
+                $.each(nRow.aoData, function(i, el) {
 
                     var tr = $(el.nTr);
 
@@ -2035,7 +2048,6 @@ $order_status = (new Xdelivery_Model_Orders)->getStatus();
         }
 
     }
-
 </script>
 
 <!-- Map Start  -->
@@ -2045,7 +2057,7 @@ $googlemaps_key = $this->getApplication()->getGooglemapsKey();
 <script type="text/javascript">
     function initMap() {
         var autocomplete = new google.maps.places.Autocomplete($("#store_location")[0], {});
-        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
             var place = autocomplete.getPlace();
             var near_place = autocomplete.getPlace();
             document.getElementById('address_lat').value = near_place.geometry.location.lat();
@@ -2055,5 +2067,5 @@ $googlemaps_key = $this->getApplication()->getGooglemapsKey();
 </script>
 <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?sensor=false&key=<?php echo $googlemaps_key; ?>&libraries=places&callback=initMap">
-    </script>
+</script>
 <!-- Map end  -->

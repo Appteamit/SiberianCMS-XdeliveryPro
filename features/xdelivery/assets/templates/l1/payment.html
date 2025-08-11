@@ -1,92 +1,216 @@
-<ion-view sb-page-background
-          class="xdelivery xdelivery-confirm">
-    <ion-nav-title>
-      {{ ::"Confirm" | translate:"xdelivery" }}
-    </ion-nav-title>
- 
-    <ion-content class="has-header">
-       <div class="loader" ng-show="is_loading">
-         <ion-spinner class="spinner-custom"></ion-spinner>
+<ion-view sb-page-background class="xdelivery xdelivery-confirm">
+  <ion-nav-title> {{ ::"Confirm" | translate:"xdelivery" }} </ion-nav-title>
+
+  <ion-content class="has-header">
+    <div class="loader" ng-show="is_loading">
+      <ion-spinner class="spinner-custom"></ion-spinner>
+    </div>
+
+    <ion-list ng-show="!is_loading" ng-if="!settings.hide_price">
+      <div class="item item-divider item-divider-custom remove-border">
+        {{ ::"Total Amount" | translate:"xdelivery" }}
+      </div>
+      <div class="item item-custom remove-border">
+        {{carts.main.total_amount_with_currency}}
+      </div>
+    </ion-list>
+
+    <ion-list
+      ng-show="!is_loading"
+      ng-if="settings.enable_to_pickup || settings.enable_to_deliver"
+    >
+      <div class="item item-divider item-divider-custom remove-border">
+        {{ ::"Delivery/Pick-up Date and Time" | translate:"xdelivery" }}
+      </div>
+      <div class="item item-custom remove-border">
+        {{ payout.delivery_date }} {{ payout.delivery_time }}
+      </div>
+    </ion-list>
+
+    <ion-list ng-show="!is_loading && carts.delivery != 'pickup'">
+      <div class="item item-divider item-divider-custom remove-border">
+        {{ ::"Address" | translate:"xdelivery" }}
+      </div>
+      <div class="item item-custom item-body remove-border">
+        <p>{{payout.customer}}</p>
+        <p>{{payout.address}}</p>
+      </div>
+    </ion-list>
+
+    <ion-list ng-show="!is_loading && carts.delivery == 'pickup'">
+      <div class="item item-divider item-divider-custom remove-border">
+        {{ ::"Contact" | translate:"xdelivery" }}
+      </div>
+      <div class="item item-custom item-body remove-border">
+        <p>
+          {{carts.customer.firstname}} {{carts.customer.lastname}},
+          {{carts.customer.phone_number}}
+        </p>
+      </div>
+    </ion-list>
+
+    <ion-list ng-show="!is_loading">
+      <div class="item item-divider item-divider-custom remove-border">
+        {{ ::"Select Payment Method" | translate:"xdelivery" }}
       </div>
 
-      <ion-list ng-show="!is_loading" ng-if="!settings.hide_price">
-         <div class="item item-divider item-divider-custom remove-border">
-            {{ ::"Total Amount" | translate:"xdelivery" }}
-         </div>
-        <div class="item item-custom remove-border">
-          {{carts.main.total_amount_with_currency}}
-       </div>
-      </ion-list>
+      <div ng-repeat="(key, method) in payout.payment_methods">
+        <ion-radio
+          ng-model="carts.payment_method"
+          ng-value="method.id"
+          class="item item-custom radio-custom"
+          ng-click="selectPaymentMethod(method)"
+        >
+          <h2>{{method.label_name}}</h2>
+          <p>{{method.desciption}}</p>
+        </ion-radio>
 
-      <ion-list ng-show="!is_loading" ng-if="settings.enable_to_pickup || settings.enable_to_deliver">
-          <div class="item item-divider item-divider-custom remove-border">
-           {{ ::"Delivery/Pick-up Date and Time" | translate:"xdelivery" }}
+        <div
+          id="xdelivery_card_element"
+          class="item item-custom"
+          ng-hide="method_type != 'stripe'"
+          ng-if="method.method_type == 'stripe'"
+        ></div>
+        <div
+          id="xdelivery_card_errors_parent"
+          ng-if="method.method_type == 'stripe'"
+          ng-hide="method_type != 'stripe'"
+          class="item item-custom ng-hide"
+        >
+          <span
+            style="font-size: 0.9em; white-space: normal"
+            id="xdelivery_card_errors"
+            class="assertive assertive-custom"
+          ></span>
+        </div>
+        <button
+          ng-click="payStripeNow()"
+          ng-if="method.method_type == 'stripe'"
+          ng-hide="method_type != 'stripe'"
+          id="xdelivery_save_element"
+          class="button button-full button-positive button-positive-custom"
+        >
+          {{ ::"Pay" | translate:"xdelivery" }}
+        </button>
+
+        <!-- Nmi Payment -->
+        <!-- show card -->
+        <div
+          id="xdelivery_card_element"
+          class="item item-custom"
+          ng-hide="method_type != 'nmi'"
+          ng-if="method.method_type == 'nmi'"
+        >
+          <div class="list">
+            <!-- Adds Processing fees on  -->
+            <div class="item item-text-wrap">
+              <table style="width: 100%; border-collapse: collapse">
+                <tr>
+                  <td
+                    style="
+                      font-weight: bold;
+                      padding: 8px;
+                      border: 1px solid #ddd;
+                    "
+                  >
+                    {{ ::"Total Amount" | translate:"xdelivery" }}
+                  </td>
+                  <td
+                    style="
+                      text-align: right;
+                      padding: 8px;
+                      border: 1px solid #ddd;
+                    "
+                  >
+                    {{ carts.main.total_amount_with_currency || 0 }}
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    style="
+                      font-weight: bold;
+                      padding: 8px;
+                      border: 1px solid #ddd;
+                    "
+                  >
+                    {{ ::"Processing Fee" | translate:"xdelivery" }}
+                  </td>
+                  <td
+                    style="
+                      text-align: right;
+                      padding: 8px;
+                      border: 1px solid #ddd;
+                    "
+                  >
+                    {{ ((carts.main.total_amount || 0) * method.processing_fee /
+                    100) }} {{ carts.main.currency }}
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    style="
+                      font-weight: bold;
+                      padding: 8px;
+                      border: 1px solid #ddd;
+                    "
+                  >
+                    {{ ::"Total Amount With Processing fee" |
+                    translate:"xdelivery" }}
+                  </td>
+                  <td
+                    style="
+                      text-align: right;
+                      padding: 8px;
+                      border: 1px solid #ddd;
+                    "
+                  >
+                    {{ ((carts.main.total_amount || 0) +
+                    ((carts.main.total_amount || 0) * method.processing_fee /
+                    100)) }} {{ carts.main.currency }}
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <label class="item item-input">
+              <span class="input-label">
+                {{ ::"Card Number" | translate:"xdelivery" }}
+              </span>
+              <input
+                type="text"
+                ng-model="nmi.card_number"
+                placeholder="Card Number"
+                required
+              />
+            </label>
+            <label class="item item-input">
+              <span class="input-label">
+                {{ ::"Expiry Date" | translate:"xdelivery" }}
+              </span>
+              <input type="text" ng-model="nmi.expiry_date" required />
+            </label>
+            <label class="item item-input">
+              <span class="input-label">
+                {{ ::"CVV" | translate:"xdelivery" }}
+              </span>
+              <input
+                type="text"
+                ng-model="nmi.card_cvc"
+                placeholder="CVV"
+                required
+              />
+            </label>
           </div>
-          <div class="item item-custom remove-border">
-            {{ payout.delivery_date }} {{ payout.delivery_time }}
-          </div>
-      </ion-list>
+        </div>
+      </div>
+    </ion-list>
 
-      <ion-list ng-show="!is_loading && carts.delivery != 'pickup'">
-          <div class="item item-divider item-divider-custom remove-border">
-            {{ ::"Address" | translate:"xdelivery" }}
-          </div>
-          <div class="item item-custom item-body remove-border">
-            <p>{{payout.customer}}</p>
-            <p>{{payout.address}}</p>
-       </div>
-      </ion-list>
-
-      <ion-list ng-show="!is_loading && carts.delivery == 'pickup'">
-          <div class="item item-divider item-divider-custom remove-border">
-            {{ ::"Contact" | translate:"xdelivery" }}
-          </div>
-          <div class="item item-custom item-body remove-border">
-            <p>{{carts.customer.firstname}} {{carts.customer.lastname}}, {{carts.customer.phone_number}}</p>
-          </div>
-      </ion-list>
-
-      <ion-list ng-show="!is_loading">
-         <div class="item item-divider item-divider-custom remove-border">
-            {{ ::"Select Payment Method" | translate:"xdelivery" }}
-         </div> 
-
-         <div ng-repeat="(key, method) in payout.payment_methods">
-
-          <ion-radio ng-model="carts.payment_method" ng-value="method.id" 
-                   class="item item-custom radio-custom" ng-click="selectPaymentMethod(method)">
-                  <h2>{{method.label_name}}</h2>
-                  <p>{{method.desciption}}</p>
-            </ion-radio>
-           
-             <div id="xdelivery_card_element"
-                         class="item item-custom" 
-                          ng-hide="method_type != 'stripe'"
-                          ng-if="method.method_type == 'stripe'">
-              </div>
-              <div id="xdelivery_card_errors_parent"
-                        ng-if="method.method_type == 'stripe'"
-                        ng-hide="method_type != 'stripe'"
-                        class="item item-custom ng-hide">
-                    <span style="font-size: .9em; white-space: normal;"
-                              id="xdelivery_card_errors"
-                              class="assertive assertive-custom"></span>
-              </div>
-              <button ng-click="payStripeNow()"
-                            ng-if="method.method_type == 'stripe'"
-                            ng-hide="method_type != 'stripe'"
-                            id="xdelivery_save_element"
-                            class="button button-full button-positive button-positive-custom">
-                       {{ ::"Pay" | translate:"xdelivery" }}
-              </button>
-
-          </div>
-      </ion-list>
-      
-       <button class="button button-full button-positive-custom remove-border" ng-click="placeOrder()" ng-show="!is_loading" ng-if="method_type != 'stripe'">
-            {{ ::"Place Order" | translate:"xdelivery" }}
-      </button>  
-
-    </ion-content>
-
+    <button
+      class="button button-full button-positive-custom remove-border"
+      ng-click="placeOrder()"
+      ng-show="!is_loading"
+      ng-if="method_type != 'stripe'"
+    >
+      {{ ::"Place Order" | translate:"xdelivery" }}
+    </button>
+  </ion-content>
 </ion-view>
